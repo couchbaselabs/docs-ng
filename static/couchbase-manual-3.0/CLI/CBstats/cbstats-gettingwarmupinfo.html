@@ -41,92 +41,92 @@ cbstats hostname:port -b bucket_name -p bucket_password raw warmup
 <p class="p">High-level warmup statistics that are available are as follows:</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d11819e67">Name</th>
+	<th class="entry" valign="top" id="d11809e67">Name</th>
 
-	<th class="entry" valign="top" id="d11819e70">Description</th>
+	<th class="entry" valign="top" id="d11809e70">Description</th>
 
-	<th class="entry" valign="top" id="d11819e73">Value Type</th>
+	<th class="entry" valign="top" id="d11809e73">Value Type</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_dups</td>
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_dups</td>
 
-	<td class="entry" valign="top" headers="d11819e70 ">Number of failures due to duplicate keys</td>
+	<td class="entry" valign="top" headers="d11809e70 ">Number of failures due to duplicate keys</td>
 
-	<td class="entry" valign="top" headers="d11819e73 ">Integer</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_estimated_key_count</td>
-
-	<td class="entry" valign="top" headers="d11819e70 ">Estimated number of keys in database</td>
-
-	<td class="entry" valign="top" headers="d11819e73 ">Integer (DEFAULT = “unknown”)</td>
+	<td class="entry" valign="top" headers="d11809e73 ">Integer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_estimated_value_count</td>
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_estimated_key_count</td>
 
-	<td class="entry" valign="top" headers="d11819e70 ">Estimated number of key data to read based on the access log</td>
+	<td class="entry" valign="top" headers="d11809e70 ">Estimated number of keys in database</td>
 
-	<td class="entry" valign="top" headers="d11819e73 ">Integer (DEFAULT = “unknown”)</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_keys_time</td>
-
-	<td class="entry" valign="top" headers="d11819e70 ">Total time spent by loading persisted keys</td>
-
-	<td class="entry" valign="top" headers="d11819e73 ">Integer</td>
+	<td class="entry" valign="top" headers="d11809e73 ">Integer (DEFAULT = “unknown”)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_min_items_threshold</td>
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_estimated_value_count</td>
 
-	<td class="entry" valign="top" headers="d11819e70 ">Enable data traffic after loading this percentage of key data</td>
+	<td class="entry" valign="top" headers="d11809e70 ">Estimated number of key data to read based on the access log</td>
 
-	<td class="entry" valign="top" headers="d11819e73 ">Integer</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_min_memory_threshold</td>
-
-	<td class="entry" valign="top" headers="d11819e70 ">Enable data traffic after filling this % of memory</td>
-
-	<td class="entry" valign="top" headers="d11819e73 ">Integer (%)</td>
+	<td class="entry" valign="top" headers="d11809e73 ">Integer (DEFAULT = “unknown”)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_oom</td>
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_keys_time</td>
 
-	<td class="entry" valign="top" headers="d11819e70 ">Number of out of memory failures during warmup</td>
+	<td class="entry" valign="top" headers="d11809e70 ">Total time spent by loading persisted keys</td>
 
-	<td class="entry" valign="top" headers="d11819e73 ">Integer</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_state</td>
-
-	<td class="entry" valign="top" headers="d11819e70 ">What is current warmup state</td>
-
-	<td class="entry" valign="top" headers="d11819e73 ">String, refer to <em class="ph i">WarmupStateTable</em></td>
+	<td class="entry" valign="top" headers="d11809e73 ">Integer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_thread</td>
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_min_items_threshold</td>
 
-	<td class="entry" valign="top" headers="d11819e70 ">Is warmup running?</td>
+	<td class="entry" valign="top" headers="d11809e70 ">Enable data traffic after loading this percentage of key data</td>
 
-	<td class="entry" valign="top" headers="d11819e73 ">String (“running”, “complete”)</td>
+	<td class="entry" valign="top" headers="d11809e73 ">Integer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e67 ">ep_warmup_time</td>
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_min_memory_threshold</td>
 
-	<td class="entry" valign="top" headers="d11819e70 ">Total time spent by loading data (warmup)</td>
+	<td class="entry" valign="top" headers="d11809e70 ">Enable data traffic after filling this % of memory</td>
 
-	<td class="entry" valign="top" headers="d11819e73 ">Integer (microseconds) </td>
+	<td class="entry" valign="top" headers="d11809e73 ">Integer (%)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_oom</td>
+
+	<td class="entry" valign="top" headers="d11809e70 ">Number of out of memory failures during warmup</td>
+
+	<td class="entry" valign="top" headers="d11809e73 ">Integer</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_state</td>
+
+	<td class="entry" valign="top" headers="d11809e70 ">What is current warmup state</td>
+
+	<td class="entry" valign="top" headers="d11809e73 ">String, refer to <em class="ph i">WarmupStateTable</em></td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_thread</td>
+
+	<td class="entry" valign="top" headers="d11809e70 ">Is warmup running?</td>
+
+	<td class="entry" valign="top" headers="d11809e73 ">String (“running”, “complete”)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e67 ">ep_warmup_time</td>
+
+	<td class="entry" valign="top" headers="d11809e70 ">Total time spent by loading data (warmup)</td>
+
+	<td class="entry" valign="top" headers="d11809e73 ">Integer (microseconds) </td>
 
 </tr>
 </tbody>
@@ -140,116 +140,116 @@ the keyword “warmup” for the command. For instance:</p>
 are also available as higher-level summary statistics about warmup:</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d11819e204">Name</th>
+	<th class="entry" valign="top" id="d11809e204">Name</th>
 
-	<th class="entry" valign="top" id="d11819e207">Description</th>
+	<th class="entry" valign="top" id="d11809e207">Description</th>
 
-	<th class="entry" valign="top" id="d11819e210">Value Type</th>
+	<th class="entry" valign="top" id="d11809e210">Value Type</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">Is warmup enabled?</td>
+	<td class="entry" valign="top" headers="d11809e207 ">Is warmup enabled?</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">String (“enabled”)</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_key_count</td>
-
-	<td class="entry" valign="top" headers="d11819e207 ">How many keys have been loaded?</td>
-
-	<td class="entry" valign="top" headers="d11819e210 ">Integer</td>
+	<td class="entry" valign="top" headers="d11809e210 ">String (“enabled”)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_value_count</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_key_count</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">How many key values (data) have been loaded?</td>
+	<td class="entry" valign="top" headers="d11809e207 ">How many keys have been loaded?</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">Integer</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_dups</td>
-
-	<td class="entry" valign="top" headers="d11819e207 ">Number of failures due to duplicate keys</td>
-
-	<td class="entry" valign="top" headers="d11819e210 ">Integer</td>
+	<td class="entry" valign="top" headers="d11809e210 ">Integer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_estimated_key_count</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_value_count</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">Estimated number of keys in database</td>
+	<td class="entry" valign="top" headers="d11809e207 ">How many key values (data) have been loaded?</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">Integer (DEFAULT = “unknown”)</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_estimated_value_count</td>
-
-	<td class="entry" valign="top" headers="d11819e207 ">Estimated number of key data to read based on the access log</td>
-
-	<td class="entry" valign="top" headers="d11819e210 ">Integer (DEFAULT = “unknown”)</td>
+	<td class="entry" valign="top" headers="d11809e210 ">Integer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_keys_time</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_dups</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">Total time spent by loading persisted keys</td>
+	<td class="entry" valign="top" headers="d11809e207 ">Number of failures due to duplicate keys</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">Integer</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_min_items_threshold</td>
-
-	<td class="entry" valign="top" headers="d11819e207 ">Enable data traffic after loading this percentage of key data</td>
-
-	<td class="entry" valign="top" headers="d11819e210 ">Integer</td>
+	<td class="entry" valign="top" headers="d11809e210 ">Integer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_min_memory_threshold</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_estimated_key_count</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">Enable data traffic after filling this % of memory</td>
+	<td class="entry" valign="top" headers="d11809e207 ">Estimated number of keys in database</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">Integer (%)</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_oom</td>
-
-	<td class="entry" valign="top" headers="d11819e207 ">Number of out of memory failures during warmup</td>
-
-	<td class="entry" valign="top" headers="d11819e210 ">Integer</td>
+	<td class="entry" valign="top" headers="d11809e210 ">Integer (DEFAULT = “unknown”)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_state</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_estimated_value_count</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">What is current warmup state</td>
+	<td class="entry" valign="top" headers="d11809e207 ">Estimated number of key data to read based on the access log</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">String, refer to <em class="ph i">WarmupStateTable</em></td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_thread</td>
-
-	<td class="entry" valign="top" headers="d11819e207 ">Is warmup running?</td>
-
-	<td class="entry" valign="top" headers="d11819e210 ">String (“running”, “complete”)</td>
+	<td class="entry" valign="top" headers="d11809e210 ">Integer (DEFAULT = “unknown”)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11819e204 ">ep_warmup_time</td>
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_keys_time</td>
 
-	<td class="entry" valign="top" headers="d11819e207 ">Total time spent by loading data (warmup)</td>
+	<td class="entry" valign="top" headers="d11809e207 ">Total time spent by loading persisted keys</td>
 
-	<td class="entry" valign="top" headers="d11819e210 ">Integer (microseconds) </td>
+	<td class="entry" valign="top" headers="d11809e210 ">Integer</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_min_items_threshold</td>
+
+	<td class="entry" valign="top" headers="d11809e207 ">Enable data traffic after loading this percentage of key data</td>
+
+	<td class="entry" valign="top" headers="d11809e210 ">Integer</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_min_memory_threshold</td>
+
+	<td class="entry" valign="top" headers="d11809e207 ">Enable data traffic after filling this % of memory</td>
+
+	<td class="entry" valign="top" headers="d11809e210 ">Integer (%)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_oom</td>
+
+	<td class="entry" valign="top" headers="d11809e207 ">Number of out of memory failures during warmup</td>
+
+	<td class="entry" valign="top" headers="d11809e210 ">Integer</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_state</td>
+
+	<td class="entry" valign="top" headers="d11809e207 ">What is current warmup state</td>
+
+	<td class="entry" valign="top" headers="d11809e210 ">String, refer to <em class="ph i">WarmupStateTable</em></td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_thread</td>
+
+	<td class="entry" valign="top" headers="d11809e207 ">Is warmup running?</td>
+
+	<td class="entry" valign="top" headers="d11809e210 ">String (“running”, “complete”)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11809e204 ">ep_warmup_time</td>
+
+	<td class="entry" valign="top" headers="d11809e207 ">Total time spent by loading data (warmup)</td>
+
+	<td class="entry" valign="top" headers="d11809e210 ">Integer (microseconds) </td>
 
 </tr>
 </tbody>

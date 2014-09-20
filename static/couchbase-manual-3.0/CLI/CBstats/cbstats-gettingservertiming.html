@@ -35,94 +35,94 @@ return values provided by this command depend on what has actually occurred on a
 data bucket:</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d11232e38">bg_load</th>
+	<th class="entry" valign="top" id="d11222e38">bg_load</th>
 
-	<th class="entry" valign="top" id="d11232e41">Background fetches waiting for disk</th>
+	<th class="entry" valign="top" id="d11222e41">Background fetches waiting for disk</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">bg_wait</td>
+	<td class="entry" valign="top" headers="d11222e38 ">bg_wait</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Background fetches waiting in the dispatcher queue</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">data_age</td>
-
-	<td class="entry" valign="top" headers="d11232e41 ">Age of data written to disk</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Background fetches waiting in the dispatcher queue</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">disk_commit</td>
+	<td class="entry" valign="top" headers="d11222e38 ">data_age</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Time waiting for a commit after a batch of updates</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">disk_del</td>
-
-	<td class="entry" valign="top" headers="d11232e41 ">Wait for disk to delete an item</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Age of data written to disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">disk_insert</td>
+	<td class="entry" valign="top" headers="d11222e38 ">disk_commit</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Wait for disk to store a new item</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">disk_vbstate_snapshot</td>
-
-	<td class="entry" valign="top" headers="d11232e41 ">Time spent persisting vbucket state changes</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Time waiting for a commit after a batch of updates</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">disk_update</td>
+	<td class="entry" valign="top" headers="d11222e38 ">disk_del</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Wait time for disk to modify an existing item</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">get_cmd</td>
-
-	<td class="entry" valign="top" headers="d11232e41 ">Servicing get requests</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Wait for disk to delete an item</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">get_stats_cmd</td>
+	<td class="entry" valign="top" headers="d11222e38 ">disk_insert</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Servicing get_stats requests</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">set_vb_cmd</td>
-
-	<td class="entry" valign="top" headers="d11232e41 ">Servicing vbucket set state commands</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Wait for disk to store a new item</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">item_alloc_sizes</td>
+	<td class="entry" valign="top" headers="d11222e38 ">disk_vbstate_snapshot</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Item allocation size counters (in bytes)</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">notify_io</td>
-
-	<td class="entry" valign="top" headers="d11232e41 ">Time for waking blocked connections</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Time spent persisting vbucket state changes</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">storage_age</td>
+	<td class="entry" valign="top" headers="d11222e38 ">disk_update</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Time since most recently persisted item was initially queued for storage.</td>
+	<td class="entry" valign="top" headers="d11222e41 ">Wait time for disk to modify an existing item</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d11232e38 ">tap_mutation</td>
+	<td class="entry" valign="top" headers="d11222e38 ">get_cmd</td>
 
-	<td class="entry" valign="top" headers="d11232e41 ">Time spent servicing tap mutations </td>
+	<td class="entry" valign="top" headers="d11222e41 ">Servicing get requests</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11222e38 ">get_stats_cmd</td>
+
+	<td class="entry" valign="top" headers="d11222e41 ">Servicing get_stats requests</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11222e38 ">set_vb_cmd</td>
+
+	<td class="entry" valign="top" headers="d11222e41 ">Servicing vbucket set state commands</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11222e38 ">item_alloc_sizes</td>
+
+	<td class="entry" valign="top" headers="d11222e41 ">Item allocation size counters (in bytes)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11222e38 ">notify_io</td>
+
+	<td class="entry" valign="top" headers="d11222e41 ">Time for waking blocked connections</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11222e38 ">storage_age</td>
+
+	<td class="entry" valign="top" headers="d11222e41 ">Time since most recently persisted item was initially queued for storage.</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d11222e38 ">tap_mutation</td>
+
+	<td class="entry" valign="top" headers="d11222e41 ">Time spent servicing tap mutations </td>
 
 </tr>
 </tbody>

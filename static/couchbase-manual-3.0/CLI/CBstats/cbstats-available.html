@@ -4,172 +4,172 @@
 form to describe when time was spent doing various things:</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d8003e18">Stat</th>
+	<th class="entry" valign="top" id="d7993e18">Stat</th>
 
-	<th class="entry" valign="top" id="d8003e21">Description</th>
+	<th class="entry" valign="top" id="d7993e21">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">bg_wait</td>
+	<td class="entry" valign="top" headers="d7993e18 ">bg_wait</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">bg fetches waiting in the dispatcher queue</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">bg_load</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">bg fetches waiting for disk</td>
+	<td class="entry" valign="top" headers="d7993e21 ">bg fetches waiting in the dispatcher queue</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">bg_tap_wait</td>
+	<td class="entry" valign="top" headers="d7993e18 ">bg_load</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">tap bg fetches waiting in the dispatcher queue</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">bg_tap_load</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">tap bg fetches waiting for disk</td>
+	<td class="entry" valign="top" headers="d7993e21 ">bg fetches waiting for disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">pending_ops</td>
+	<td class="entry" valign="top" headers="d7993e18 ">bg_tap_wait</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">client connections blocked for operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">in pending vbuckets</td>
+	<td class="entry" valign="top" headers="d7993e21 ">tap bg fetches waiting in the dispatcher queue</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">storage_age</td>
+	<td class="entry" valign="top" headers="d7993e18 ">bg_tap_load</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">Analogous to ep_storage_age in main stats</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">data_age</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">Analogous to ep_data_age in main stats</td>
+	<td class="entry" valign="top" headers="d7993e21 ">tap bg fetches waiting for disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">get_cmd</td>
+	<td class="entry" valign="top" headers="d7993e18 ">pending_ops</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">servicing get requests</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">arith_cmd</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">servicing incr/decr requests</td>
+	<td class="entry" valign="top" headers="d7993e21 ">client connections blocked for operations</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">get_stats_cmd</td>
+	<td class="entry" valign="top" headers="d7993e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">servicing get_stats requests</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">get_vb_cmd</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">servicing vbucket status requests</td>
+	<td class="entry" valign="top" headers="d7993e21 ">in pending vbuckets</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">set_vb_cmd</td>
+	<td class="entry" valign="top" headers="d7993e18 ">storage_age</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">servicing vbucket set state commands</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">del_vb_cmd</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">servicing vbucket deletion commands</td>
+	<td class="entry" valign="top" headers="d7993e21 ">Analogous to ep_storage_age in main stats</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">chk_persistence_cmd</td>
+	<td class="entry" valign="top" headers="d7993e18 ">data_age</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">waiting for checkpoint persistence</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">tap_vb_set</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">servicing tap vbucket set state commands</td>
+	<td class="entry" valign="top" headers="d7993e21 ">Analogous to ep_data_age in main stats</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">tap_vb_reset</td>
+	<td class="entry" valign="top" headers="d7993e18 ">get_cmd</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">servicing tap vbucket reset commands</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">tap_mutation</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">servicing tap mutations</td>
+	<td class="entry" valign="top" headers="d7993e21 ">servicing get requests</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">notify_io</td>
+	<td class="entry" valign="top" headers="d7993e18 ">arith_cmd</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">waking blocked connections</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">paged_out_time</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">time (in seconds) objects are non-resident</td>
+	<td class="entry" valign="top" headers="d7993e21 ">servicing incr/decr requests</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">disk_insert</td>
+	<td class="entry" valign="top" headers="d7993e18 ">get_stats_cmd</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">waiting for disk to store a new item</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">disk_update</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">waiting for disk to modify an existing item</td>
+	<td class="entry" valign="top" headers="d7993e21 ">servicing get_stats requests</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">disk_del</td>
+	<td class="entry" valign="top" headers="d7993e18 ">get_vb_cmd</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">waiting for disk to delete an item</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">disk_vb_del</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">waiting for disk to delete a vbucket</td>
+	<td class="entry" valign="top" headers="d7993e21 ">servicing vbucket status requests</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">disk_commit</td>
+	<td class="entry" valign="top" headers="d7993e18 ">set_vb_cmd</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">waiting for a commit after a batch of updates</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">disk_vbstate_snapshot</td>
-
-	<td class="entry" valign="top" headers="d8003e21 ">Time spent persisting vbucket state changes</td>
+	<td class="entry" valign="top" headers="d7993e21 ">servicing vbucket set state commands</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d8003e18 ">item_alloc_sizes</td>
+	<td class="entry" valign="top" headers="d7993e18 ">del_vb_cmd</td>
 
-	<td class="entry" valign="top" headers="d8003e21 ">Item allocation size counters (in bytes)</td>
+	<td class="entry" valign="top" headers="d7993e21 ">servicing vbucket deletion commands</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">chk_persistence_cmd</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waiting for checkpoint persistence</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">tap_vb_set</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">servicing tap vbucket set state commands</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">tap_vb_reset</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">servicing tap vbucket reset commands</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">tap_mutation</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">servicing tap mutations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">notify_io</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waking blocked connections</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">paged_out_time</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">time (in seconds) objects are non-resident</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">disk_insert</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waiting for disk to store a new item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">disk_update</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waiting for disk to modify an existing item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">disk_del</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waiting for disk to delete an item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">disk_vb_del</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waiting for disk to delete a vbucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">disk_commit</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">waiting for a commit after a batch of updates</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">disk_vbstate_snapshot</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">Time spent persisting vbucket state changes</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d7993e18 ">item_alloc_sizes</td>
+
+	<td class="entry" valign="top" headers="d7993e21 ">Item allocation size counters (in bytes)</td>
 
 </tr>
 </tbody>

@@ -5,214 +5,214 @@ Note that tcmalloc stats are not available on some operating systems
 (e.g., Windows) that do not support tcmalloc.</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d15165e18">Stat</th>
+	<th class="entry" valign="top" id="d15155e18">Stat</th>
 
-	<th class="entry" valign="top" id="d15165e21">Description</th>
+	<th class="entry" valign="top" id="d15155e21">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">mem_used (deprecated)</td>
+	<td class="entry" valign="top" headers="d15155e18 ">mem_used (deprecated)</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Engine’s total memory usage</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">bytes</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">Engine’s total memory usage</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Engine’s total memory usage</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_kv_size</td>
+	<td class="entry" valign="top" headers="d15155e18 ">bytes</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Memory used to store item metadata,</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">keys and values, no matter the</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Engine’s total memory usage</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_kv_size</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">vbucket’s state. If an item’s value</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">is ejected, this stat will be</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Memory used to store item metadata,</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">decremented by the size of the</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">item’s value.</td>
+	<td class="entry" valign="top" headers="d15155e21 ">keys and values, no matter the</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_value_size</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Memory used to store values for</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">resident keys</td>
+	<td class="entry" valign="top" headers="d15155e21 ">vbucket’s state. If an item’s value</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_overhead</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Extra memory used by transient data</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">like persistence queue, replication</td>
+	<td class="entry" valign="top" headers="d15155e21 ">is ejected, this stat will be</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">queues, checkpoints, etc</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_max_size</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">Max amount of data allowed in memory</td>
+	<td class="entry" valign="top" headers="d15155e21 ">decremented by the size of the</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_mem_low_wat</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Low water mark for auto-evictions</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_mem_high_wat</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">High water mark for auto-evictions</td>
+	<td class="entry" valign="top" headers="d15155e21 ">item’s value.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_oom_errors</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_value_size</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Number of times unrecoverable OOMs</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">happened while processing operations</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Memory used to store values for</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_tmp_oom_errors</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">Number of times temporary OOMs</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">happened while processing operations</td>
+	<td class="entry" valign="top" headers="d15155e21 ">resident keys</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">ep_mem_tracker_enabled</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_overhead</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">If smart memory tracking is enabled</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">tcmalloc_allocated_bytes</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">Engine’s total memory usage reported</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Extra memory used by transient data</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">from tcmalloc</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">tcmalloc_heap_size</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">Bytes of system memory reserved by</td>
+	<td class="entry" valign="top" headers="d15155e21 ">like persistence queue, replication</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">tcmalloc</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">tcmalloc_free_bytes</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">Number of bytes in free, mapped</td>
+	<td class="entry" valign="top" headers="d15155e21 ">queues, checkpoints, etc</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_max_size</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">pages in page heap</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">tcmalloc_unmapped_bytes</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">Number of bytes in free, unmapped</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Max amount of data allowed in memory</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_mem_low_wat</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">pages in page heap. These are bytes</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">that have been released back to OS</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Low water mark for auto-evictions</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">tcmalloc_max_thread_cache_bytes</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_mem_high_wat</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">A limit to how much memory TCMalloc</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
-
-	<td class="entry" valign="top" headers="d15165e21 ">dedicates for small objects</td>
+	<td class="entry" valign="top" headers="d15155e21 ">High water mark for auto-evictions</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">tcmalloc_current_thread_cache_bytes</td>
+	<td class="entry" valign="top" headers="d15155e18 ">ep_oom_errors</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">A measure of some of the memory</td>
+	<td class="entry" valign="top" headers="d15155e21 ">Number of times unrecoverable OOMs</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d15165e18 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d15165e21 ">TCMalloc is using for small objects</td>
+	<td class="entry" valign="top" headers="d15155e21 ">happened while processing operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">ep_tmp_oom_errors</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">Number of times temporary OOMs</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">happened while processing operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">ep_mem_tracker_enabled</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">If smart memory tracking is enabled</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">tcmalloc_allocated_bytes</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">Engine’s total memory usage reported</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">from tcmalloc</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">tcmalloc_heap_size</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">Bytes of system memory reserved by</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">tcmalloc</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">tcmalloc_free_bytes</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">Number of bytes in free, mapped</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">pages in page heap</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">tcmalloc_unmapped_bytes</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">Number of bytes in free, unmapped</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">pages in page heap. These are bytes</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">that have been released back to OS</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">tcmalloc_max_thread_cache_bytes</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">A limit to how much memory TCMalloc</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">dedicates for small objects</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">tcmalloc_current_thread_cache_bytes</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">A measure of some of the memory</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d15155e18 ">&nbsp;</td>
+
+	<td class="entry" valign="top" headers="d15155e21 ">TCMalloc is using for small objects</td>
 
 </tr>
 </tbody>

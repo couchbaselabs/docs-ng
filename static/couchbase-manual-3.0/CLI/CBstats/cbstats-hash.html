@@ -8,58 +8,58 @@ buckets for the data load within it, the =max_depth= will be too large
 and performance will suffer.</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d13162e20">Stat</th>
+	<th class="entry" valign="top" id="d13152e20">Stat</th>
 
-	<th class="entry" valign="top" id="d13162e23">Description</th>
+	<th class="entry" valign="top" id="d13152e23">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">avg_count</td>
+	<td class="entry" valign="top" headers="d13152e20 ">avg_count</td>
 
-	<td class="entry" valign="top" headers="d13162e23 ">The average number of items per vbucket</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">avg_max</td>
-
-	<td class="entry" valign="top" headers="d13162e23 ">The average max depth of a vbucket hash table</td>
+	<td class="entry" valign="top" headers="d13152e23 ">The average number of items per vbucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">avg_min</td>
+	<td class="entry" valign="top" headers="d13152e20 ">avg_max</td>
 
-	<td class="entry" valign="top" headers="d13162e23 ">The average min depth of a vbucket hash table</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">largest_max</td>
-
-	<td class="entry" valign="top" headers="d13162e23 ">The largest hash table depth of in all vbuckets</td>
+	<td class="entry" valign="top" headers="d13152e23 ">The average max depth of a vbucket hash table</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">largest_min</td>
+	<td class="entry" valign="top" headers="d13152e20 ">avg_min</td>
 
-	<td class="entry" valign="top" headers="d13162e23 ">The largest minimum hash table depth of all vbuckets</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">max_count</td>
-
-	<td class="entry" valign="top" headers="d13162e23 ">The largest number of items in a vbucket</td>
+	<td class="entry" valign="top" headers="d13152e23 ">The average min depth of a vbucket hash table</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">min_count</td>
+	<td class="entry" valign="top" headers="d13152e20 ">largest_max</td>
 
-	<td class="entry" valign="top" headers="d13162e23 ">The smallest number of items in a vbucket</td>
+	<td class="entry" valign="top" headers="d13152e23 ">The largest hash table depth of in all vbuckets</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e20 ">total_counts</td>
+	<td class="entry" valign="top" headers="d13152e20 ">largest_min</td>
 
-	<td class="entry" valign="top" headers="d13162e23 ">The total number of items in all vbuckets</td>
+	<td class="entry" valign="top" headers="d13152e23 ">The largest minimum hash table depth of all vbuckets</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e20 ">max_count</td>
+
+	<td class="entry" valign="top" headers="d13152e23 ">The largest number of items in a vbucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e20 ">min_count</td>
+
+	<td class="entry" valign="top" headers="d13152e23 ">The smallest number of items in a vbucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e20 ">total_counts</td>
+
+	<td class="entry" valign="top" headers="d13152e23 ">The total number of items in all vbuckets</td>
 
 </tr>
 </tbody>
@@ -73,70 +73,70 @@ the individual stat name.</p>
 vbucket 0 is =vb_0:size=.</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d13162e104">Stat</th>
+	<th class="entry" valign="top" id="d13152e104">Stat</th>
 
-	<th class="entry" valign="top" id="d13162e107">Description</th>
+	<th class="entry" valign="top" id="d13152e107">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">state</td>
+	<td class="entry" valign="top" headers="d13152e104 ">state</td>
 
-	<td class="entry" valign="top" headers="d13162e107 ">The current state of this vbucket</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">size</td>
-
-	<td class="entry" valign="top" headers="d13162e107 ">Number of hash buckets</td>
+	<td class="entry" valign="top" headers="d13152e107 ">The current state of this vbucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">locks</td>
+	<td class="entry" valign="top" headers="d13152e104 ">size</td>
 
-	<td class="entry" valign="top" headers="d13162e107 ">Number of locks covering hash table operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">min_depth</td>
-
-	<td class="entry" valign="top" headers="d13162e107 ">Minimum number of items found in a bucket</td>
+	<td class="entry" valign="top" headers="d13152e107 ">Number of hash buckets</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">max_depth</td>
+	<td class="entry" valign="top" headers="d13152e104 ">locks</td>
 
-	<td class="entry" valign="top" headers="d13162e107 ">Maximum number of items found in a bucket</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">reported</td>
-
-	<td class="entry" valign="top" headers="d13162e107 ">Number of items this hash table reports having</td>
+	<td class="entry" valign="top" headers="d13152e107 ">Number of locks covering hash table operations</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">counted</td>
+	<td class="entry" valign="top" headers="d13152e104 ">min_depth</td>
 
-	<td class="entry" valign="top" headers="d13162e107 ">Number of items found while walking the table</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">resized</td>
-
-	<td class="entry" valign="top" headers="d13162e107 ">Number of times the hash table resized</td>
+	<td class="entry" valign="top" headers="d13152e107 ">Minimum number of items found in a bucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">mem_size</td>
+	<td class="entry" valign="top" headers="d13152e104 ">max_depth</td>
 
-	<td class="entry" valign="top" headers="d13162e107 ">Running sum of memory used by each item</td>
+	<td class="entry" valign="top" headers="d13152e107 ">Maximum number of items found in a bucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d13162e104 ">mem_size_counted</td>
+	<td class="entry" valign="top" headers="d13152e104 ">reported</td>
 
-	<td class="entry" valign="top" headers="d13162e107 ">Counted sum of current memory used by each item</td>
+	<td class="entry" valign="top" headers="d13152e107 ">Number of items this hash table reports having</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e104 ">counted</td>
+
+	<td class="entry" valign="top" headers="d13152e107 ">Number of items found while walking the table</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e104 ">resized</td>
+
+	<td class="entry" valign="top" headers="d13152e107 ">Number of times the hash table resized</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e104 ">mem_size</td>
+
+	<td class="entry" valign="top" headers="d13152e107 ">Running sum of memory used by each item</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d13152e104 ">mem_size_counted</td>
+
+	<td class="entry" valign="top" headers="d13152e107 ">Counted sum of current memory used by each item</td>
 
 </tr>
 </tbody>

@@ -3,913 +3,913 @@
 <div class="body"><p class="p">The following provides the stats that are created by <samp class="ph codeph">cbstats</samp>:</p>
 
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d23778e21">Stat</th>
+	<th class="entry" valign="top" id="d23768e21">Stat</th>
 
-	<th class="entry" valign="top" id="d23778e24">Description</th>
+	<th class="entry" valign="top" id="d23768e24">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">uuid</td>
+	<td class="entry" valign="top" headers="d23768e21 ">uuid</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The unique identifier for the bucket</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_version</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Version number of ep_engine</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The unique identifier for the bucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_storage_age</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_version</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Seconds since most recently stored object was initially queued</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_storage_age_highwat</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">ep_storage_age high water mark</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Version number of ep_engine</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_startup_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_storage_age</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">System-generated engine startup time</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_max_txn_size</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Max number of updates per transaction</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Seconds since most recently stored object was initially queued</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_data_age</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_storage_age_highwat</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Seconds since most recently stored object was modified</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_data_age_highwat</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">ep_data_age high water mark</td>
+	<td class="entry" valign="top" headers="d23768e24 ">ep_storage_age high water mark</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_too_young</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_startup_time</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times an object was not stored due to being too young</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_too_old</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times an object was stored after being dirty too long</td>
+	<td class="entry" valign="top" headers="d23768e24 ">System-generated engine startup time</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_total_enqueued</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_max_txn_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Total number of items queued for persistence</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_total_new_items</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Total number of persisted new items</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Max number of updates per transaction</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_total_del_items</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_data_age</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Total number of persisted deletions</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_total_persisted</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Total number of items persisted</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Seconds since most recently stored object was modified</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_item_flush_failed</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_data_age_highwat</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times an item failed to flush due to storage errors</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_item_commit_failed</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times a transaction failed to commit due to storage errors</td>
+	<td class="entry" valign="top" headers="d23768e24 ">ep_data_age high water mark</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_item_begin_failed</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_too_young</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times a transaction failed to start due to storage errors</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_expired_access</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times an item was expired on application access.</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times an object was not stored due to being too young</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_expired_pager</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_too_old</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times an item was expired by ep engine item pager</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_item_flush_expired</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times an item is not flushed due to the expiry of the item</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times an object was stored after being dirty too long</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_queue_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_total_enqueued</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of items queued for storage</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_flusher_todo</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of items currently being written</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Total number of items queued for persistence</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_flusher_state</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_total_new_items</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Current state of the flusher thread</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_commit_num</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Total number of write commits</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Total number of persisted new items</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_commit_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_total_del_items</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of milliseconds of most recent commit</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_commit_time_total</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Cumulative milliseconds spent committing</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Total number of persisted deletions</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_vbucket_del</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_total_persisted</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of vbucket deletion events</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_vbucket_del_fail</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of failed vbucket deletion events</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Total number of items persisted</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_vbucket_del_max_walltime</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_item_flush_failed</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Max wall time (µs) spent by deleting a vbucket</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_vbucket_del_avg_walltime</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Avg wall time (µs) spent by deleting a vbucket</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times an item failed to flush due to storage errors</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_flush_duration_total</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_item_commit_failed</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Cumulative seconds spent flushing</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_flush_all</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">True if disk flush_all is scheduled</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times a transaction failed to commit due to storage errors</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_get_meta</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_item_begin_failed</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of getMeta operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_set_meta</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of setWithMeta operations</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times a transaction failed to start due to storage errors</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_del_meta</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_expired_access</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of delWithMeta operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_set_meta_res_failed</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of setWithMeta ops that failed conflict resolution</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times an item was expired on application access.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_del_meta_res_failed</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_expired_pager</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of delWithMeta ops that failed conflict resolution</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_set_ret_meta</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of setRetMeta operations</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times an item was expired by ep engine item pager</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_ops_del_ret_meta</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_item_flush_expired</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of delRetMeta operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">curr_items</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Num items in active vbuckets (temp + live)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times an item is not flushed due to the expiry of the item</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">curr_temp_items</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_queue_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Num temp items in active vbuckets</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">curr_items_tot</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Num current items including those not active (replica, dead and pending states)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of items queued for storage</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_kv_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_flusher_todo</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Memory used to store item metadata, keys and values, no matter the vbucket’s state. 
+	<td class="entry" valign="top" headers="d23768e24 ">Number of items currently being written</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_flusher_state</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Current state of the flusher thread</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_commit_num</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Total number of write commits</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_commit_time</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of milliseconds of most recent commit</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_commit_time_total</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Cumulative milliseconds spent committing</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_vbucket_del</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of vbucket deletion events</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_vbucket_del_fail</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of failed vbucket deletion events</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_vbucket_del_max_walltime</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Max wall time (µs) spent by deleting a vbucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_vbucket_del_avg_walltime</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Avg wall time (µs) spent by deleting a vbucket</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_flush_duration_total</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Cumulative seconds spent flushing</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_flush_all</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">True if disk flush_all is scheduled</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_get_meta</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of getMeta operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_set_meta</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of setWithMeta operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_del_meta</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of delWithMeta operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_set_meta_res_failed</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of setWithMeta ops that failed conflict resolution</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_del_meta_res_failed</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of delWithMeta ops that failed conflict resolution</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_set_ret_meta</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of setRetMeta operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_ops_del_ret_meta</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of delRetMeta operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">curr_items</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Num items in active vbuckets (temp + live)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">curr_temp_items</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Num temp items in active vbuckets</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">curr_items_tot</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Num current items including those not active (replica, dead and pending states)</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_kv_size</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Memory used to store item metadata, keys and values, no matter the vbucket’s state. 
 		If an item’s value is ejected, this stats will be decremented by the size of the item’s value.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_value_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_value_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Memory used to store values for resident keys</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Memory used to store values for resident keys</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_overhead</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_overhead</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Extra memory used by transient data like persistence queues, replication queues, checkpoints, etc</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Extra memory used by transient data like persistence queues, replication queues, checkpoints, etc</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_mem_low_wat</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_mem_low_wat</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Low water mark for auto-evictions</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Low water mark for auto-evictions</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_mem_high_wat</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_mem_high_wat</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">High water mark for auto-evictions</td>
+	<td class="entry" valign="top" headers="d23768e24 ">High water mark for auto-evictions</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_total_cache_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_total_cache_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The total byte size of all items, no</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The total byte size of all items, no</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d23768e21 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">matter the vbucket’s state, no matter if an item’s value is ejected</td>
+	<td class="entry" valign="top" headers="d23768e24 ">matter the vbucket’s state, no matter if an item’s value is ejected</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_oom_errors</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_oom_errors</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times unrecoverable OOMs happened while processing operations</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times unrecoverable OOMs happened while processing operations</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tmp_oom_errors</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tmp_oom_errors</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times temporary OOMs happened while processing operations</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times temporary OOMs happened while processing operations</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_mem_tracker_enabled</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_mem_tracker_enabled</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if memory usage tracker is enabled</td>
+	<td class="entry" valign="top" headers="d23768e24 ">True if memory usage tracker is enabled</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_fetched</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_fetched</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of items fetched from disk</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of items fetched from disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_meta_fetched</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_meta_fetched</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of meta items fetched from disk</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of meta items fetched from disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_remaining_jobs</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_remaining_jobs</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of remaining bg fetch jobs</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of remaining bg fetch jobs</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_max_bg_remaining_jobs</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_max_bg_remaining_jobs</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Max number of remaining bg fetch jobs that we have seen in the queue so far</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Max number of remaining bg fetch jobs that we have seen in the queue so far</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_bg_fetched</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_bg_fetched</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of tap disk fetches</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of tap disk fetches</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_bg_fetch_requeued</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_bg_fetch_requeued</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times a tap bg fetch task is requeued</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times a tap bg fetch task is requeued</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_pager_runs</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_pager_runs</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times we ran pager loops to seek additional memory</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times we ran pager loops to seek additional memory</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_expiry_pager_runs</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_expiry_pager_runs</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times we ran expiry pager loops to purge expired items from memory/disk</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times we ran expiry pager loops to purge expired items from memory/disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_access_scanner_runs</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_access_scanner_runs</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times we ran access scanner to snapshot working set</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times we ran access scanner to snapshot working set</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_access_scanner_num_items</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_access_scanner_num_items</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of items that last access scanner task swept to access log.</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of items that last access scanner task swept to access log.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_access_scanner_task_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_access_scanner_task_time</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Time of the next access scanner task (GMT)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Time of the next access scanner task (GMT)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_access_scanner_last_runtime</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_access_scanner_last_runtime</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of seconds that last access scanner task took to complete.</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of seconds that last access scanner task took to complete.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_items_rm_from_checkpoints</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_items_rm_from_checkpoints</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of items removed from closed unreferenced checkpoints</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of items removed from closed unreferenced checkpoints</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_value_ejects</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_value_ejects</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times item values got ejected from memory to disk</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times item values got ejected from memory to disk</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_eject_failures</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_eject_failures</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of items that could not be ejected</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of items that could not be ejected</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_not_my_vbuckets</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_not_my_vbuckets</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times Not My VBucket exception happened during runtime</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times Not My VBucket exception happened during runtime</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_keepalive</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_keepalive</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Tap keepalive time</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Tap keepalive time</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_dbname</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_dbname</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">DB path</td>
+	<td class="entry" valign="top" headers="d23768e24 ">DB path</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_io_num_read</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_io_num_read</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of io read operations</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of io read operations</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_io_num_write</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_io_num_write</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of io write operations</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of io write operations</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_io_read_bytes</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_io_read_bytes</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of bytes read (key + values)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of bytes read (key + values)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_io_write_bytes</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_io_write_bytes</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of bytes written (key + values)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of bytes written (key + values)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_pending_ops</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_pending_ops</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of ops awaiting pending vbuckets</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of ops awaiting pending vbuckets</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_pending_ops_total</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_pending_ops_total</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Total blocked pending ops since reset</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Total blocked pending ops since reset</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_pending_ops_max</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_pending_ops_max</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Max ops seen awaiting 1 pending vbucket</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Max ops seen awaiting 1 pending vbucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_pending_ops_max_duration</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_pending_ops_max_duration</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Max time (µs) used waiting on pending</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Max time (µs) used waiting on pending</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d23768e21 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">vbuckets</td>
+	<td class="entry" valign="top" headers="d23768e24 ">vbuckets</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_num_samples</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_num_samples</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The number of samples included in the average</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The number of samples included in the average</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_min_wait</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_min_wait</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The shortest time (µs) in the wait queue</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The shortest time (µs) in the wait queue</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_max_wait</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_max_wait</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The longest time (µs) in the wait queue</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The longest time (µs) in the wait queue</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_wait_avg</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_wait_avg</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The average wait time (µs) for an item before it’s serviced by the dispatcher</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The average wait time (µs) for an item before it’s serviced by the dispatcher</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_min_load</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_min_load</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The shortest load time (µs)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The shortest load time (µs)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_max_load</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_max_load</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The longest load time (µs)</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The longest load time (µs)</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_load_avg</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_load_avg</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The average time (µs) for an item to be loaded from the persistence layer</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The average time (µs) for an item to be loaded from the persistence layer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_num_non_resident</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_num_non_resident</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The number of non-resident items</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The number of non-resident items</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_wait</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_wait</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The total elapse time for the wait queue</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The total elapse time for the wait queue</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_load</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_load</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The total elapse time for items to be loaded from the persistence layer</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The total elapse time for items to be loaded from the persistence layer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_allow_data_loss_during_shutdown</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_allow_data_loss_during_shutdown</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Whether data loss is allowed during server shutdown</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Whether data loss is allowed during server shutdown</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_alog_block_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_alog_block_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Access log block size</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Access log block size</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_alog_path</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_alog_path</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Path to the access log</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Path to the access log</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_alog_sleep_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_alog_sleep_time</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Interval between access scanner runs in minutes</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Interval between access scanner runs in minutes</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_alog_task_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_alog_task_time</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Hour in GMT time when access scanner task is scheduled to run</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Hour in GMT time when access scanner task is scheduled to run</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_backend</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_backend</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The backend that is being used for data persistence</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The backend that is being used for data persistence</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_bg_fetch_delay</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_bg_fetch_delay</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of time to wait before doing a background fetch</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of time to wait before doing a background fetch</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_chk_max_items</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_chk_max_items</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The number of items allowed in a before a new one is created</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The number of items allowed in a before a new one is created</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_chk_period</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_chk_period</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum lifetime of a checkpoint before a new one is created</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum lifetime of a checkpoint before a new one is created</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_chk_persistence_remains</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_chk_persistence_remains</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Number of remaining vbuckets for checkpoint persistence</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of remaining vbuckets for checkpoint persistence</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_chk_persistence_timeout</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_chk_persistence_timeout</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Timeout for vbucket checkpoint persistence</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Timeout for vbucket checkpoint persistence</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_chk_remover_stime</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_chk_remover_stime</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The time interval for purging closed checkpoints from memory</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The time interval for purging closed checkpoints from memory</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_config_file</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_config_file</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The location of the ep-engine config file</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The location of the ep-engine config file</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_couch_bucket</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_couch_bucket</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The name of this bucket</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The name of this bucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_couch_host</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_couch_host</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The hostname that the CouchDB views server is listening on</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The hostname that the CouchDB views server is listening on</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_couch_port</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_couch_port</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The port the CouchDB views server is listening on</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The port the CouchDB views server is listening on</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_couch_reconnect_sleeptime</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_couch_reconnect_sleeptime</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of time to wait before reconnecting to CouchDB</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of time to wait before reconnecting to CouchDB</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_couch_response_timeout</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_couch_response_timeout</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Length of time to wait for a response from CouchDB before reconnecting</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Length of time to wait for a response from CouchDB before reconnecting</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_data_traffic_enabled</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_data_traffic_enabled</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Whether or not data traffic is enabled for this bucket</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Whether or not data traffic is enabled for this bucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_degraded_mode</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_degraded_mode</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if the engine is either warming &gt;up or data traffic is disabled</td>
+	<td class="entry" valign="top" headers="d23768e24 ">True if the engine is either warming &gt;up or data traffic is disabled</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_exp_pager_stime</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_exp_pager_stime</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The time interval for purging expired items from memory</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The time interval for purging expired items from memory</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_failpartialwarmup</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_failpartialwarmup</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if we want kill the bucket if warmup fails</td>
+	<td class="entry" valign="top" headers="d23768e24 ">True if we want kill the bucket if warmup fails</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_flushall_enabled</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_flushall_enabled</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if this bucket allows the use of the flush_all command</td>
+	<td class="entry" valign="top" headers="d23768e24 ">True if this bucket allows the use of the flush_all command</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_getl_default_timeout</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_getl_default_timeout</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The default getl lock duration</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The default getl lock duration</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_getl_max_timeout</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_getl_max_timeout</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum getl lock duration</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum getl lock duration</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_ht_locks</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_ht_locks</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of locks per vb hashtable</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of locks per vb hashtable</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_ht_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_ht_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The initial size of each vb hashtable</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The initial size of each vb hashtable</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_item_num_based_new_chk</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_item_num_based_new_chk</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if the number of items in the current checkpoint plays a role in a new checkpoint creation</td>
+	<td class="entry" valign="top" headers="d23768e24 ">True if the number of items in the current checkpoint plays a role in a new checkpoint creation</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_keep_closed_chks</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_keep_closed_chks</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if we want to keep the closed checkpoints for each vbucket unless the memory usage is above high water mark</td>
+	<td class="entry" valign="top" headers="d23768e24 ">True if we want to keep the closed checkpoints for each vbucket unless the memory usage is above high water mark</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_max_checkpoints</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_max_checkpoints</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum amount of checkpoints that can be in memory per vbucket</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum amount of checkpoints that can be in memory per vbucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_max_item_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_max_item_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum value size</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum value size</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_max_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_max_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum amount of memory this bucket can use</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum amount of memory this bucket can use</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_max_vbuckets</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_max_vbuckets</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum amount of vbuckets that can exist in this bucket</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum amount of vbuckets that can exist in this bucket</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_mutation_mem_threshold</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_mutation_mem_threshold</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The ratio of total memory available that we should start sending temp oom or oom message when hitting</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The ratio of total memory available that we should start sending temp oom or oom message when hitting</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_pager_active_vb_pcnt</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_pager_active_vb_pcnt</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Active vbuckets paging percentage</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Active vbuckets paging percentage</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_ack_grace_period</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_ack_grace_period</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of time to wait for a tap acks before disconnecting</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of time to wait for a tap acks before disconnecting</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_ack_initial_sequence_number</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_ack_initial_sequence_number</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The initial sequence number for a tap ack when a tap stream is created</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The initial sequence number for a tap ack when a tap stream is created</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_ack_interval</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_ack_interval</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of messages a tap producer should send before requesting an ack</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of messages a tap producer should send before requesting an ack</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_ack_window_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_ack_window_size</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum amount of ack requests that can be sent before the consumer sends a response ack. 
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum amount of ack requests that can be sent before the consumer sends a response ack. 
 		When the window is full the tap stream is paused.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_backfill_resident</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_backfill_resident</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The resident ratio for deciding how to do backfill. If under the ratio we schedule full disk backfill. 
+	<td class="entry" valign="top" headers="d23768e24 ">The resident ratio for deciding how to do backfill. If under the ratio we schedule full disk backfill. 
 		If above the ratio then we do bg fetches for</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">&nbsp;</td>
+	<td class="entry" valign="top" headers="d23768e21 ">&nbsp;</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">non-resident items.</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_backlog_limit</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum amount of backfill items that can be in memory waiting to be sent to the tap consumer</td>
+	<td class="entry" valign="top" headers="d23768e24 ">non-resident items.</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_backoff_period</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_backlog_limit</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The number of seconds the tap connection</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_bg_fetch_requeued</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of times a tap bg fetch task is requeued</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum amount of backfill items that can be in memory waiting to be sent to the tap consumer</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_bg_max_pending</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_backoff_period</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The maximum number of bg jobs a tap connection may have</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_noop_interval</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of seconds between a noop is sent on an idle connection</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The number of seconds the tap connection</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_requeue_sleep_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_bg_fetch_requeued</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of time to wait before a failed tap item is requeued</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_throttle_cap_pcnt</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Percentage of total items in write queue at which we throttle tap input</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of times a tap bg fetch task is requeued</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_throttle_queue_cap</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_bg_max_pending</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Max size of a write queue to throttle incoming tap input</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_tap_throttle_threshold</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Percentage of max mem at which we begin NAKing tap input</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The maximum number of bg jobs a tap connection may have</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_uncommitted_items</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_noop_interval</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of items that have not been written to disk</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_vb0</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Whether vbucket 0 should be created by default</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Number of seconds between a noop is sent on an idle connection</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_waitforwarmup</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_requeue_sleep_time</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">True if we should wait for the warmup process to complete before enabling traffic</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Shows if warmup is enabled / disabled</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of time to wait before a failed tap item is requeued</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_batch_size</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_throttle_cap_pcnt</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The size of each batch loaded during warmup</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_dups</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Number of Duplicate items encountered during warmup</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Percentage of total items in write queue at which we throttle tap input</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_min_items_threshold</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_throttle_queue_cap</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">Percentage of total items warmed up before we enable traffic</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_min_memory_threshold</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">Percentage of max mem warmed up before we enable traffic</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Max size of a write queue to throttle incoming tap input</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_oom</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_tap_throttle_threshold</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of oom errors that occurred during warmup</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_thread</td>
-
-	<td class="entry" valign="top" headers="d23778e24 ">The status of the warmup thread</td>
+	<td class="entry" valign="top" headers="d23768e24 ">Percentage of max mem at which we begin NAKing tap input</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d23778e21 ">ep_warmup_time</td>
+	<td class="entry" valign="top" headers="d23768e21 ">ep_uncommitted_items</td>
 
-	<td class="entry" valign="top" headers="d23778e24 ">The amount of time warmup took</td>
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of items that have not been written to disk</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_vb0</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Whether vbucket 0 should be created by default</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_waitforwarmup</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">True if we should wait for the warmup process to complete before enabling traffic</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Shows if warmup is enabled / disabled</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_batch_size</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">The size of each batch loaded during warmup</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_dups</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Number of Duplicate items encountered during warmup</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_min_items_threshold</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Percentage of total items warmed up before we enable traffic</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_min_memory_threshold</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">Percentage of max mem warmed up before we enable traffic</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_oom</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of oom errors that occurred during warmup</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_thread</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">The status of the warmup thread</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d23768e21 ">ep_warmup_time</td>
+
+	<td class="entry" valign="top" headers="d23768e24 ">The amount of time warmup took</td>
 
 </tr>
 </tbody>

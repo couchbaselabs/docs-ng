@@ -118,10 +118,12 @@
 
       
 
-        <p class="p">The provides detailed scenarios where delta node recovery either defaults to full recovery or is not available. </p>
+        <p class="p">The following describes scenarios where delta node recovery either defaults to full
+        recovery or is not available. </p>
 
       
-      
+      <p class="p">Node 1 is in delta recovery and Node 2, an active server node, crashes.</p>
+
       <ol class="ol">
             <li class="li">Node 1 is failed over and delta recovery is specified. Now, Node 1 is pending delta
               recovery.</li>
@@ -139,7 +141,8 @@
           </ol>
 
        
-         
+        <p class="p">Node 1 is in delta recovery and Node 1 crashes during rebalance.</p>
+ 
       
       <ol class="ol">
             <li class="li">Node 1 is failed over, delta recovery is specified, and the rebalance operation is
@@ -153,7 +156,8 @@
           </ol>
 
         
-        
+        <p class="p">Node 1 is in delta recovery and a bucket operation is performed. </p>
+
       <p class="p">The bucket operations that cause rebalance to fail are adding bucket, changing replica
         configuration, or flushing bucket</p>
 
@@ -172,7 +176,8 @@
 
         
         
-        
+        <p class="p">Node 1 and Node 2 are in delta node recovery and Node 2 crashes. </p>
+
           <ol class="ol">
             <li class="li">Both Node 1 and Node 2 are failed over, delta recovery is specified.</li>
 

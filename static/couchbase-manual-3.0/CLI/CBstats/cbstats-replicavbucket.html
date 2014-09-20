@@ -2,124 +2,124 @@
 								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../../Couchbase-intro.html">Introduction</a></li><li><a href="../../Whats-new-3.0.html">What's new in 3.0</a></li><li><a href="../../install-intro.html">Installation and upgrade</a></li><li><a href="../../admin-intro.html">Administration</a></li><li><a href="../../cli-intro.html">CLI reference</a><ul class="nav nav-list"><li><a href="../../CLI/cli-overview.html">CLI overview</a></li><li><a href="../../CLI/cbcli-intro.html">couchbase-cli tool</a></li><li><a href="../../CLI/cbanalyze-core_tool.html">cbanalyze-core tool</a></li><li><a href="../../CLI/cbbackup_tool.html">cbbackup tool</a></li><li><a href="../../CLI/cbcollect_info_tool.html">cbcollect_info tool</a></li><li><a href="../../CLI/cbdocloader_tool.html">cbdocloader tool</a></li><li><a href="../../CLI/cbepctl-intro.html">cbepctl tool</a></li><li><a href="../../CLI/cbhealthchecker_tool.html">cbhealthchecker tool</a></li><li><a href="../../CLI/cbreset_password_tool.html">cbreset_password tool</a></li><li><a href="../../CLI/cbrestore_tool.html">cbrestore tool</a></li><li><a href="../../CLI/cbstats-intro.html">cbstats tool</a><ul class="nav nav-list"><li><a href="../../CLI/CBstats/cbstats-toplevelstats.html">Toplevel stats</a></li><li><a href="../../CLI/CBstats/cbstats-totalvbucket.html">vBucket total stats</a></li><li class="active"><a href="../../CLI/CBstats/cbstats-replicavbucket.html">Replica vBucket stats</a><ul class="nav nav-list"></ul></li><li><a href="../../CLI/CBstats/cbstats-pendingvbucket.html">Pending vBucket stats</a></li><li><a href="../../CLI/CBstats/cbstats-timing.html">Timing stats</a></li><li><a href="../../CLI/CBstats/cbstats-generalform.html">General form</a></li><li><a href="../../CLI/CBstats/cbstats-available.html">Available stats</a></li><li><a href="../../CLI/CBstats/cbstats-hash.html">Hash stats</a></li><li><a href="../../CLI/CBstats/cbstats-checkpoint.html">Checkpoint stats</a></li><li><a href="../../CLI/CBstats/cbstats-memory.html">Memory stats</a></li><li><a href="../../CLI/CBstats/cbstats-keyvkey.html">Stats key and Vkey</a></li><li><a href="../../CLI/CBstats/cbstats-warmup.html">Warmup</a></li><li><a href="../../CLI/CBstats/cbstats-kv.html">KV store stats</a></li><li><a href="../../CLI/CBstats/cbstats-dispatcher-job.html">Dispatcher stats and job logs</a></li><li><a href="../../CLI/CBstats/cbstats-reset.html">Stats reset</a></li><li><a href="../../CLI/CBstats/cbstats-gettingservertiming.html">Getting server timings</a></li><li><a href="../../CLI/CBstats/cbstats-gettingwarmupinfo.html">Getting warmup information</a></li><li><a href="../../CLI/cli-cbstats-dcp.html">DCP statistics</a></li><li><a href="../../CLI/CBstats/cbstats-tap.html">Tap stats</a></li><li><a href="../../CLI/CBstats/cbstats-readwrite.html">Read-write thread stats</a></li></ul></li><li><a href="../../CLI/cbtransfer_tool.html">cbtransfer tool</a></li><li><a href="../../CLI/cbworkloadgen_tool.html">cbworkloadgen tool</a></li></ul></li><li><a href="../../rest-intro.html">REST API reference</a></li><li><a href="../../rel-notes/rel-notes3.0.html">Release notes</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div><h1 class="title topictitle1">Replica vBucket stats</h1>
 <div class="body">
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><thead class="thead" align="left"><tr class="row">
-	<th class="entry" valign="top" id="d17135e16">Stat</th>
+	<th class="entry" valign="top" id="d17125e16">Stat</th>
 
-	<th class="entry" valign="top" id="d17135e19">Description</th>
+	<th class="entry" valign="top" id="d17125e19">Description</th>
 
 </tr>
 </thead>
 <tbody class="tbody"><tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_num</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_num</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Number of replica vBuckets</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_curr_items</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Number of in memory items</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Number of replica vBuckets</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_num_non_resident</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_curr_items</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Number of non-resident items</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_perc_mem_resident</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">% memory resident</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Number of in memory items</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_eject</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_num_non_resident</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Number of times item values got ejected</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_expired</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Number of times an item was expired</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Number of non-resident items</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_ht_memory</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_perc_mem_resident</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Memory overhead of the hashtable</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_itm_memory</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Total item memory</td>
+	<td class="entry" valign="top" headers="d17125e19 ">% memory resident</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_meta_data_memory</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_eject</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Total metadata memory</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_ops_create</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Number of create operations</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Number of times item values got ejected</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_ops_update</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_expired</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Number of update operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_ops_delete</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Number of delete operations</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Number of times an item was expired</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_ops_reject</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_ht_memory</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Number of rejected operations</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_queue_size</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Replica items in disk queue</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Memory overhead of the hashtable</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_queue_memory</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_itm_memory</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Memory used for disk queue</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_queue_age</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Sum of disk queue item age in milliseconds</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Total item memory</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_queue_pending</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_meta_data_memory</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Total bytes of pending writes</td>
-
-</tr>
-<tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_queue_fill</td>
-
-	<td class="entry" valign="top" headers="d17135e19 ">Total enqueued items</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Total metadata memory</td>
 
 </tr>
 <tr class="row">
-	<td class="entry" valign="top" headers="d17135e16 ">vb_replica_queue_drain</td>
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_ops_create</td>
 
-	<td class="entry" valign="top" headers="d17135e19 ">Total drained items</td>
+	<td class="entry" valign="top" headers="d17125e19 ">Number of create operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_ops_update</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Number of update operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_ops_delete</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Number of delete operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_ops_reject</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Number of rejected operations</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_queue_size</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Replica items in disk queue</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_queue_memory</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Memory used for disk queue</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_queue_age</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Sum of disk queue item age in milliseconds</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_queue_pending</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Total bytes of pending writes</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_queue_fill</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Total enqueued items</td>
+
+</tr>
+<tr class="row">
+	<td class="entry" valign="top" headers="d17125e16 ">vb_replica_queue_drain</td>
+
+	<td class="entry" valign="top" headers="d17125e19 ">Total drained items</td>
 
 </tr>
 </tbody>

@@ -36,15 +36,15 @@
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" id="d95167e78">Request</th>
+						<th class="entry" valign="top" id="d95078e78">Request</th>
 
-						<th class="entry" valign="top" id="d95167e81">Description</th>
+						<th class="entry" valign="top" id="d95078e81">Description</th>
 
-						<th class="entry" valign="top" id="d95167e84">Parameters</th>
+						<th class="entry" valign="top" id="d95078e84">Parameters</th>
 
-						<th class="entry" valign="top" id="d95167e87">Returns</th>
+						<th class="entry" valign="top" id="d95078e87">Returns</th>
 
-						<th class="entry" valign="top" id="d95167e90">Errors</th>
+						<th class="entry" valign="top" id="d95078e90">Errors</th>
 
 					</tr>
 
@@ -52,60 +52,60 @@
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" headers="d95167e78 ">POST /settings/readOnlyUser</td>
+						<td class="entry" valign="top" headers="d95078e78 ">POST /settings/readOnlyUser</td>
 
-						<td class="entry" valign="top" headers="d95167e81 ">Create read-only user</td>
+						<td class="entry" valign="top" headers="d95078e81 ">Create read-only user</td>
 
-						<td class="entry" valign="top" headers="d95167e84 ">username, password, just_validate</td>
+						<td class="entry" valign="top" headers="d95078e84 ">username, password, just_validate</td>
 
-						<td class="entry" valign="top" headers="d95167e87 ">success: 200 []</td>
+						<td class="entry" valign="top" headers="d95078e87 ">success: 200 []</td>
 
-						<td class="entry" valign="top" headers="d95167e90 ">error: 400</td>
-
-						<td class="entry" valign="top">{“errors”:{field_name:error_message}}</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" headers="d95167e78 ">PUT /settings/readOnlyUser</td>
-
-						<td class="entry" valign="top" headers="d95167e81 ">Change read-only user password</td>
-
-						<td class="entry" valign="top" headers="d95167e84 ">password</td>
-
-						<td class="entry" valign="top" headers="d95167e87 ">success: 200 []</td>
-
-						<td class="entry" valign="top" headers="d95167e90 ">error: 400</td>
+						<td class="entry" valign="top" headers="d95078e90 ">error: 400</td>
 
 						<td class="entry" valign="top">{“errors”:{field_name:error_message}}</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d95167e78 ">DELETE /settings/readOnlyUser</td>
+						<td class="entry" valign="top" headers="d95078e78 ">PUT /settings/readOnlyUser</td>
 
-						<td class="entry" valign="top" headers="d95167e81 ">Delete user</td>
+						<td class="entry" valign="top" headers="d95078e81 ">Change read-only user password</td>
 
-						<td class="entry" valign="top" headers="d95167e84 ">none</td>
+						<td class="entry" valign="top" headers="d95078e84 ">password</td>
 
-						<td class="entry" valign="top" headers="d95167e87 ">success: 200 []</td>
+						<td class="entry" valign="top" headers="d95078e87 ">success: 200 []</td>
 
-						<td class="entry" valign="top" headers="d95167e90 ">error: 400</td>
+						<td class="entry" valign="top" headers="d95078e90 ">error: 400</td>
 
 						<td class="entry" valign="top">{“errors”:{field_name:error_message}}</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" headers="d95167e78 ">GET /settings/readOnlyAdminName</td>
+						<td class="entry" valign="top" headers="d95078e78 ">DELETE /settings/readOnlyUser</td>
 
-						<td class="entry" valign="top" headers="d95167e81 ">Get the read-only username</td>
+						<td class="entry" valign="top" headers="d95078e81 ">Delete user</td>
 
-						<td class="entry" valign="top" headers="d95167e84 ">none</td>
+						<td class="entry" valign="top" headers="d95078e84 ">none</td>
 
-						<td class="entry" valign="top" headers="d95167e87 ">success: 200 “username”</td>
+						<td class="entry" valign="top" headers="d95078e87 ">success: 200 []</td>
 
-						<td class="entry" valign="top" headers="d95167e90 ">not found: 404 </td>
+						<td class="entry" valign="top" headers="d95078e90 ">error: 400</td>
+
+						<td class="entry" valign="top">{“errors”:{field_name:error_message}}</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" headers="d95078e78 ">GET /settings/readOnlyAdminName</td>
+
+						<td class="entry" valign="top" headers="d95078e81 ">Get the read-only username</td>
+
+						<td class="entry" valign="top" headers="d95078e84 ">none</td>
+
+						<td class="entry" valign="top" headers="d95078e87 ">success: 200 “username”</td>
+
+						<td class="entry" valign="top" headers="d95078e90 ">not found: 404 </td>
 
 					</tr>
 

@@ -14,9 +14,9 @@
 					
 					<thead class="thead" align="left">
 						<tr class="row">
-							<th class="entry" valign="top" width="42.5531914893617%" id="d98126e32">URI path</th>
+							<th class="entry" valign="top" width="42.5531914893617%" id="d98037e32">URI path</th>
 
-							<th class="entry" valign="top" width="57.446808510638306%" id="d98126e35">Description</th>
+							<th class="entry" valign="top" width="57.446808510638306%" id="d98037e35">Description</th>
 
 						</tr>
 
@@ -24,16 +24,16 @@
 
 					<tbody class="tbody">
 						<tr class="row">
-							<td class="entry" valign="top" width="42.5531914893617%" headers="d98126e32 ">/settings/replications/</td>
+							<td class="entry" valign="top" width="42.5531914893617%" headers="d98037e32 ">/settings/replications/</td>
 
-							<td class="entry" valign="top" width="57.446808510638306%" headers="d98126e35 ">Global setting supplied to all replications for a cluster.</td>
+							<td class="entry" valign="top" width="57.446808510638306%" headers="d98037e35 ">Global setting supplied to all replications for a cluster.</td>
 
 						</tr>
 
 						<tr class="row">
-							<td class="entry" valign="top" width="42.5531914893617%" headers="d98126e32 ">/settings/replications/[replication_id]</td>
+							<td class="entry" valign="top" width="42.5531914893617%" headers="d98037e32 ">/settings/replications/[replication_id]</td>
 
-							<td class="entry" valign="top" width="57.446808510638306%" headers="d98126e35 ">Settings for a specific replication for a bucket.</td>
+							<td class="entry" valign="top" width="57.446808510638306%" headers="d98037e35 ">Settings for a specific replication for a bucket.</td>
 
 						</tr>
 
@@ -88,11 +88,11 @@ curl -u Administrator:password 10.5.2.54:8091/settings/replications
 				
 				<thead class="thead" align="left">
 					<tr class="row">
-						<th class="entry" valign="top" width="22.77904328018223%" id="d98126e94">Parameter</th>
+						<th class="entry" valign="top" width="22.77904328018223%" id="d98037e94">Parameter</th>
 
-						<th class="entry" valign="top" width="25.056947608200453%" id="d98126e97">Value</th>
+						<th class="entry" valign="top" width="25.056947608200453%" id="d98037e97">Value</th>
 
-						<th class="entry" valign="top" width="52.164009111617304%" id="d98126e100">Description</th>
+						<th class="entry" valign="top" width="52.164009111617304%" id="d98037e100">Description</th>
 
 					</tr>
 
@@ -100,138 +100,138 @@ curl -u Administrator:password 10.5.2.54:8091/settings/replications
 
 				<tbody class="tbody">
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">checkpointInterval</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">checkpointInterval</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (10 to 14400).</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (10 to 14400).</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 1800. Web console equivalent: XDCR Checkpoint
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 1800. Web console equivalent: XDCR Checkpoint
 							Interval.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">connectionTimeout</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">connectionTimeout</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (10 to 10000)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (10 to 10000)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 180.</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">docBatchSizeKb</td>
-
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (10 to 10000)</td>
-
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 2048. Web console equivalent: XDCR Batch Size (KB).</td>
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 180.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">failureRestartInterval</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">docBatchSizeKb</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (1 to 300)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (10 to 10000)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 30. Web console equivalent: XDCR Failure Retry
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 2048. Web console equivalent: XDCR Batch Size (KB).</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">failureRestartInterval</td>
+
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (1 to 300)</td>
+
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 30. Web console equivalent: XDCR Failure Retry
 							Interval.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">httpConnections</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">httpConnections</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (1 to 100)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (1 to 100)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 20. Number of maximum simultaneous HTTP connections
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 20. Number of maximum simultaneous HTTP connections
 							used.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">maxConcurrentReps</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">maxConcurrentReps</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (2 to 256)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (2 to 256)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 16. Web console equivalent: XDCR Max Replications per
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 16. Web console equivalent: XDCR Max Replications per
 							Bucket.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">optimisticReplicationThreshold</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">optimisticReplicationThreshold</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (0 to (20*1024*1024))</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (0 to (20*1024*1024))</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 256. Web console equivalent: XDCR Optimistic Replication
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 256. Web console equivalent: XDCR Optimistic Replication
 							Threshold.</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">pauseRequested</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">pauseRequested</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Boolean (true or false)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Boolean (true or false)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Initially set at false. Web console via <span class="ph uicontrol">XDCR &gt; Ongoing
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Initially set at false. Web console via <span class="ph uicontrol">XDCR &gt; Ongoing
 								replications &gt; Status</span>. Pauses the XDCR replication
 							stream. <strong class="ph b">Enterprise Edition only.</strong></td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">retriesPerRequest</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">retriesPerRequest</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (1 to 100)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (1 to 100)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 2</td>
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 2</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">socketOptions</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">socketOptions</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Term. </td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Term. </td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Additional parameters are keepalive (true or false) and nodelay
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Additional parameters are keepalive (true or false) and nodelay
 							(false or true).</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">supervisorMaxR</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">supervisorMaxR</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (1 to 1000)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (1 to 1000)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 25</td>
-
-					</tr>
-
-					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">supervisorMaxT</td>
-
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (1 to 1000)</td>
-
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 5</td>
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 25</td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">workerProcesses</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">supervisorMaxT</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (1 to 128)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (1 to 1000)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 4. Web console equivalent: XDCR Workers per Replication. The
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 5</td>
+
+					</tr>
+
+					<tr class="row">
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">workerProcesses</td>
+
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (1 to 128)</td>
+
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 4. Web console equivalent: XDCR Workers per Replication. The
 							number of worker processes for each vbucket replicator in XDCR. This
 							setting is available with memcached or REST. </td>
 
 					</tr>
 
 					<tr class="row">
-						<td class="entry" valign="top" width="22.77904328018223%" headers="d98126e94 ">workerBatchSize</td>
+						<td class="entry" valign="top" width="22.77904328018223%" headers="d98037e94 ">workerBatchSize</td>
 
-						<td class="entry" valign="top" width="25.056947608200453%" headers="d98126e97 ">Integer (500 to 10000)</td>
+						<td class="entry" valign="top" width="25.056947608200453%" headers="d98037e97 ">Integer (500 to 10000)</td>
 
-						<td class="entry" valign="top" width="52.164009111617304%" headers="d98126e100 ">Default: 500. Web console equivalent: XDCR Batch Count.</td>
+						<td class="entry" valign="top" width="52.164009111617304%" headers="d98037e100 ">Default: 500. Web console equivalent: XDCR Batch Count.</td>
 
 					</tr>
 
