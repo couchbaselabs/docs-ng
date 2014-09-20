@@ -1,0 +1,68 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Bulk operations</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">PHP SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting Started</a></li><li><a href="../topics/tutorial-intro.html">PHP SDK Tutorial</a></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a><ul class="nav nav-list"><li><a href="../topics/op-basics.html">Operation basics</a></li><li><a href="../topics/storing.html">Creating documents</a></li><li><a href="../topics/retrieving.html">Retrieving documents</a></li><li><a href="../topics/updating.html">Updating documents</a></li><li><a href="../topics/deleting.html">Deleting documents</a></li><li class="active"><a href="../topics/bulk-operations.html">Bulk operations</a><ul class="nav nav-list"></ul></li><li><a href="../topics/atomic-operations.html">Atomic operations</a></li></ul></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling errors</a></li><li><a href="../topics/logging.html">Setting up logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+ <h1 class="title topictitle1">Bulk operations</h1>
+
+ 
+ <div class="body conbody"><p class="shortdesc">You can perform bulk retrieval operations by using the multi key variant of the `get`
+        method. </p>
+
+  <p class="p">This method works identically to its singular counterpart but instead accepts an array of keys
+      to retrieve and returns an object where the object key matches your document ID and the object
+      value is the result that you would normally expect to see from a singular operation.</p>
+
+      
+      <p class="p">Here's an example that shows how to use the <samp class="ph codeph">getMulti()</samp> method:</p>
+
+  <pre class="pre codeblock language-javascript">$myBucket = $myCluster-&gt;openBucket();
+$res = $myBucket.get(array('document_name_1', 'document_name_2'));
+var_dump($res);</pre>
+
+ 	
+ 	<p class="p">Sample output from the example:</p>
+
+ 	<pre class="pre codeblock">array(2) {
+  ["document_name_1"]=&gt;
+  object(CouchbaseMetaDoc)#4 (4) {
+    ["value"]=&gt;
+    array(1) {
+      ["name"]=&gt;
+      string(5) "Frank"
+    }
+    ["flags"]=&gt;
+    int(4)
+    ["cas"]=&gt;
+    resource(5) of type (CAS)
+  }
+  ["document_name_2"]=&gt;
+  object(CouchbaseMetaDoc)#4 (4) {
+    ["value"]=&gt;
+    array(1) {
+      ["name"]=&gt;
+      string(5) "George"
+    }
+    ["flags"]=&gt;
+    int(4)
+    ["cas"]=&gt;
+    resource(5) of type (CAS)
+  }
+}</pre>
+
+ 	
+ </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/documents.html" title="This topic covers the basic CRUD operations of creating, retrieving, updating, and deleting documents. It also describes how to do bulk operations and atomic operations.">Working with documents</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

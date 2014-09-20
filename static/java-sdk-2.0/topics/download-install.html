@@ -1,0 +1,53 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Installing the Couchbase Java SDK</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">Java SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting started</a><ul class="nav nav-list"><li class="active"><a href="../topics/download-install.html">Installing the Couchbase Java SDK</a><ul class="nav nav-list"></ul></li><li><a href="../topics/hello-couchbase.html">Hello Couchbase example</a></li></ul></li><li><a href="../topics/tutorial.html">Tutorial</a></li><li><a href="../topics/managing-connections.html">Managing connections</a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/observables.html">Mastering observables</a></li><li><a href="../topics/logging.html">Setting up logging</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Installing the Couchbase Java SDK</h1>
+
+	<div class="body conbody">
+		<p class="p">At a minimum, Java 6 is required, but any newer version is also supported (including the newly released Java 8).</p>
+
+		<p class="p">Currently, the Java SDK is in a beta release state, so you need to include the Couchbase Maven
+			Repository if you want to pull it in automatically. Here is a typical
+				<span class="ph filepath">pom.xml</span> that you can copy and paste into your Java project:</p>
+
+		<pre class="pre codeblock language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.couchbase.client&lt;/groupId&gt;
+        &lt;artifactId&gt;java-client&lt;/artifactId&gt;
+        &lt;version&gt;2.0.0&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</pre>
+
+
+		<p class="p">You can also download an archive that has all JARs and dependencies included, but in general
+			using a package manager is strongly recommended.</p>
+
+		<p class="p">If you import the dependency, the following transitive dependencies will also be added:</p>
+
+
+		<ul class="ul">
+			<li class="li"><a class="xref" href="https://github.com/couchbase/couchbase-jvm-core" target="_blank">core-io</a>: our internal core library, which abstracts lots of
+				Couchbase-specific behavior in a language neutral way.</li>
+
+			<li class="li"><a class="xref" href="https://github.com/ReactiveX/RxJava" target="_blank">RxJava</a>: a foundational library to build reactive and asynchronous applications.</li>
+
+		</ul>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/getting-started.html">Getting started</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

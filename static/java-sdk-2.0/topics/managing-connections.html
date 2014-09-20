@@ -1,0 +1,324 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Managing connections</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">Java SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial.html">Tutorial</a></li><li class="active"><a href="../topics/managing-connections.html">Managing connections</a><ul class="nav nav-list"></ul></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/observables.html">Mastering observables</a></li><li><a href="../topics/logging.html">Setting up logging</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Managing connections</h1>
+
+	<div class="body conbody">
+		<p class="p">This section covers connection lifecycle management as well as how to apply custom configuration to the environment.</p>
+
+		<div class="section"><h2 class="title sectiontitle">Connecting</h2>
+			
+
+			<p class="p">Connecting to a bucket is a two-step process: first, a <samp class="ph codeph">CouchbaseCluster</samp> needs to be initialized,
+				followed by one or more calls to openBucket():</p>
+
+
+<pre class="pre codeblock language-java">Cluster cluster = CouchbaseCluster.create();
+Bucket bucket = cluster.openBucket();</pre>
+
+
+			<p class="p">If no further arguments are applied, this code connects to <samp class="ph codeph">localhost</samp> and opens the default bucket. While this is suitable for development, you most probably want to connect to a remote cluster and also a different bucket (with a password):</p>
+
+
+<pre class="pre codeblock language-java">Cluster cluster = CouchbaseCluster.create("192.168.56.101", "192.168.56.102");
+Bucket bucket = cluster.openBucket("myapp", "password");</pre>
+
+
+<p class="p">Alternatively, a list of nodes can be passed in:</p>
+
+
+<pre class="pre codeblock language-java">List&lt;String&gt; nodes = Arrays.asList("192.168.56.101", "192.168.56.102");
+Cluster cluster = CouchbaseCluster.create(nodes);</pre>
+
+
+<p class="p">It is very important in a production setup to pass in at least two or three nodes of the cluster because if the first one in the list fails the other ones can be tried. After initial contact is made, the bootstrap list provided by the user is thrown away and replaced with a list provided by the server (which contains all nodes of the cluster).</p>
+
+
+<p class="p">More buckets can be open at the same time if needed:</p>
+
+
+<pre class="pre codeblock language-java">Bucket bucket1 = cluster.openBucket("bucket1", "password");
+Bucket bucket2 = cluster.openBucket("bucket2", "password");</pre>
+
+
+<p class="p">If more than one bucket is open at a time, the underlying "core-io" module makes sure to utilize
+				the resources as best as possible, that is sharing sockets, thread pools and so on.</p>
+
+
+<p class="p">Here are some very important things to keep in mind:</p>
+
+
+<ul class="ul">
+	<li class="li">Always create only one instance of a <samp class="ph codeph">CouchbaseCluster</samp> and share it across threads (same with buckets).</li>
+
+	<li class="li">The SDK is thread-safe, so no additional synchronization is needed when interacting with the SDK.</li>
+
+	<li class="li">If different clusters need to be accessed, reuse the <samp class="ph codeph">ClusterEnvironment</samp> (see Sharing
+					Resources).</li>
+
+</ul>
+
+
+<p class="p">If the underlying environment is not shared the application will continue to work, but a Warning is raised in the logs:</p>
+
+
+<pre class="pre codeblock language-java">WARNING: More than 1 Couchbase Environments found (N), this can have severe impact on performance and stability. Reuse environments!</pre>
+
+
+<p class="p">In general this is an indication of misconfiguration, the only exception being unit and integration tests where multiple paths are executed at once and cannot share the ClusterEnvironment for whatever reason.</p>
+
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Connecting Asynchronously</h2>
+			
+
+			<p class="p">Ever synchronous API is just a wrapper around an asynchronous one. In order to get to it, there are two ways:</p>
+
+
+			<ul class="ul">
+				<li class="li">Use <samp class="ph codeph">async()</samp> on the interface to access its <samp class="ph codeph">Async*</samp> counterpart.</li>
+
+				<li class="li">Instantiate a <samp class="ph codeph">CouchbaseAsyncCluster</samp> in the first place.</li>
+
+			</ul>
+
+
+			<p class="p">So if you are connecting to the bucket synchronously but then want to switch over to asynchronous data ops you can do it like this:</p>
+
+
+<pre class="pre codeblock language-java">Cluster cluster = CouchbaseCluster.create();
+Bucket bucket = cluster.openBucket();
+
+// Same API as Bucket, but completely async with Observables
+AsyncBucket asyncBucket = bucket.async();</pre>
+
+
+			<p class="p">On the other hand, you can use the Async API right from the beginning:</p>
+
+
+<pre class="pre codeblock language-java">AsyncCluster cluster = CouchbaseAsyncCluster.create();
+Observable&lt;AsyncBucket&gt; bucketObservable = cluster.openBucket();</pre>
+
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Disconnecting</h2>
+			
+
+<p class="p">The most common case is to disconnect the whole <samp class="ph codeph">CouchbaseCluster</samp> from the server, which has the same effect as closing all buckets manually.</p>
+
+
+
+<pre class="pre codeblock language-java">Boolean disconnected = cluster.disconnect();</pre>
+
+
+<p class="p">If the <samp class="ph codeph">ClusterEnvironment</samp> is shared it needs to be closed manually (see Sharing Resources), but if not (which is the regular case) it gets also shut down.</p>
+
+
+<p class="p">After a disconnect, it is not possible to open buckets again, so only use it when you are sure that you do not need access to a CouchbaseCluster again. If you only want to close a bucket, you can do that without shutting down everything:</p>
+
+
+<pre class="pre codeblock language-java">Boolean closed = bucket.close();</pre>
+
+
+<p class="p">This will only release the resources allocated for this bucket and it is possible to reopen it at a later point.</p>
+
+
+<p class="p">Especially with disconnect, make sure you wait until it is finished (so everything is shut down cleanly), either by blocking the Observable or using other mechanisms in the subscriber (like a CountDownLatch to orchestrate behavior).</p>
+
+
+<p class="p">All threads used by the SDK are daemon threads, so even if you do not <samp class="ph codeph">disconnect()</samp> manually, your JVM will exit. It is very important that you properly shut down the SDK so that remaining operations are finished and nothing is left behind.</p>
+
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Customizing configuration</h2>
+			
+
+
+<p class="p">Configuration settings are applied through customizing a CouchbaseEnvironment. Every create method on the CouchbaseCluster also takes an optional CouchbaseEnvironment. If you do not pass in one explicitly, it is created for you with all default settings.</p>
+
+
+<p class="p">A Builder is available if you want to customize any of the default settings. For example, if you
+				want to enable the experimental N1QL querying feature, you can do it like this:</p>
+
+
+<pre class="pre codeblock language-java">CouchbaseEnvironment environment = DefaultCouchbaseEnvironment.builder()
+    .queryEnabled(true)
+    .build();
+CouchbaseCluster cluster = CouchbaseCluster.create(environment);</pre>
+
+
+<p class="p">Every property that you can set on the builder (and which is not a object that you pass in) has a
+				system property equivalent that always takes precedence. This is implemented so that you
+				can set overall settings for your deployments but you are also able to further tweak
+				them with system properties on your production servers.</p>
+
+
+<pre class="pre codeblock language-java">System.setProperty("com.couchbase.queryEnabled", "false");
+CouchbaseEnvironment environment = DefaultCouchbaseEnvironment.builder()
+    .queryEnabled(true)
+    .build();
+CouchbaseCluster cluster = CouchbaseCluster.create(environment);</pre>
+
+
+<p class="p">This code doesn't have querying enabled, because the system property always takes precedence.
+				This also means that you can configure the property solely through properties if you
+				want:</p>
+
+
+<pre class="pre codeblock language-java">System.setProperty("com.couchbase.queryEnabled", "true");
+CouchbaseCluster cluster = CouchbaseCluster.create();</pre>
+
+
+<p class="p">Here, querying will be enabled. You can find the system properties here in the documentation or on each builder method.</p>
+
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Sharing resources</h2>
+			
+
+<p class="p">As mentioned previously, you should create only one instance of a CouchbaseCluster and open
+				buckets from there. If you need to connect to multiple clusters though, this is not
+				going to work. To keep things efficient, you should share the <samp class="ph codeph">CouchbaseEnvironment</samp>
+				object between those instances:</p>
+
+
+<pre class="pre codeblock language-java">CouchbaseEnvironment env = DefaultCouchbaseEnvironment.create();
+CouchbaseCluster cluster1 = CouchbaseCluster.create(env, "192.168.56.1");
+CouchbaseCluster cluster2 = CouchbaseCluster.create(env, "192.168.57.10");</pre>
+
+
+			<p class="p">This ensures that the resources in the environment (thread pools for IO and computation) are reused. Note that if you pass in your custom environment, it needs to be shutdown manually since it's not under the complete control of any cluster. The recommended approach is to first shut down all clusters and once this is done shut down the environment (here using asynchronous code, but you can also loop synchronously):</p>
+
+
+<pre class="pre codeblock language-java">Observable
+    .just(cluster1, cluster2)
+    .flatMap(CouchbaseCluster::disconnect)
+    .last()
+    .flatMap(aBoolean -&gt; env.shutdown())
+    .subscribe();</pre>
+
+
+		</div>
+
+		<div class="section"><h2 class="title sectiontitle">Encryption</h2>
+			
+
+			<p class="p">Couchbase Server enterprise edition 3.0 and later supports full encryption of client-side traffic. That includes key-value type operations, views, and configuration communication. Make sure to have a proper Couchbase Server version installed before proceeding with configuring encryption on the client side.</p>
+
+
+<p class="p">To configure encryption for the Java SDK:</p>
+
+
+<ol class="ol">
+	<li class="li">Load and import the certificate from the cluster into your JVM keystore</li>
+
+	<li class="li">Enable encryption on the client side and point it to the keystore</li>
+
+</ol>
+
+
+<p class="p">The JVM keystore is independent of the Java SDK, so your own setup might look different. It is important to make sure you are transferring the certificate in an encrypted manner from the server to the client side, so either copy it through SSH or through a similar secure mechanism.</p>
+
+
+<p class="p">If you are running on <samp class="ph codeph">localhost</samp> and just want to enable it for a development machine, just copying and pasting it suffices. Navigate in the admin UI to <span class="ph menucascade"><span class="ph uicontrol">Settings</span> &gt; <span class="ph uicontrol">Cluster</span></span> and copy the input box of the SSL certificate into a file on your machine (here named cluster.cert). It looks similar to this:</p>
+
+
+<pre class="pre codeblock language-java">-----BEGIN CERTIFICATE-----
+MIICmDCCAYKgAwIBAgIIE4FSjsc3nyIwCwYJKoZIhvcNAQEFMAwxCjAIBgNVBAMT
+ASowHhcNMTMwMTAxMDAwMDAwWhcNNDkxMjMxMjM1OTU5WjAMMQowCAYDVQQDEwEq
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzz2I3Gi1XcOCNRVYwY5R
+................................................................
+mgDnQI8nw2arBRoseLpF6WNw22CawxHVOlMceQaGOW9gqKNBN948EvJJ55Dhl7qG
+BQp8sR0J6BsSc86jItQtK9eQWRg62+/XsgVCmDjrB5owHPz+vZPYhsMWixVhLjPJ
+mkzeUUj/kschgQ0BWT+N+pyKAFFafjwFYtD0e5NwFUUBfsOyQtYV9xu3fw+T2N8S
+itfGtmmlEfaplVGzGPaG0Eyr53g5g2BgQbi5l5Tt2awqhd22WOVbCalABd9t2IoI
+F4+FjEqAEIr1mQepDaNM0gEfVcgd2SzGhC3yhYFBAH//8W4DUot5ciEhoBs=
+-----END CERTIFICATE-----</pre>
+
+
+<p class="p">Now, use the keytool command to import it into your JVM keystore.</p>
+
+
+<pre class="pre codeblock language-java">$ keytool -importcert -file cluster.cert 
+Enter keystore password:  
+Owner: CN=*
+Issuer: CN=*
+Serial number: 1381528ec7379f22
+Valid from: Tue Jan 01 01:00:00 CET 2013 until: Sat Jan 01 00:59:59 CET 2050
+Certificate fingerprints:
+	 MD5:  4A:5E:DB:4F:F6:7E:FD:C3:0E:0C:56:C4:05:34:C1:4A
+	 SHA1: 3A:BC:48:3C:0F:36:99:EB:35:76:7C:E5:14:DE:89:DE:AE:79:9B:ED
+	 SHA256: 24:46:59:55:F2:65:23:85:E2:80:9F:CC:D1:EF:41:E9:4E:D8:ED:11:C8:CF:60:C7:C5:AD:63:56:D0:E6:7F:4D
+	 Signature algorithm name: SHA1withRSA
+	 Version: 3
+Trust this certificate? [no]:  yes
+Certificate was added to keystore</pre>
+
+
+<p class="p">You can verify with keytool -list:</p>
+
+
+<pre class="pre codeblock language-java">$ keytool -list
+Enter keystore password:  
+
+Keystore type: JKS
+Keystore provider: SUN
+
+Your keystore contains 1 entry
+
+mykey, Aug 18, 2014, trustedCertEntry, 
+Certificate fingerprint (SHA1): 3A:BC:48:3C:0F:36:99:EB:35:76:7C:E5:14:DE:89:DE:AE:79:9B:ED</pre>
+
+
+<p class="p">The next step is to enable encryption and pass it the path and password of the file.</p>
+
+
+<pre class="pre codeblock language-java">CouchbaseEnvironment env = DefaultCouchbaseEnvironment
+    .builder()
+    .sslEnabled(true)
+    .sslKeystoreFile("/path/tokeystore")
+    .sslKeystorePassword("password")
+    .build();</pre>
+
+
+<p class="p">Depending on the OS used there are different default passwords and paths, so consult the JDK
+				manual if you need further information on keytool and the JVM keystore.</p>
+
+
+<p class="p">There are no other application changes needed. If you want to verify it's actually working you
+				can use a tool like tcpdump. For example, an unencrypted upsert request looks like this
+				(using sudo tcpdump -i lo0 -A -s 0 port 11210):</p>
+
+
+<pre class="pre codeblock language-java">E..e..@.@.............+......q{...#..Y.....
+.E...Ey........9........................id{"key":"value"}</pre>
+
+
+<p class="p">After enabling encryption, you cannot inspect the traffic in clear-text (same upsert request, but
+				watched on port 11207 which is the default encrypted port):</p>
+
+
+<pre class="pre codeblock language-java">E.....@.@.............+....Z.'yZ..#........
+..... ...xuG.O=.#.........?.Q)8..D...S.W.4.-#....@7...^.Gk.4.t..C+......6..)}......N..m..o.3...d.,.	...W.....U..
+.%v.....4....m*...A.2I.1.&amp;.*,6+..#..#.5</pre>
+
+
+		</div>
+
+	</div>
+
+</main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

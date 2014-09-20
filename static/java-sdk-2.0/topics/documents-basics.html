@@ -1,0 +1,203 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Document basics</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">Java SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting started</a></li><li><a href="../topics/tutorial.html">Tutorial</a></li><li><a href="../topics/managing-connections.html">Managing connections</a></li><li><a href="../topics/documents.html">Working with documents</a><ul class="nav nav-list"><li class="active"><a href="../topics/documents-basics.html">Document basics</a><ul class="nav nav-list"></ul></li><li><a href="../topics/documents-creating.html">Creating documents</a></li><li><a href="../topics/documents-updating.html">Updating documents</a></li><li><a href="../topics/documents-retrieving.html">Retrieving documents</a></li><li><a href="../topics/documents-deleting.html">Deleting documents</a></li><li><a href="../topics/documents-atomic.html">Atomic operations</a></li></ul></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/observables.html">Mastering observables</a></li><li><a href="../topics/logging.html">Setting up logging</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Document basics</h1>
+
+	
+	<div class="body conbody"><p class="shortdesc">Describes the properties and types of Documents.</p>
+
+
+		<div class="section"><h2 class="title sectiontitle">The Document</h2>
+			
+
+			<p class="p">A instance of a <samp class="ph codeph">Document</samp> represents everything associated with a document stored in a Couchbase Server bucket. This does not only include the document ID and its content, but also other properties. These are:</p>
+
+
+			
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+					<thead class="thead" align="left">
+						<tr class="row">
+							<th class="entry" valign="top" id="d799e34">Name</th>
+
+							<th class="entry" valign="top" id="d799e37">Description</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody class="tbody">
+						<tr class="row">
+							<td class="entry" valign="top" headers="d799e34 d799e37 "><samp class="ph codeph">id</samp></td>
+
+							<td class="entry" valign="top" headers="d799e34 d799e37 ">The unique ID of the document.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d799e34 d799e37 "><samp class="ph codeph">content</samp></td>
+
+							<td class="entry" valign="top" headers="d799e34 d799e37 ">The content of the document.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d799e34 d799e37 "><samp class="ph codeph">cas</samp></td>
+
+							<td class="entry" valign="top" headers="d799e34 d799e37 ">The CAS (Compare And Swap) value of the document.</td>
+
+						</tr>
+
+						<tr class="row">
+							<td class="entry" valign="top" headers="d799e34 d799e37 "><samp class="ph codeph">expiry</samp></td>
+
+							<td class="entry" valign="top" headers="d799e34 d799e37 ">The expiration time of the document.</td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+</div>
+
+
+			<p class="p">There are a few different implementations of a <samp class="ph codeph">Document</samp>, the most prominent one is the <samp class="ph codeph">JsonDocument</samp>.</p>
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">JsonDocument and JSON</h2>
+			
+
+			<p class="p">Couchbase Server uses the JSON format as a first-class citizen. It is used for querying (both Views and N1QL) and represents the main storage format that should be used. Others are also supported, but they should only be used if no advanced querying is needed (apart from ID lookups).</p>
+
+
+			<p class="p">The <samp class="ph codeph">JsonDocument</samp> has factory methods named <samp class="ph codeph">create()</samp> in various ways, depending on the needs. If you do not want to pass in an expiration time or CAS value (just the ID and content) you do it like this:</p>
+
+
+<pre class="pre codeblock language-java">JsonDocument doc = JsonDocument.create("id", content);</pre>
+
+
+			<p class="p">The content needs to be of type <samp class="ph codeph">JsonObject</samp>, which ships with the Java SDK. It works very much like a <samp class="ph codeph">Map</samp>, but makes sure only data types understood by JSON are used.</p>
+
+
+			<p class="p">An empty JSON document can be created with:</p>
+
+
+<pre class="pre codeblock language-java">JsonObject content = JsonObject.empty();</pre>
+
+
+			<p class="p">Once it is created, you can use the various <samp class="ph codeph">put</samp> methods to insert data:</p>
+
+
+<pre class="pre codeblock language-java">JsonArray friends = JsonArray.empty()
+    .add(JsonObject.empty().put("name", "Mike Ehrmantraut"))
+    .add(JsonObject.empty().put("name", "Jesse Pinkman"));
+
+JsonObject content = JsonObject.empty()
+    .put("firstname", "Walter")
+    .put("lastname", "White")
+    .put("age", 52)
+    .put("aliases", JsonArray.from("Walt Jackson", "Mr. Mayhew", "David Lynn"))
+    .put("friends", friends);</pre>
+
+
+    		<p class="p">This generates a JSON document like this (unordered, because the actual content is stored in a <samp class="ph codeph">Map</samp>):</p>
+
+
+<pre class="pre codeblock language-javascript">{
+   "firstname":"Walter",
+   "aliases":[
+      "Walt Jackson",
+      "Mr. Mayhew",
+      "David Lynn"
+   ],
+   "age":52,
+   "friends":[
+      {
+         "name":"Mike Ehrmantraut"
+      },
+      {
+         "name":"Jesse Pinkman"
+      }
+   ],
+   "lastname":"White"
+}</pre>
+
+
+		<p class="p">In addition, the <samp class="ph codeph">JsonObject</samp> and <samp class="ph codeph">JsonArray</samp> provide convenience methods to generate and modify them.</p>
+
+
+		<p class="p">The <samp class="ph codeph">JsonDocument</samp> can then be passed into the various operations on the <samp class="ph codeph">Bucket</samp>:</p>
+
+
+<pre class="pre codeblock language-java">JsonDocument walter = JsonDocument.create("user:walter", content);
+JsonDocument inserted = bucket.insert(walter);</pre>
+
+
+		<p class="p">If you want to read values out of the <samp class="ph codeph">JsonDocument</samp>, you can use the either typed or untyped getter methods.</p>
+
+
+<pre class="pre codeblock language-java">int age = content.getInt("age");
+String name = content.getString("firstname") + content.getString("lastname");</pre>
+
+
+		<div class="p"><div class="note note"><span class="notetitle">Note:</span> If you are accessing values which potentially do not exist, you need to use boxed values (Integer, Long, Boolean) instead of their unboxed variants (int, long, boolean) if you do not want to get <samp class="ph codeph">NullPointerExceptions</samp>. If you use unboxed variants, make sure to catch them properly.</div>
+</div>
+
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">LegacyDocument</h2>
+			
+
+			<p class="p">The <samp class="ph codeph">LegacyDocument</samp> has been added to support backwards-compatible interaction for documents which were and are stored by the Java SDK of the 1.* series.</p>
+
+
+			<p class="p">It's behavior is very similar to the <samp class="ph codeph">JsonDocument</samp>, but it doesn't take a <samp class="ph codeph">JsonObject</samp> but instead a generic <samp class="ph codeph">Object</samp>. Depending on the actual content, it is encoded/decoded and all important flags set, as well as compression handled.</p>
+
+
+			<p class="p">You can also use it to store strings directly, or POJOs which implement <samp class="ph codeph">Serializable</samp>.</p>
+
+
+<pre class="pre codeblock language-java">LegacyDocument.create("docid", "Hello World");</pre>
+
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">Expiration and CAS</h2>
+			
+
+			<p class="p">Every <samp class="ph codeph">Document</samp> also contains the <samp class="ph codeph">expiry</samp> and <samp class="ph codeph">cas</samp> properties. They are considered meta information and are also optional. An expiration time of <samp class="ph codeph">0</samp> means that no expiration is set at all, and a <samp class="ph codeph">CAS</samp> value 0 means it won't be used.</p>
+
+
+			<p class="p">The <samp class="ph codeph">expiry</samp> can be set by you to control the expiration time when the document is stored:</p>
+
+
+// Expire in 10 seconds.
+JsonDocument.create("id", 10, content);
+
+			<p class="p">The <samp class="ph codeph">CAS</samp> value can either be set by you directly or is populated by the SDK when the <samp class="ph codeph">Document</samp> is loaded from the server (which is the recommended way to use it).</p>
+
+
+		</div>
+
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/documents.html">Working with documents</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

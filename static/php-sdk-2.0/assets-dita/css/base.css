@@ -1,0 +1,186 @@
+
+.brand .logo{
+	position:relative;
+	top:2px;
+}
+
+
+
+.navbar .nav{
+	position:relative;
+	top:2px;
+}
+
+
+.navbar {
+	background-color:#eee;
+	background-image:none;
+}
+
+ul.nav > li{
+	margin-bottom:initial;
+	margin-left: 1em;
+}
+
+ul.nav > li.active {
+	background-color: #E0E0E0;
+}
+
+body{
+	font-family:'Open Sans', sans-serif;
+	padding:40px 0;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	color:#a30a0a;
+	line-height:initial;
+}
+
+h1{
+	margin-bottom:0.75em;
+	font-weight: bold;
+}
+
+h2{
+	border-bottom:solid;
+	border-color:#000666;
+	border-width:thin;
+	padding-top:0.5em;
+	font-size:24px;
+}
+
+h3{
+	font-size:18px;
+}
+
+h4{
+	font-size:16px;
+}
+
+h5{
+	font-size:14px;
+}
+
+ul{
+	list-style-type:square;
+}
+
+ul > li > ul > li {
+	list-style-type: disc;
+}
+
+li{
+	margin-bottom:10px;
+}
+
+dt{
+	padding-top:0.5em;
+}
+
+div.copyright{
+	text-align:center;
+	color:#000552;
+	font-size:xx-small;
+	padding-top:10px;
+}
+
+
+div.note{
+	border:solid #c1bf99;
+	border-width:thin thin thin 10px;
+	padding:0.5em;
+	margin:10px 0px;
+}
+
+.attentiontitle,
+.cautiontitle,
+.dangertitle,
+.fastpathtitle,
+.importanttitle,
+.notetitle,
+.remembertitle,
+.restrictiontitle,
+.tiptitle,
+.warningtitle{
+	display:block;
+	font-weight:bold;
+}
+
+caption{
+	font-weight:bold;
+}
+
+/*
+table, thead, tbody, th, td {
+	border-style: solid;
+   border-width: 1px;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: inherit;
+}
+*/
+
+table {
+	font-size: inherit;
+	border-collapse: collapse;
+}
+
+thead > tr > th{
+	background-color:#e0dfcc;
+}
+
+
+a{
+	text-decoration:none;
+}
+a:visited{
+	color:blue;
+}
+a:hover{
+	text-decoration:underline;
+}
+
+div.related-links::before{
+	content:"Related links";
+	color:#a30a0a;
+	font-size:18px;
+	font-weight:bold;
+	line-height:40px;
+
+}
+
+div.related-links{
+	margin:3em 0;
+}
+
+.menucascade,
+.filepath,
+.uicontrol{
+	font-weight:bold;
+}
+
+samp, .codeph, .apiname {
+	font-family: monospace;
+}
+
+.abstract{
+	margin-bottom:10px;
+}
+
+
+/* search box styling */
+
+.gcse-wrapper{
+	background-color:transparent;
+	/*border:red 0.5px solid; /* just here to see what's going on */
+	width: 300px;
+	float: right;
+	
+}
+

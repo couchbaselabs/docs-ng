@@ -1,0 +1,158 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Setting up the project</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">Couchnode SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting Started</a></li><li><a href="../topics/tutorial-intro.html">Couchnode tutorial</a><ul class="nav nav-list"><li><a href="../topics/quick-start.html">Quick start</a></li><li class="active"><a href="../topics/prep.html">Setting up the project</a><ul class="nav nav-list"></ul></li><li><a href="../topics/wecome.html">Creating a welcome page</a></li><li><a href="../topics/manage-beers.html">Managing beers</a></li><li><a href="../topics/tutorial-wrap.html">Where to go from here</a></li></ul></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling errors</a></li><li><a href="../topics/logging.html">Setting up logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Setting up the project</h1>
+
+	<div class="body conbody">
+
+		<p class="p">You need to set up your directory layout and add some
+			views in the server before you can start working with the Node.js SDK and express+jade
+			itself.</p>
+
+		<div class="section"><h2 class="title sectiontitle">Creating the project directory layout</h2>
+			
+			<p class="p">Create a project directory named <span class="ph filepath">beer</span> and subdirectories for the
+				views and other components:</p>
+
+			<pre class="pre codeblock">
+shell&gt; mkdir beer 
+shell&gt; cd beer 
+shell&gt; mkdir views 
+shell&gt; mkdir views/beer 
+shell&gt; mkdir views/brewery 
+shell&gt; mkdir static 
+shell&gt; mkdir static/js 
+shell&gt; mkdir static/css
+</pre>
+
+			<p class="p">To verify the directory structure you just created, you can list all the subdirectories
+				in the project directory:</p>
+
+			<pre class="pre codeblock">
+shell&gt; find . -type d
+./static
+./static/js
+./static/css
+./views
+./views/brewery
+./views/beer
+</pre>
+
+			<p class="p">To make the application look pretty, it incorporates <a class="xref" href="http://jquery.com" target="_blank">jQuery</a> and <a class="xref" href="http://getbootstrap.com" target="_blank">Twitter Bootstrap</a>. You can either download the
+				libraries and put them in their appropriate <span class="ph filepath">css</span> and
+					<span class="ph filepath">js</span> directories (under <span class="ph filepath">static</span>), or clone the
+				project repository and use it from there. If you followed the quick start steps, you
+				already have the files in your <span class="ph filepath">beersample-node</span> directory. Either
+				way, make sure you have the following files in place:</p>
+
+			<ul class="ul">
+				<li class="li"><span class="ph filepath">static/css/beersample.css</span></li>
+
+				<li class="li"><span class="ph filepath">static/css/bootstrap.min.css</span> (the minified Twitter Bootstrap
+					library)</li>
+
+				<li class="li"><span class="ph filepath">static/css/bootstrap-responsive.min.css</span> (the minified
+					responsive layout classes from Bootstrap)</li>
+
+				<li class="li"><span class="ph filepath">static/js/beersample.js</span></li>
+
+				<li class="li"><span class="ph filepath">static/js/jquery.min.js</span> (the jQuery JavaScript library)</li>
+
+			</ul>
+
+			<p class="p">At this point you have a bare bones web application configured that has all the
+				dependencies included.</p>
+
+		</div>
+
+
+		<div class="section"><h2 class="title sectiontitle">Setting up the Views</h2>
+			
+			<p class="p">The <samp class="ph codeph">beer-sample</samp> bucket comes with a small set of predefined views, but
+				the application requires some additional views. This is also a good chance to explore
+				the view management possibilities available through the Couchbase Server administration
+				console.</p>
+
+			<p class="p">The application lists beers and breweries by name, so it also needs predefined views for
+				those types of documents. Open the administration console and click
+					<span class="ph uicontrol">Views</span>. Select <samp class="ph codeph">beer-sample</samp> from the drop-down list to switch to
+				the correct bucket. Now click on <span class="ph uicontrol">Development Views</span> and then <span class="ph uicontrol">Create Development View</span> to
+				define your first view. You need to give it the name of both the design document and the
+				actual view. Insert the following names:</p>
+<ul class="ul">
+				<li class="li"><p class="p">Design Document Name: _design/dev_beer</p>
+</li>
+
+				<li class="li"><p class="p">View Name: by_name</p>
+</li>
+
+			</ul>
+<p class="p">Next, define the map and optional reduce functions. This example doesn't use reduce functions at
+				all, but you can play around with a reduce function to see what happens. Insert the
+				following map function (that’s JavaScript) and click <span class="ph uicontrol">Save</span>.</p>
+
+			<pre class="pre codeblock language-javascript">
+function (doc, meta) {
+  if(doc.type &amp;&amp; doc.type == "beer") {
+    emit(doc.name, null);
+  }
+}
+</pre>
+<p class="p">Every map function takes the full document, <samp class="ph codeph">doc</samp>, and its associated metadata,
+					<samp class="ph codeph">meta</samp>, as the arguments. Your code can inspect the data in these
+				arguments and emit a result when you want to have it in your index. This map function
+				emits the name of the beer (<samp class="ph codeph">doc.name</samp>) when the document both has a type
+				field and the type is beer. In this case, a value is not needed, so the function just
+				emits <samp class="ph codeph">null</samp>. It’s always advisable to keep the index as small as
+				possible. Resist the urge to include the full document by using <samp class="ph codeph">emit(meta.id,
+					doc)</samp> because it increases the size of your view indexes. If you need to
+				access the full document, you can call <samp class="ph codeph">db.get(result.key)</samp> to get the
+				individual document for a single row. The resulting retrieval of the document might be
+				slightly out of sync with your view, but it will be fast and efficient. </p>
+<p class="p">Now you need to define a view for the breweries. You already know how to do this—here is all the
+				information you need to create a brewery view:</p>
+<ul class="ul">
+				<li class="li"><p class="p">Design Document Name: _design/dev_brewery</p>
+</li>
+
+				<li class="li"><p class="p">View Name: by_name</p>
+</li>
+
+				<li class="li"><p class="p">Map Function:</p>
+
+					<pre class="pre codeblock"><samp class="ph codeph">function (doc, meta) {
+  if(doc.type &amp;&amp; doc.type == "brewery") {
+    emit(doc.name, null);
+  }
+}
+</samp></pre>
+</li>
+
+			</ul>
+<p class="p">The final step is to push the design documents in production. While the design documents are in
+				development, the index is applied only to a deterministic subset of the data. Because
+				you want to have the index on the whole data set, click the <span class="ph uicontrol">Publish</span> button on both
+				design documents (and accept any pop-up windows that warn you about overriding the old
+				design documents).</p>
+
+			
+			</div>
+
+	</div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/tutorial-intro.html">Couchnode tutorial</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

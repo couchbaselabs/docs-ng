@@ -1,0 +1,264 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Hello Couchbase example</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">Java SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting started</a><ul class="nav nav-list"><li><a href="../topics/download-install.html">Installing the Couchbase Java SDK</a></li><li class="active"><a href="../topics/hello-couchbase.html">Hello Couchbase example</a><ul class="nav nav-list"></ul></li></ul></li><li><a href="../topics/tutorial.html">Tutorial</a></li><li><a href="../topics/managing-connections.html">Managing connections</a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/observables.html">Mastering observables</a></li><li><a href="../topics/logging.html">Setting up logging</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Hello Couchbase example</h1>
+
+	<div class="body conbody">
+
+        <p class="p">Now that you added the SDK dependency to your project, you can proceed and implement the classic "Hello World" example. Some important aspects are also covered along the way that will help you later.</p>
+
+
+        <p class="p">The first thing you need to do is connect to the cluster:</p>
+
+
+        <pre class="pre codeblock language-java">Cluster cluster = CouchbaseCluster.create();</pre>
+
+
+        <p class="p">With no other arguments provided, this will logically bind it to a cluster where at least
+			one node is reachable on <samp class="ph codeph">localhost</samp>. This is a reasonable default to get
+			started, but you can also pass in one or more seed nodes like this:</p>
+
+
+        <pre class="pre codeblock language-java">Cluster cluster = CouchbaseCluster.create("192.168.56.101", "192.168.56.102");</pre>
+
+
+        <p class="p">You do not need to pass in all nodes of the cluster, just a few seed nodes so that the client is able to establish initial contact. The actual process of connecting to a bucket (that is, opening sockets and everything related) happens when you call the <samp class="ph codeph">openBucket</samp> method:</p>
+
+
+        <pre class="pre codeblock language-java">Bucket bucket = cluster.openBucket();</pre>
+
+
+        <p class="p">This will connect to the <samp class="ph codeph">default</samp> bucket and return a <samp class="ph codeph">Bucket</samp>.</p>
+
+
+        <p class="p">At the end of your code you need to shut down the client to free all resources (sockets, threads, and so on). If you don't shut it down, your app keeps running because some threads are required to be non-daemon threads. The following code shuts down the client:</p>
+
+
+        <pre class="pre codeblock language-java">cluster.disconnect();</pre>
+
+
+        <p class="p">This disconnects all buckets and frees associated ressources.</p>
+
+
+        <p class="p">You now have a reference to the <samp class="ph codeph">Bucket</samp>, so you can begin working with it. The SDK comes with built-in handling for JSON documents, which you can use right away. First, create a <samp class="ph codeph">JsonObject</samp>, which contains information for a user.</p>
+
+
+<pre class="pre codeblock language-java">JsonObject user = JsonObject.empty()
+    .put("firstname", "Walter")
+    .put("lastname", "White")
+    .put("job", "chemistry teacher")
+    .put("age", 50);</pre>
+
+
+        <p class="p">A <samp class="ph codeph">JsonObject</samp> works very much like a <samp class="ph codeph">Map</samp>, but it is designed to only let you insert values that can be stored as valid JSON (including nested objects and arrays). The resulting document looks like this:</p>
+
+
+<pre class="pre codeblock language-json">{
+    "firstname":"Walter",
+    "job":"chemistry teacher",
+    "age":50,
+    "lastname":"White"
+}</pre>
+
+
+        <p class="p">To store the document, you can use the <samp class="ph codeph">upsert</samp> method on the <samp class="ph codeph">bucket</samp>. Because a document on the server has more properties than just the content, you need to give it at least a unique document ID (for example, <samp class="ph codeph">walter</samp>). The container for all this information is called a <samp class="ph codeph">Document</samp> and because you are dealing with JSON you need to create a <samp class="ph codeph">JsonDocument</samp>:</p>
+
+
+<pre class="pre codeblock language-java">JsonDocument doc = JsonDocument.create("walter", user);
+JsonDocument response = bucket.upsert(doc);</pre>
+
+
+        <p class="p">The <samp class="ph codeph">Document</samp> is automatically converted into JSON and stored on the cluster. If the document (identified by its unique ID) already exists, it is replaced.</p>
+
+
+        <p class="p">If you replace <samp class="ph codeph">upsert</samp> with <samp class="ph codeph">insert</samp> and try to insert the same document twice (with the same ID), you see the following:</p>
+
+
+<pre class="pre codeblock language-java">Exception in thread "main" com.couchbase.client.java.error.DocumentAlreadyExistsException
+    at com.couchbase.client.java.CouchbaseAsyncBucket$12.call(CouchbaseAsyncBucket.java:284)
+    at com.couchbase.client.java.CouchbaseAsyncBucket$12.call(CouchbaseAsyncBucket.java:280)
+    at rx.internal.operators.OperatorMap$1.onNext(OperatorMap.java:54)
+    at rx.subjects.SubjectSubscriptionManager$SubjectObserver.onNext(SubjectSubscriptionManager.java:224)
+    at rx.subjects.AsyncSubject.onCompleted(AsyncSubject.java:96)
+    at com.couchbase.client.core.ResponseHandler.onEvent(ResponseHandler.java:98)
+    at com.couchbase.client.core.ResponseHandler.onEvent(ResponseHandler.java:43)
+    at com.couchbase.client.deps.com.lmax.disruptor.BatchEventProcessor.run(BatchEventProcessor.java:128)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+    at com.couchbase.client.deps.io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:137)
+    at java.lang.Thread.run(Thread.java:745)</pre>
+
+
+        <p class="p">This provides an important clue:</p>
+
+
+        <ul class="ul">
+            <li class="li"><samp class="ph codeph">insert</samp>, unlike <samp class="ph codeph">upsert</samp> fails if the document already exists on the server (very much like the SQL <samp class="ph codeph">INSERT</samp>
+              statement).</li>
+
+        </ul>
+
+
+        <p class="p">Not surprisingly, you can also retrieve a <samp class="ph codeph">Document</samp> from the database. You do this by providing its ID:</p>
+
+
+<pre class="pre codeblock language-java">JsonDocument walter = bucket.get("walter");
+System.out.println("Found: " + walter);</pre>
+
+
+        <p class="p">This prints:</p>
+
+
+<pre class="pre codeblock language-java">Found: JsonDocument{id='walter', cas=16976883046781, expiry=0, content={"firstname":"Walter","job":"chemistry teacher","age":50,"lastname":"White"}}</pre>
+
+
+        <p class="p">If you want to print only the age, you can reach into the content (much like you would access a `Map`):</p>
+
+
+        <pre class="pre codeblock language-java">System.out.println("Age: " + walter.content().getInt("age"));</pre>
+
+
+        <p class="p">Now that you are an expert in storing and retreiving documents, you can combine both commands to implement something that is needed very often: loading a document, modifying its content and eventually storing the modified document.</p>
+
+
+        <p class="p">First, here is one of the synchronous ways to do it:</p>
+
+
+<pre class="pre codeblock language-java">JsonDocument loaded = bucket.get("walter");
+if (loaded == null) {
+    System.err.println("Document not found!");
+} else {
+    loaded.content().put("age", 52);
+    JsonDocument updated = bucket.replace(loaded);
+    System.out.println("Updated: " + updated.id());
+}</pre>
+
+
+
+        <p class="p">The code uses the <samp class="ph codeph">get</samp> method to load the <samp class="ph codeph">Document</samp> and
+            waits until it arrives from the server (and returns <samp class="ph codeph">null</samp> as the default
+            value if it does not exist). If it is not null, the content is modified and the document is
+            stored again through the <samp class="ph codeph">replace</samp> method. You can think of
+                <samp class="ph codeph">replace</samp> as the opposite of <samp class="ph codeph">insert</samp>—if the document does
+            not already exist, the call fails.</p>
+
+
+        <p class="p">The code shown above is completely synchronous, which means that your main thread will wait all the time until a response comes back from the server. It waits for network IO to happen while instead it could perform valuable work. This is where the whole idea of asynchronous and parallel computation gets interesting. Instead of waiting and "pulling" the data out of the SDK, you can just keep going forward in your application flow and let the SDK notify you once it's done with work.</p>
+
+
+        <p class="p"><samp class="ph codeph">Observable</samp>s provide a large range of methods and functionality to create, combine and transform asynchronous workflows and make them look synchronous (while they aren't). This is important, because other approaches quickly get you into "callback hell" and are complicated dealing with futures, especially if you want to chain more than one asynchronous operation together.</p>
+
+
+        <p class="p">Here is the very same example, but completely non-blocking (note that you want to keep your main thread alive with a <samp class="ph codeph">Thread.sleep()</samp> for now or use <samp class="ph codeph">CountDownLatch</samp>):</p>
+
+
+<pre class="pre codeblock language-java">bucket
+    .async()
+    .get("walter")
+    .flatMap(new Func1&lt;JsonDocument, Observable&lt;JsonDocument&gt;&gt;() {
+        @Override
+        public Observable&lt;JsonDocument&gt; call(final JsonDocument loaded) {
+            loaded.content().put("age", 52);
+            return bucket.async().replace(loaded);
+        }
+    })
+    .subscribe(new Action1&lt;JsonDocument&gt;() {
+        @Override
+        public void call(final JsonDocument updated) {
+            System.out.println("Updated: " + updated.id());
+        }
+    });</pre>
+
+        
+        <p class="p">Note how you can get access to the underlying asynchronous interfaces by using the <samp class="ph codeph">async()</samp> method on the bucket.</p>
+
+
+        <p class="p">Without going too much in-depth about how <samp class="ph codeph">Observables</samp> work, it is not
+            too hard to guess what is happening. The document is loaded through the
+                <samp class="ph codeph">get</samp> method and after it is done, the <samp class="ph codeph">flatMap</samp> method is
+            executed. This method changes the content and calls the <samp class="ph codeph">replace</samp> method.
+            After the replace is done, the <samp class="ph codeph">Subscriber</samp> is called and the line is
+            printed. You do not need to check for <samp class="ph codeph">null</samp> here because the whole chain is
+            just not executed if the document is not found in the first place.</p>
+
+
+        <p class="p">The style shown above is Java6/7 with anonymous classes. If you are one of the happy ones to already use Java 8, you can replace the same code with lambdas to make it much nicer and succinct:</p>
+
+
+<pre class="pre codeblock language-java">bucket
+    .async()
+    .get("walter")
+    .flatMap(loaded -&gt; {
+        loaded.content().put("age", 52);
+        return bucket.async().replace(loaded);
+    })
+    .subscribe(updated -&gt; System.out.println("Updated: " + updated.id()));</pre>
+
+
+        <p class="p">Because this flow is asynchronous, every "callback" is run in a specific thread,
+            different from your "main" one. Since this one-off example is different from long-running
+            server applications (which are not shut down after one operation), it is a good idea to
+            synchronize and wait after the last operation is finished.</p>
+
+
+        <p class="p">A naive way is to add a <samp class="ph codeph">Thread.sleep(1000)</samp> after the last call to keep the current thread alive for a second and hope that the operation is done:</p>
+
+
+<pre class="pre codeblock language-java">bucket
+    .async()
+    .get("walter")
+    .flatMap(loaded -&gt; {
+        loaded.content().put("age", 52);
+        return bucket.replace(loaded);
+    })
+    .subscribe(updated -&gt; System.out.println("Updated: " + updated.id()));
+
+Thread.sleep(1000);</pre>
+
+
+        <p class="p">Usually it takes a shorter amount of time, so you are just wasting time. And in the
+            unlikely case that it takes longer, it doesn't work properly. So a much better way is the
+            use of a <samp class="ph codeph">CountDownLatch</samp>, which ships with the JDK. One thread counts it
+            down and the other waits until its counted down:</p>
+
+
+<pre class="pre codeblock language-java">final CountDownLatch latch = new CountDownLatch(1);
+bucket
+    .async()
+    .get("walter")
+    .flatMap(loaded -&gt; {
+        loaded.content().put("age", 52);
+        return bucket.replace(loaded);
+    })
+    .subscribe(updated -&gt; {
+        System.out.println("Updated: " + updated.id());
+        latch.countDown();
+    });
+
+latch.await();</pre>
+
+
+        <p class="p">This is also the preferred way on how to deal with asynchronous computation in unit tests and other scenarios where tight control between threads is needed.</p>
+
+
+        <p class="p">Congratulations, you've completed your first steps towards Couchbase mastery! At this
+            point, you can either proceed with the complete tutorial application or browse through the
+            rest of the documentation as you see fit.</p>
+
+	</div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/getting-started.html">Getting started</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>

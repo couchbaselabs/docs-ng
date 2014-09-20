@@ -1,0 +1,95 @@
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Couchbase Server documentation"><title>Quick start</title><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css"><script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script><link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css"><link href="/assets-dita/css/base.css" rel="stylesheet"><script src="/assets-dita/js/main.js"></script></head><body><header class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="http://www.couchbase.com/"><img src="/assets-dita/images/cb-icon-sofa.png" class="logo"></a><a class="navbar-brand" style="color:#000552;" href="/">Couchbase
+								Documentation <small>beta</small></a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/">Docs Home</a></li><li><a href="/archive-index">Docs Archive</a></li></ul></div></div></header><div id="content" class="container"><div class="row"><nav class="col-md-3"><div class="well"><ul class="nav nav-list list-group"><li><a href="../topics/overview.html">Couchnode SDK 2.0</a></li><li><a href="../topics/getting-started.html">Getting Started</a></li><li><a href="../topics/tutorial-intro.html">Couchnode tutorial</a><ul class="nav nav-list"><li class="active"><a href="../topics/quick-start.html">Quick start</a><ul class="nav nav-list"></ul></li><li><a href="../topics/prep.html">Setting up the project</a></li><li><a href="../topics/wecome.html">Creating a welcome page</a></li><li><a href="../topics/manage-beers.html">Managing beers</a></li><li><a href="../topics/tutorial-wrap.html">Where to go from here</a></li></ul></li><li><a href="../topics/managing-connections.html">Managing server connections </a></li><li><a href="../topics/documents.html">Working with documents</a></li><li><a href="../topics/querying.html">Querying buckets</a></li><li><a href="../topics/handling-timeouts.html">Handling timeouts</a></li><li><a href="../topics/handling-errors.html">Handling errors</a></li><li><a href="../topics/logging.html">Setting up logging</a></li><li><a href="../topics/performance-tuning.html">Performance tuning</a></li></ul></div></nav><main class="col-md-9"><div class="gcse-wrapper"><div class="gcse-search"></div></div>
+	<h1 class="title topictitle1">Quick start</h1>
+
+	<div class="body conbody">
+		<p class="p">To get started, follow these instructions to download and install the tutorial application.
+			If you do this, you will have the code set up so you can just follow along as you read through the rest of the tutorial.</p>
+
+		<ol class="ol">
+			<li class="li"><p class="p">Download <a class="xref" href="http://www.couchbase.com/download" target="_blank">Couchbase Server</a> and install it. Make sure to install the
+					beer-sample bucket when you run the wizard because this tutorial application works
+					with it.</p>
+</li>
+
+
+			<li class="li"><p class="p">Clone the repository and install dependencies (<a class="xref" href="http://expressjs.com" target="_blank">Express</a> and <a class="xref" href="http://jade-lang.com" target="_blank">Jade</a>):</p>
+
+				<pre class="pre codeblock language-bash">
+shell&gt; git clone git://github.com/couchbaselabs/beersample-node 
+Cloning into 'beersample-node' #... 
+shell&gt; cd beersample-node 
+shell&gt; npm install
+</pre>
+
+			</li>
+
+
+			<li class="li">Set up the views. <p class="p">You can set up the views manually by using the Couchbase Server
+					administration console or by invoking the <span class="ph filepath">beer.js</span> script located
+					in the <span class="ph filepath">beersample-node</span> directory. </p>
+<p class="p">To set up the views
+					with the script, enter the following command: </p>
+<pre class="pre codeblock">shell&gt; node beer.js --setup</pre>
+
+				<p class="p">To set up the views manually, open the Couchbase Server administration console. In
+					the <samp class="ph codeph">beer</samp> design document, create a development view called <samp class="ph codeph">by_name</samp>, then promote it
+					to a production view. (The beer-sample bucket might already have a production design
+					document named beer with a by_name view. If it does, you can skip this step.) Here's the JavaScript map function for the view:</p>
+
+				<pre class="pre codeblock language-javascript">
+function (doc, meta) {
+    if (doc.type &amp;&amp; doc.type == "beer") {
+        emit(doc.name, null);
+    }
+}
+</pre>
+
+				<p class="p">Create another design document called <samp class="ph codeph">brewery</samp>, add a view called
+					<samp class="ph codeph">by_name</samp>, and publish it to a production view. Here's the JavaScript map function for the view:</p>
+
+				<pre class="pre codeblock language-javascript">
+function (doc, meta) {
+    if (doc.type &amp;&amp; doc.type == "brewery") {
+        emit(doc.name, null);
+    }
+}
+</pre>
+
+			</li>
+
+
+			<li class="li"><p class="p">Invoke the <span class="ph filepath">beer.js</span> script:</p>
+
+				<pre class="pre codeblock language-bash">
+shell&gt; node beer.js
+Server running at http://127.0.0.1:1337/
+</pre>
+
+			</li>
+
+			<li class="li"><p class="p">In your web browser, navigate to <a class="xref" href="http://localhost:1337/welcome" target="_blank">http://localhost:1337/welcome</a>,
+					and enjoy the application!</p>
+</li>
+
+		</ol>
+
+	</div>
+
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink"><strong>Parent topic:</strong> <a class="link" href="../topics/tutorial-intro.html">Couchnode tutorial</a></div>
+</div>
+</div></main></div></div><footer><div class="navbar navbar-default navbar-fixed-bottom"><div class="container"><div class="copyright"> © 2014 COUCHBASE All rights reserved. </div></div></div></footer><script type="text/javascript" src="https://www.google.com/jsapi"></script><script>
+					(function() {
+					var cx = '018016427239405524608:fkg1v30apnm';
+					var gcse = document.createElement('script');
+					gcse.type = 'text/javascript';
+					gcse.async = true;
+					gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					'//www.google.com/cse/cse.js?cx=' + cx;
+					var s = document.getElementsByTagName('script')[0];
+					s.parentNode.insertBefore(gcse, s);
+					})();
+				</script></body></html>
