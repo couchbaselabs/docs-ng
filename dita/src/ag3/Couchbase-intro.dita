@@ -7,29 +7,29 @@
     meaning it can serve application data 24 hours, 7 days a week.</shortdesc>
   <body>
     
-    <section><title>Couchbase benefits</title> With Couchbase Server, you use JSON documents to
+    <section><title>Couchbase benefits</title> With Couchbase Server, JSON documents are used to
       represent application objects and the relationships between objects. This document model is
       flexible enough so that you can change application objects without having to migrate the
       database schema, or plan for significant application downtime. Even the same type of object in
-      your application can have a different data structures. For instance, you can initially
-      represent a user name as a single document field. You can later structure a user document so
-      that the first name and last name are separate fields in the JSON document without any
-      downtime, and without having to update all user documents in the system. <ul>
+      your application can have different data structures. For instance, you can initially represent
+      a user name as a single document field. You can later structure a user document so that the
+      first name and last name are separate fields in the JSON document without any downtime and
+      without having to update all user documents in the system. <ul>
         <li>Flexible data model <p>The other advantage in a flexible, document-based data model is
-            that it is well suited to representing real-world items and how you want to represent
-            them. JSON documents support nested structures, as well as field representing
+            that it is well suited to representing real world items and how you want to represent
+            them. JSON documents support nested structures, as well as fields representing
             relationships between items which enable you to realistically represent objects in your
             application.</p>
         </li>
-        <li>Easy scalability <p> It is easy to scale your application with Couchbase Server, both
+        <li>Easy scalability <p>It is easy to scale your application with Couchbase Server, both
             within a cluster of servers and between clusters at different data centers. You can add
-            additional instances of Couchbase Server to address additional users and growth in
-            application data without any interruptions or changes in your application code. With one
-            click of a button, you can rapidly grow your cluster of Couchbase Servers to handle
-            additional workload and keep data evenly distributed.</p><p>Couchbase Server provides
-            automatic sharding of data and rebalancing at runtime; this lets you resize your server
-            cluster on demand. Cross-data center replication enables you to move data closer to your
-            user at other data centers.</p>
+            instances of Couchbase Server to address increases in users and application data without
+            any interruptions or changes in your application code. With a single click of a button,
+            you can rapidly grow your cluster of Couchbase Servers to handle additional work and
+            keep data evenly distributed.</p><p>Couchbase Server provides automatic sharding of data
+            and rebalancing at runtime; this lets you resize your server cluster on demand.
+            Cross-data center replication enables you to move data closer to your users at other
+            data centers.</p>
         </li>
         <li>Consistent high performance <p>Couchbase Server is designed for massively concurrent
             data use and consistent high throughput. It provides consistent sub-millisecond response
@@ -48,7 +48,6 @@
             restore help ensure availability of data during server or datacenter failure.</p>
         </li>
       </ul>
-      
       <p>All of these features of Couchbase Server enable development of web applications where
         low–latency and high throughput are required by end users. Web applications can quickly
         access the right information within a Couchbase cluster and developers can rapidly scale up

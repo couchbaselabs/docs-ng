@@ -2,7 +2,7 @@
 <!DOCTYPE topic
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic8026">
- <title>Red Hat/Centos installation</title>
+ <title>Red Hat/CentOS installation</title>
  <shortdesc>Red Hat and Red Hat-based operating systems such as CentOS are supported.</shortdesc>
  <body>
   <p>The following Red Hat (RHEL) and RHEL-based operating systems such as CentOS platforms are supported:</p>

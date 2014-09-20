@@ -327,7 +327,7 @@
 			<p>The requirements of your disk subsystem are broken
 				down into two components: size and IO. </p>
 			
-			<title>Size</title>
+			
 			<p>Disk size requirements are impacted by the Couchbase file write format,
 				append-only, and the built-in automatic compaction process. Append-only format means
 				that every write (insert/update/delete) creates a new entry in the
@@ -345,7 +345,7 @@
 				your total dataset size applies to key-value data only and does not take into
 				account other data formats and the use of views and indexes or XDCR.</note>
 			
-			<title>IO</title>
+			
 			<p>IO is a combination of the sustained write rate, the need for compacting the
 				database files, and anything else that requires disk access. Couchbase Server
 				automatically buffers writes to the database in RAM and eventually persists them to
@@ -360,10 +360,10 @@
 				anything else outside of Couchbase that need space or is accessing the disk.
 				</p>
 			
-			<title>Best practice</title>
-			<p>Use the available configuration options to separate data files, indexes and the
+			
+			<note type="tip">Use the available configuration options to separate data files, indexes and the
 				installation/config directories on separate drives/devices to ensure that IO and
-				space are allocated effectively. </p>
+				space are allocated effectively. </note>
 		</section>
 		
 		<section><title>Network bandwidth</title>

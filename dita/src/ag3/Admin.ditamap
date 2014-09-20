@@ -31,7 +31,6 @@
    <topicref href="Concepts/bucket-priority.dita"/>
    <topicref href="Concepts/bucket-eviction.dita">
     <topicref href="Concepts/concept-workingset-mgmt.dita"/>
-    <topicref href="Tasks/tasks-manage-workingset.dita"/>
    </topicref>
    <topicref href="Concepts/concept-docExpiration.dita"/>
    <topicref href="Concepts/concept-serverWarmup.dita"/>

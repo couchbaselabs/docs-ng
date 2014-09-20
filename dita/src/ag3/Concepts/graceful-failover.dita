@@ -20,14 +20,6 @@
    When a node is failed over, it can be added back to
    the cluster via <codeph>delta</codeph> or <codeph>full</codeph> recovery. </p>
   
-  <ul>
-   <li>When a node is added back to the cluster after a graceful failover has been performed, the
-    replica vBuckets on the failed over node are resynchronized and promoted back to active.</li>
-   <li>Topology changes (such as adding, removing, or failing over a server) after a graceful
-    failover, initiates a different type of rebalance operation.</li>
-   <li>Each active vBucket on the failed over server node must have at least one replica vBucket for
-    graceful failover, otherwise, hard failover is implemented.</li>
-  </ul>
    
    <note type="note">Hard failover immediately fails over a node from the cluster which might lead
    to data loss. Hard failover is typically used when the node is in a bad state. Auto-failover is a
@@ -37,9 +29,9 @@
   
    <ul>
     <li>The server node must be healthy.</li>
-    <li>Each active vBucket must have an equivalent replica bucket.</li>
+    <li>Each active vBucket on the failed over server node must have an equivalent replica vBucket.</li>
     <li>At least one (1) replica vBucket must be available.</li>
-   </ul>
+    </ul>
   
   <p>For example:</p>
   <ul>

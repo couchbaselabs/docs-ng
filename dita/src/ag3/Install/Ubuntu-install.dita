@@ -79,23 +79,21 @@ System RAM configured : 4058708 KB
       
 Minimum number of processors required : 4 cores 
 Number of processors on the system : 4 cores
-Setting up couchbase-server (2.1) … 
+Setting up couchbase-server  … 
 
-* Started couchbase-server
+Starting couchbase-server[  OK  ]
 
-You have successfully installed Couchbase Server. 
-Please browse to http://slv–0501:8091/ to configure your server. 
+You have successfully installed Couchbase Server.
+Please browse to http://cen-1733:8091/ to configure your server.
 Please refer to http://couchbase.com for additional resources.
-      
-Please note that you have to update your firewall configuration to  
-allow connections to the following ports: 11211, 11210, 11209, 4369, 
-8091, 8092, 18091, 18092, and from 21100 to 21299.
-      
-By using this software you agree to the End User License Agreement. 
-See /opt/couchbase/LICENSE.txt
-        
-Processing triggers for ureadahead … 
-ureadahead will be reprofiled on next reboot
+
+Please note that you have to update your firewall configuration to
+allow connections to the following ports: 11211, 11210, 11209, 4369,
+8091, 8092, 18091, 18092, 11214, 11215 and from 21100 to 21299.
+
+By using this software you agree to the End User License Agreement.
+See /opt/couchbase/LICENSE.txt.
+
      </codeblock>
 
    <p>After successful installation, use the <codeph>service</codeph> command to manage the

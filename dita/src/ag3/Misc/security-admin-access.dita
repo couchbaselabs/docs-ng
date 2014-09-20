@@ -16,23 +16,16 @@
       re-established. The secure connection is on the cluster-level (rather than bucket-level) and
       is through the dedicated HTTPS REST port, 18091 or the HTTPS CAPI port, 18092. </p>
     
-    <p>Encrypted administrator access is used under a variety of situations: 
-      
-      <ul>
-        <li>An administrator is physically located in a different data center.</li>
-        <li>An administrator is outside of the firewall.</li>
-        <li>An additional level of security is required.</li>  
-      </ul></p>
-    
-    <p>Secure administrative access is configured using the same method used for encrypted client-server communication:</p>
+    <p>Secure administrative access is configured depending on the browser.</p>
     
     <ol>
-      <li>Connect to the server through an unencrypted port, 8091 REST HTTP or 8092 CAPI HTTP.</li>
-      <li>Retrieve the SSL self-signed certificate and store in a local file, for example,
-          <codeph>clusterCertificate</codeph>.</li>
       <li>Connect to the server through an encrypted port, 18091 REST HTTP or 18092 CAPI HTTP to
-        communicate with the server on a secure channel. <p><image href="../images/ui-ssl-ip.png"
-            width="360"/></p>
+        communicate with the server on a secure channel. </li>
+      <li>Log in with the administrator name and password. <p>Once logged in, the URL shows a secure
+          connection. For example, the following is an example URL of a secure connect using the
+          Safari browser: </p>
+        <p><image href="../images/ui-ssl-ip.png" width="360" id="image_tp1_2r1_mp"
+          /></p>
       </li>
     </ol>
     
@@ -58,34 +51,18 @@ rqw=
 -----END CERTIFICATE-----</codeblock>
     </example>
     
-    <section><title>Using the Web Console for encrypted access</title>
-      <p>The certificate is obtained in a variety of methods depending on your preference and the
-        operating system. Either use REST or the Web console to retrieve the certificate and store
-        in a file. With the Web console, copy certificate from <uicontrol>Settings > Certificate >
-          Show certificate</uicontrol> and paste into a file.</p>
-        
-      
-    </section>
-    
+  
     <section><title>Using REST for encrypted access</title>
       <p>The <codeph>GET /pools/default/certificate</codeph> REST API HTTP method and URI retrieves the SSL self-signed certificate from the cluster.</p>
-      
-      
-    
 
     
-    
-    <title>Syntax for retrieving the certificate</title>
+    <p>The following shows the REST syntax with curl for retrieving the certificate:</p>
       <codeblock>curl –X GET  -u adminName:adminPassword
     http://localHost:Port/pools/default/certificate > ./&lt;certificate_name>     
     </codeblock>
-
-    <title>Retrieving the certificate</title>
-      <p>The following examples use curl and wget to retrieve the certificat</p>
+      <p>The following examples use curl and wget to retrieve the certificate</p>
       <codeblock>curl http://10.5.2.54:8091/pools/default/certificate > clusterCertificate</codeblock>
       <codeblock>wget http://10.5.2.54:8091/pools/default/certificate -O clusterCertificate</codeblock>
-
-    <title>Retrieving data with encryption</title>
       <p>The following examples use <codeph>curl</codeph> and <codeph>wget</codeph> with the SSL certificate to retrieve cluster information over an encrypted connection. 
       The port used is the encrypted REST port, <codeph>18091</codeph></p>
     
