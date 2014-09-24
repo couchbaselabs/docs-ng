@@ -4,6 +4,38 @@ The following sections provide release notes for individual release versions of
 the C Couchbase Client Library. To browse or submit new issues, see [Couchbase
 Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
+<a id="couchbase-sdk-rn_2-4-2"></a>
+## Release Notes for Couchbase Client Library C 2.4.2 (23 September 2014)
+
+* Mark the `hashkey` fields as being _volatile_.
+  Usage of this field is not supported in many cluster systems and is thus not
+  supported functionality. It exists primarily as a legacy from an older API
+  * Priority: Major
+  * Issues: [CCBC-508](http://couchbase.com/issues/browse/CCBC-508)
+
+* Add "key stats" mode to `lcb_CMDDSTATS`.
+  This adds an additional key stats mode to the `lcb_stats3()` API
+  which interprets the `key` field as being a document ID for which
+  information (such as expiry, status) should be retrieved, rather
+  than a system statistics key. Similar functionality already exists
+  in the Java client library as `getKeyStats()`. In addition to this
+  feature, a `cbc stats --keystats` option is also provided to employ
+  this functionality from the command line.
+  * Priority: Major
+  * Issues: [CCBC-318](http://couchbase.com/issues/CCBC-318)
+
+* Add more details about replica nodes in the `cbc hash` command.
+  * Priority: Minor
+  * Issues: [CCBC-504](http://couchbase.com/issues/browse/CCBC-504)
+
+* Add `lcb_cntl()` setting to retrieve bucket name.
+  Previously the library did not have a means by which the bucket name
+  could be retrieved. Using the `LCB_CNTL_BUCKETNAME` setting, the bucket
+  name will now be returned.
+  * Priority: Major
+  * Issues: [CCBC-502](http://couchbase.com/issues/CCBC-502)
+
+
 <a id="couchbase-sdk-rn_2-4-1"></a>
 ## Release Notes for Couchbase Client Library C 2.4.1 (27 August 2014)
 
