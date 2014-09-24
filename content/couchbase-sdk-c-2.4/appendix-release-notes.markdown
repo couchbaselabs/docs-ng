@@ -14,9 +14,9 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
   * Issues: [CCBC-508](http://couchbase.com/issues/browse/CCBC-508)
 
 * Add "key stats" mode to `lcb_CMDDSTATS`.
-  This adds an additional key stats mode to the `lcb_stats3()` API
+  This adds an additional key stats mode to the `lcb_stats3()` API,
   which interprets the `key` field as being a document ID for which
-  information (such as expiry, status) should be retrieved, rather
+  information (such as expiry, and status) should be retrieved, rather
   than a system statistics key. Similar functionality already exists
   in the Java client library as `getKeyStats()`. In addition to this
   feature, a `cbc stats --keystats` option is also provided to employ
