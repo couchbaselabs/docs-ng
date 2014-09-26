@@ -28,7 +28,7 @@ root-&gt; yum install openssl098e</codeblock>
             contents of the <codeph>lib64</codeph>directory into <codeph>opt/couchbase/lib</codeph>:</p>
           
           <ul>
-            <li>Download `openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm’.</li>
+            <li>Download <codeph>openssl098e–0.9.8e–17.el6.centos.2.x86_64.rpm</codeph>.</li>
             <li>Go to the directory where you extracted Couchbase Server: <codeph>cd
               opt/couchbase</codeph>.</li>
             <li>Extract the openssl098e RPM:
