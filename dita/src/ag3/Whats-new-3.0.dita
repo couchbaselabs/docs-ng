@@ -74,19 +74,7 @@
         </ul>
 
     </section>
-    
-    <section><title>Enterprise Edition only</title>
-      <p>The following features are only available with Couchbase Server 3.0 Enterprise Edition:</p>
-      
-      <ul>
-        <li>Incremental backup</li>
-        <li>Incremental restore</li>
-        <li>Encrypted admin access</li>
-        <li>Encrypted data access</li>
-        <li>Rack-zone awareness (implemented in Couchbase Server release 2.5)</li>
-      </ul>
-    
-    </section>
+
     
     
   </body>
