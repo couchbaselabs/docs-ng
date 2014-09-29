@@ -1,12 +1,12 @@
 <a id="hadoop-connector"></a>
 
-# Couchbase Hadoop Connector
+# Couchbase Hadoop Connector 1.2
 
 <a id="hadoop-connector-preface"></a>
 
 ## Introduction
 
-This connector allows you to connect to Couchbase Server 2.5 or 3.0 to
+The Couchbase Hadoop connector allows you to connect to Couchbase Server 2.5 or 3.0 to
 stream keys into HDFS or Hive for processing with Hadoop. If you have used
 Sqoop before with other databases then using this connector should be
 straightforward since it uses a similar command line argument structure.

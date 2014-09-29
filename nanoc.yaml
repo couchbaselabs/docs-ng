@@ -199,7 +199,7 @@ navbar:
   - label: Connectors
     subnav:
       - label: Hadoop Connector
-        href: /hadoop-plugin-1.1/
+        href: /hadoop-connector-1.2/
         
       - label: Elasticsearch Plug-in
         href: /couchbase-elastic-search/        
