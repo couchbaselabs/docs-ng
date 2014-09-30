@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="topic_bzz_fty_5n">
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_rest_views">
   <title>Views REST API</title>
-  <body>
-    <p>You can index and query JSON documents using views. Views are
+  <shortdesc>The Views REST APiare used to index and query JSON documents.</shortdesc>
+  <refbody>
+    <section><title>Description</title>
+    <p>Views are
       functions written in JavaScript that can serve several purposes in your
       application. You can use them to: find all the documents in your database,
       create a copy of data in a document and present it in a specific order, create
@@ -11,7 +13,52 @@
       structure in the document, represent relationships between documents, and
       perform calculations on data contained in documents.</p>
     
-    <p>You store view functions in a design document as JSON and can use the REST API
-        to manage your design documents.</p>
-  </body>
-</topic>
+    <note type="note">View functions are stored in a design document as JSON. You can use the REST API
+        to manage your design documents.</note>
+      
+      <table>
+        <title>Views endpoints</title>
+        <tgroup cols="3">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="2.88*"/>
+          <colspec colname="col3" colwidth="3.52*"/>
+          <thead>
+            <row>
+              <entry>HTTP method</entry>
+              <entry>URI path</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>GET</entry>
+              <entry>/[bucket_name]/_design/design-doc</entry>
+              <entry>Retrieves design documents.</entry>
+            </row>
+            <row>
+              <entry>PUT</entry>
+              <entry>/[bucket_name]/_design/design-doc</entry>
+              <entry>Creates a news design document with one or more views.</entry>
+            </row>
+            <row>
+              <entry>DELETE</entry>
+              <entry>/[bucket_name]/_design/design-doc</entry>
+              <entry>Deletes design documents.</entry>
+            </row>
+            <row>
+              <entry>GET</entry>
+              <entry>/[bucket_name]/_design/design-doc/_view/[view_name]</entry>
+              <entry>Retrieves views.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/internalSettings</entry>
+              <entry>Changes the number of simultaneous requests each node can accept.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      
+    </section>
+  </refbody>
+</reference>

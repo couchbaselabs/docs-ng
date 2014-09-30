@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE topic
-  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic817">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_rest_buckets">
   <title>Buckets REST API</title>
-
-    <shortdesc>The bucket management and configuration REST API endpoints provide a fine level of
-    control over the individual buckets in the cluster, their configuration, and specific
-    operations.</shortdesc>
-  <body>
+    <shortdesc>The Buckets REST API creates, deletes, flushes, and retreives information about
+    buckets and bucket operations.</shortdesc>
+  
+  <refbody>
+    <section><title>Description</title>
+      <p>The bucket management and configuration REST API endpoints provide a fine level of
+        control over the individual buckets in the cluster, their configuration, and specific
+        operations.</p>
     <table>
+      <title>Bucket endpoints</title>
       <tgroup cols="3">
         <colspec colname="col1" colwidth="1*"/>
         <colspec colname="col2" colwidth="1.98*"/>
@@ -29,11 +32,11 @@
           <row>
             <entry>GET</entry>
             <entry>/pools/default/buckets/default</entry>
-            <entry>Retrieves information for a single bucket associated with a cluser.</entry>
+            <entry>Retrieves information for a single bucket associated with a cluster.</entry>
           </row>
           <row>
             <entry>GET</entry>
-            <entry>/pools/default/buckets/bucket_name/stats</entry>
+            <entry>/pools/default/buckets/[bucket_name]/stats</entry>
             <entry>Retrieves bucket statistics for a specific bucket.</entry>
           </row>
           <row>
@@ -43,7 +46,7 @@
           </row>
           <row>
             <entry>DELETE</entry>
-            <entry>/pools/default/buckets/bucket_name</entry>
+            <entry>/pools/default/buckets/[bucket_name]</entry>
             <entry>Deletes a specific bucket.</entry>
           </row>
           <row>
@@ -54,5 +57,9 @@
         </tbody>
       </tgroup>
     </table>
-  </body> 
-</topic>
+      
+    </section>
+    
+  </refbody> 
+  
+</reference>

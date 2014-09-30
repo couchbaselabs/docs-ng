@@ -3,13 +3,13 @@
 <reference id="reference_bwf_w3f_q4">
   <title>Setting usernames and passwords</title>
   <shortdesc>Usernames and passwords can be set at any time, however, it is typically the last step
-    twhen adding a node into a new cluster. </shortdesc>
+    when adding a node into a new cluster. </shortdesc>
   <refbody>
 
     <section><title>HTTP method and URI</title>
       <p>The response indicates the new base URI if the parameters are valid. 
         Clients generally send a new request for cluster information based on this response.</p>
-    <codeblock>      POST /settings/web</codeblock>
+    <codeblock>POST /settings/web</codeblock>
       
       
     </section>

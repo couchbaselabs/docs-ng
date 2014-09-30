@@ -1,20 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="reference_g3v_drf_q4">
+<reference id="reference_rest_server">
   <title>Server nodes REST API</title>
   <shortdesc>A Couchbase Server instance, known as node, is a physical or virtual machine running Couchbase Server. 
     Each node is as a member of a cluster.</shortdesc>
   <refbody>
     
-    <section><title>HTTP method and URI</title>
-      <codeblock>GET /pools/nodes</codeblock>
+    <section><title>Description</title>
+      
+      <table>
+        <title>Server node endpoints</title>
+        <tgroup cols="3">
+          <colspec colname="col1" colwidth="1*"/>
+          <colspec colname="col2" colwidth="2.66*"/>
+          <colspec colname="col3" colwidth="3.14*"/>
+          <thead>
+            <row>
+              <entry>HTTP method</entry>
+              <entry>URI path</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>GET</entry>
+              <entry>/pools/nodes</entry>
+              <entry>Retrieves information about nodes in a cluster.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/controller/setRecoveryType</entry>
+              <entry>Sets the recovery type to be performed for a node. Options are delta or
+                full.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/controller/failOver</entry>
+              <entry>Fails over nodes.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/controller/startGracefulFailover</entry>
+              <entry>Sets graceful failover for a specific server node. The server node is specified
+                with the <codeph>otpNode=[node_name]</codeph> parameter.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/settings/web</entry>
+              <entry>Set user names and passwords.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/pools/default memoryQuota</entry>
+              <entry>The <codeph>memoryQuota</codeph> parameter sets the memory quota.</entry>
+            </row>
+            <row>
+              <entry>POST</entry>
+              <entry>/nodes/self/controller/settings</entry>
+              <entry>Sets the path for index files.</entry>
+            </row>
+            <row>
+              <entry>GET</entry>
+              <entry>/pools/default/buckets/default/nodes/[host]:[port]/stats</entry>
+              <entry>Retrieves statistics for a node.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
     </section>
       
       
       
       <section><title>Curl syntax and example</title>
-      <codeblock>curl -u admin:password http://localhost:port/pools/nodes</codeblock>
-        <p>To view information about nodes that exist in a Couchbase Cluster, you use this request:</p>
+      <codeblock>curl -u [admin_name]:[password] http://[localhost]:[port]/pools/nodes</codeblock>
+        <p>To view information about nodes that exist in a cluster:</p>
 
         <codeblock>curl -u admin:password http://10.5.2.118:8091/pools/nodes</codeblock>
 

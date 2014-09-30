@@ -3,6 +3,7 @@
   PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic xml:lang="en-us" id="topic6415">
 	<title>Querying views</title>
+	<shortdesc>Views  are queried by accessing a node on port 8092.</shortdesc>
 	<body>
 		
 		<p>Querying can be performed through the
@@ -12,24 +13,23 @@
 		
 		<p>Use the REST API to query a view by accessing any node within the
 				Couchbase Server cluster on port 8092. For
-				example:</p><codeblock><codeph>GET http://localhost:8092/bucketname/_design/designdocname/_view/viewname
+				example:</p><codeblock><codeph>GET http://[localhost]:8092/[bucket_name]/_design/[ddoc_name]/_view/[view_name]
 </codeph></codeblock><p>Where:</p><ul>
-				<li><p><codeph>bucketname</codeph> is the name of the bucket.</p></li>
-				<li><p><codeph>designdocname</codeph> is the name of the design document that
-						contains the view.</p></li>
+				<li><p><codeph>bucket_name</codeph> is the name of the bucket.</p></li>
+				<li><p><codeph>ddoc_name</codeph> is the name of the design document that contains the view.</p></li>
 			</ul><p>For views defined within the development context, the <codeph>designdocname</codeph> is prefixed
 			with <codeph>dev_</codeph>. For example, the design document <codeph>beer</codeph> is
 			accessible as a development view using <codeph>dev_beer</codeph>.</p><p>Production views are accessible using
 				their name only.</p><ul>
-				<li><codeph>viewname</codeph> is the name of the corresponding view within the
-					design document.</li>
+				<li><codeph>view_name</codeph> is the name of the corresponding view within the design
+				document.</li>
 			</ul><p>When accessing a view stored within an SASL password-protected bucket, you must
 				include the bucket name and bucket password within the URL of the
-				request:</p><codeblock><codeph>GET http://bucketname:password@localhost:8092/bucketname/_design/designdocname/_view/viewname
+				request:</p><codeblock><codeph>GET http://[bucket_name]:[password]@[localhost]:8092/[bucket_name]/_design/[ddoc_name]/_view/[view_name]
 </codeph></codeblock><p>Additional
 				arguments to the URL request can be used to select information from the view, and
 				provide limit, sorting and other options. For example, to output only ten
-				items:</p><codeblock><codeph>GET http://localhost:8092/bucketname/_design/designdocname/_view/viewname?limit=10
+				items:</p><codeblock><codeph>GET http://[localhost]:8092/[bucket_name]/_design/[ddoc_name]/_view/[view_name]?limit=10
 </codeph></codeblock><p>The
 				formatting of the URL follows the HTTP specification. The first argument should be
 				separated from the base URL using a question mark ( <codeph>?</codeph> ). Additional
@@ -48,8 +48,7 @@
 				<tbody>
 					<row>
 						<entry><b>Method</b></entry>
-						<entry><codeph>GET
-							/bucket/_design/design-doc/_view/view-name</codeph></entry>
+						<entry><codeph>GET /[bucket_name]/_design/design-doc/_view/[view_name]</codeph></entry>
 					</row>
 					<row>
 						<entry><b>Request Data</b></entry>

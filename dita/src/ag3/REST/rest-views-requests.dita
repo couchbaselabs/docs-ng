@@ -7,8 +7,8 @@
     <p>You can use the <codeph>/internalSettings</codeph> endpoint to limit the number of
       simultaneous requests each node can accept. In earlier releases, too many simultaneous views
       requests resulted in a node being overwhelmed. </p>
-    <p> When Couchbase Server rejects an incoming connection because one of these limits is
-      exceeded, it responds with an HTTP status code of 503. The HTTP Retry-After header will be set
+    <p>When Couchbase Server rejects an incoming connection because one of these limits is exceeded,
+      it responds with an HTTP status code of 503. The HTTP Retry-After header will be set
       appropriately. If the request is made to a REST port, the response body will provide the
       reason why the request was rejected. If the request is made on a CAPI port, such as a views
       request, the server will respond with a JSON object with a “error” and “reason” fields.</p>

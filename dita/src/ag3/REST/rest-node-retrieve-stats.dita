@@ -7,9 +7,8 @@
     <section><title>HTTP method and URI</title>
       
       <codeblock>
-        GET /pools/default/buckets/default/nodes/host:port/stats
- 
-      </codeblock>
+GET /pools/default/buckets/default/nodes/host:port/stats
+</codeblock>
       
       <p>To obtain statistics for a node:
         <ol>

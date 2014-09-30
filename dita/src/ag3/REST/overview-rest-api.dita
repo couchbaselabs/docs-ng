@@ -16,9 +16,9 @@
 				<note type="tip">The REST API should <b>not</b> be used to read or write data to the server.
 			Data operations, such as <codeph>set</codeph> and <codeph>get</codeph> for example, are
 			handled by Couchbase SDKs. </note>
-		<p>In addition, the Couchbase Web Console uses many of the same REST API endpoints that are
-			used for a REST API request. This is especially for administrative tasks such as
-			creating a new bucket, adding a node to a cluster, or changing cluster settings. </p>
+		<p>In addition, the Couchbase web console uses many of the same REST API endpoints that are used
+			for a REST API request. This is especially for administrative tasks such as creating a
+			new bucket, adding a node to a cluster, or changing cluster settings. </p>
 		<p>Please provide RESTful requests; you will not receive any handling instructions, resource
 			descriptions, nor should you presume any conventions for URI structure for resources
 			represented. The URIs in the REST API may have a specific URI or may even appear as RPC

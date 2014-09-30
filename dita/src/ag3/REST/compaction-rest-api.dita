@@ -1,24 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE topic
-  PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic xml:lang="en-us" id="topic6985">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="reference_rest_compaction">
 	<title>Compaction REST API</title>
-	<body>
-		<p>Couchbase Server writes all data
-				that you append, update and delete as files on disk. This process can eventually
-				lead to gaps in the data file, particularly when you delete data. Be aware the
-				server also writes index files in a sequential format based on appending new results
-				in the index. You can reclaim the empty gaps in all data files by performing a
-				process called compaction. In both the case of data files and index files, you will
-				want to perform frequent compaction of the files on disk to help reclaim disk space
+	<shortdesc>Compaction is used to reclaim disk space and reduce disk fragmentation.</shortdesc>
+	<refbody>
+		
+		<section><title>Description</title>
+		<p>Couchbase Server writes all data that you append, update and delete as files on disk. The
+				compaction process can eventually lead to gaps in the data file, particularly when
+				you delete data. Be aware the server also writes index files in a sequential format
+				based on appending new results in the index. You can reclaim the empty gaps in all
+				data files by performing a process called compaction. For both data files and index
+				files, perform frequent compaction of the files on disk to help reclaim disk space
 				and reduce disk fragmentation. </p>
+			
+			<table>
+				<title>Compaction endpoints</title>
+				<tgroup cols="3">
+					<colspec colname="col1" colwidth="1*"/>
+					<colspec colname="col2" colwidth="4.02*"/>
+					<colspec colname="col3" colwidth="2.92*"/>
+					<thead>
+						<row>
+							<entry>HTTP method</entry>
+							<entry>URI path</entry>
+							<entry>Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>POST </entry>
+							<entry>/pools/default/buckets/[bucket_name]/controller/compactBucket</entry>
+							<entry>Compacts bucket data and indexes.</entry>
+						</row>
+						<row>
+							<entry>POST</entry>
+							<entry>/pools/default/buckets/[bucket_name]/controller/cancelBucketCompaction</entry>
+							<entry>Cancels compaction for the specified bucket.</entry>
+						</row>
+						<row>
+							<entry>POST</entry>
+							<entry>/[bucket_name]/_design/[ddoc_name]/_spatial/_compact</entry>
+							<entry>Compacts a spatial view.</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			
+		</section>
 		
 		
-		<section><title>Compacting bucket data and indexes</title><p>To compact
-					data files for a given bucket as well as any indexes associated with that
-					bucket, you make this
-					request:</p><codeblock><codeph>curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/compactBucket
-</codeph></codeblock>
+		<section><title>Compacting bucket data and indexes</title><p>To compact data files or a given bucket as well as any indexes associated with that bucket, you
+				make this request:</p>
+			<codeblock>curl -i -v -X POST -u admin:password http://[localhost]:8091/pools/default/buckets/[bucket_name]/controller/compactBucket
+</codeblock>
 			
 			<p>Replace
 					the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>bucket_name</i>
@@ -26,8 +61,10 @@
 					ip and port for a node that accesses the bucket as well as the bucket name. You
 					need to provide administrative credentials for that node in the cluster. To stop
 					bucket compaction, issue this
-					request:</p><codeblock><codeph>curl -i -v -X POST -u admin:password http://localhost:8091/pools/default/buckets/bucket_name/controller/cancelBucketCompaction
-</codeph></codeblock>
+					request:</p>
+			
+			<codeblock>curl -i -v -X POST -u admin:password http://[localhost]:8091/pools/default/buckets/[bucket_name]/controller/cancelBucketCompaction
+</codeblock>
 			
 			<p>Replace
 					the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>bucket_name</i>
@@ -41,27 +78,33 @@
 					automatically compacted with data and indexes. Instead, you must manually
 					compact each spatial view through the REST API.</p>
 			
-			<p>To do this, you must call
-					the spatial compaction
-					endpoint:</p><codeblock><codeph>http://127.0.0.1:9500/BUCKETNAME/_design/DDOCNAME/_spatial/_compact
-</codeph></codeblock><p>This
-					URL contains the following special information:</p><ul>
-					<li><codeph>127.0.0.1:9500</codeph></li>
-				</ul><p>The port number, 9500, is unique to the spatial indexing system.</p><ul>
-					<li><codeph>BUCKETNAME</codeph></li>
-				</ul><p>The <codeph>BUCKETNAME</codeph> is the name of the bucket in which the
-					design document is configured.</p><ul>
-					<li><codeph>DDOCNAME</codeph></li>
-				</ul><p>The name of the design document that contains the spatial index or indexes
-					that you want to compact.</p><p>For example, you can send a request using
-						<codeph>curl</codeph>
-					:</p><codeblock><codeph>curl -u admin:password -X POST \
-'http://localhost:8091/default/_design/dev_test_spatial_compaction/_spatial/_compact'
--H 'Content-type: application/json'
-</codeph></codeblock><p>Replace
+			<p>To do this, you must specify the compaction for the spatial view:</p>
+				
+				<codeblock>http://[localhost]:9500/[bucket_name]/_design/[ddoc_name]/_spatial/_compact
+</codeblock>
+				
+				
+				<p>This URL contains the following information: <ul>
+					<li><codeph>[local_host]:9500</codeph><p>The port number, 9500, is unique to the
+							spatial indexing system.</p></li>
+					<li><codeph>bucket_name</codeph><p>The name of the bucket where the design
+							document is configured.</p></li>
+					<li><codeph>ddoc_name</codeph>
+						<p>The name of the design document that contains the spatial index or
+							indexes that you want to compact.</p></li>
+				</ul></p>
+					
+					<p>For example, to send a request using curl:</p>
+				
+				<codeblock>curl -u admin:password -X POST \
+	http://127.0.0.1:9500/default/_design/dev_test_spatial_compaction/_spatial/_compact \
+	-H 'Content-type: application/json'
+</codeblock>
+				<p>Replace
 					the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above
 					example with your actual
-					values.</p></section>
+					values.</p>
+			</section>
 		
 		
 		
@@ -71,50 +114,54 @@
 					cluster or for a bucket in a cluster. </p>
 			
 			
-			<p><b>Auto-compaction API</b></p><table>
-					<tgroup cols="2">
+			<table>
+				<title>Auto-compaction endpoints</title>
+					<tgroup cols="3">
 						<colspec colname="col1"/>
 						<colspec colname="col2"/>
+						<colspec colname="col3"/>
 						<thead>
 							<row>
-								<entry>REST API</entry>
+								<entry>HTTP method</entry>
+								<entry>URI path</entry>
 								<entry>Description</entry>
 							</row>
 						</thead>
 						<tbody>
 							<row>
-								<entry>POST /controller/setAutoCompaction</entry>
-								<entry>Set cluster-wide auto-compaction intervals and
-									thresholds</entry>
+								<entry>POST </entry>
+								<entry>/controller/setAutoCompaction</entry>
+								<entry>Sets cluster-wide auto-compaction intervals and thresholds</entry>
 							</row>
 							<row>
-								<entry>GET /settings/autoCompaction</entry>
-								<entry>Read cluster-wide settings for auto-compaction</entry>
+								<entry>GET </entry>
+								<entry>/settings/autoCompaction</entry>
+								<entry>Retrieves cluster-wide settings for auto-compaction</entry>
 							</row>
 							<row>
-								<entry>GET /pools/default/buckets/<i>bucket_name</i></entry>
-								<entry>Read auto-compaction settings for named bucket</entry>
+								<entry>GET </entry>
+								<entry>/pools/default/buckets/[bucket_name]</entry>
+								<entry>Retrieves auto-compaction settings for named bucket</entry>
 							</row>
 							<row>
-								<entry>POST/pools/default/buckets/<i>bucket_name</i></entry>
-								<entry>Set auto-compaction interval or thresholds for named
-									bucket</entry>
+								<entry>POST</entry>
+								<entry>/pools/default/buckets/[bucket_name]</entry>
+								<entry>Sets auto-compaction interval or thresholds for named bucket</entry>
 							</row>
 						</tbody>
 					</tgroup>
 				</table>
 			
 			
-			<p><b>Auto-compaction parameters</b></p><p>You can use the following
-					parameters for global auto-compaction settings which apply to all buckets in a
-					cluster at <codeph>/controller/setAutoCompaction</codeph>. You also use these at
-						<codeph>/pools/default/buckets/&lt;bucket_name&gt;</codeph> 
-					for bucket-level auto-compaction. You will need to provide administrative
-					credentials to change these settings.</p><p>You can
-					provide a purge interval to remove the key and metadata for items that have been
-					deleted or are expired. This is known as tombstone purging.</p>
+			<p>Use the following parameters for global auto-compaction settings which apply to all buckets in a
+				cluster at <codeph>/controller/setAutoCompaction</codeph>. These parameters are also
+				used at the <codeph>/pools/default/buckets/[bucket_name]</codeph> endpoint for
+				bucket-level auto-compaction. Administrative credentials are required to change
+				these settings.</p><p>A purge interval can be provided to remove the key and metadata for items that have been deleted
+				or are expired. This is known as tombstone purging.</p>
 			
 			<table>
+				<title>Auto-compaction parameters</title>
 					<tgroup cols="3">
 						<colspec colname="col1"/>
 						<colspec colname="col2"/>
@@ -181,8 +228,8 @@
 							<row>
 								<entry>purgeInterval</entry>
 								<entry>Integer between 1 and 60</entry>
-								<entry>Number of days a item is deleted or expired. The key and
-									metadata for that item will be purged by auto-compaction</entry>
+								<entry>Number of days a item is deleted or expired. The key and metadata for that item is
+								purged by auto-compaction</entry>
 							</row>
 						</tbody>
 					</tgroup>
@@ -190,11 +237,14 @@
 			
 			
 			<p>To read current auto-compaction settings for a
-					cluster:</p><codeblock><codeph>    curl -u admin:password http://localhost:8091/settings/autoCompaction
-</codeph></codeblock><p>Replace
+					cluster:</p>
+			
+			<codeblock>curl -u admin:password http://[localhost]:8091/settings/autoCompaction
+</codeblock><p>Replace
 					the <i>admin</i>, <i>password</i>, and <i>localhost</i> values in the above
-					example with your actual values.</p><p>This will result in JSON response as
-					follows:</p><codeblock><codeph>    {
+					example with your actual values.</p><p>This results in a JSON response as follows:</p>
+			
+			<codeblock>{
        "purgeInterval": 3,
        "autoCompactionSettings": {
            "viewFragmentationThreshold": {
@@ -208,7 +258,7 @@
          "parallelDBAndViewCompaction": false
        }
     }
-</codeph></codeblock>
+</codeblock>
 			
 			<p>This
 					tells us we have a <codeph>purgeInterval</codeph> of three days and no current
@@ -216,14 +266,17 @@
 						<codeph>parallelDBAndViewCompaction</codeph> set to ‘false’ indicates the
 					cluster will not perform data and index compaction in parallel. To see
 					auto-compaction settings for a single bucket, use this
-					request:</p><codeblock><codeph>    curl -u admin:password http://localhost:8091/pools/default/buckets/bucket_name
-</codeph></codeblock>
+					request:</p>
+			<codeblock>curl -u admin:password http://[localhost]:8091/pools/default/buckets/[bucket_name]
+</codeblock>
 			
 			<p>Replace
 					the <i>admin</i>, <i>password</i>, <i>localhost</i>, and <i>bucket_name</i>
 					values in the above example with your actual values.</p><p>Couchbase Server
 					sends a JSON response with auto-compaction settings for the
-						<codeph>bucket_name</codeph>:</p><codeblock><codeph>{
+						<codeph>bucket_name</codeph>:</p>
+			
+			<codeblock>{
     "purgeInterval": 2,
     "autoCompactionSettings": {
         "viewFragmentationThreshold": {
@@ -237,7 +290,7 @@
         "parallelDBAndViewCompaction": true
     }
 }
-</codeph></codeblock>
+</codeblock>
 			
 			<p>This
 					indicates a tombstone <codeph>purgeInterval</codeph> of two days with a
@@ -251,11 +304,11 @@
 		
 		
 		
-	</body>
+	</refbody>
 	<related-links>
 		<linklist>
 			<link href="../Concepts/concept-tombstone.dita"/>
 			<link href="../Tasks/tasks-compaction.dita"/>
 		</linklist>
 	</related-links>
-</topic>
+</reference>

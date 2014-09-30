@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="reference_gv3_fs4_hp">
-  <title>Creating a client logs</title>
-  <shortdesc>A client log interface refers to entries that are added to the central log from a SDK.</shortdesc>
+  <title>Creating client logs</title>
+  <shortdesc>Client logs refers to entries that are added to the central log from a SDK.</shortdesc>
+  
   <refbody>
-    <section><title></title>
-      
+    <section><title>POST /logClientError</title>
       <p>Entries can be added to the central log from a custom Couchbase SDK. 
         These entries are typically responses to exceptions such as difficulty handling a server response. 
         For example, the Web Console uses this functionality to log client error conditions. </p>
+    </section>
+    
+    <section><title>Syntax</title>
       
       <p>To add entries, provide a REST request similar to the following:</p>
       
@@ -18,9 +21,11 @@ Authorization: Basic xxxxxxxxxxxxxxxxxxx
 Accept: application/json
 X-memcachekv-Store-Client-Specification-Version: 0.1
 </codeblock>
-      <codeblock>200 - OK</codeblock>
-      
     </section>
+    
+    <section><title>Response</title>
+      <codeblock>200 - OK</codeblock>
+    </section>  
     
   </refbody>
 </reference>

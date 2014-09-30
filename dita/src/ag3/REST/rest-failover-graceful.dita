@@ -6,7 +6,7 @@
   <refbody>
     
     
-    <section><title>Graceful failover</title>
+    <section><title>POST /controller/startGracefulFailover</title>
       <p>Performing a POST on the <codeph>/controller/startGracefulFailover</codeph> initiates
         graceful failover. It's progress can be tracked just like rebalance. After the data is
         persisted to disk and replicas are up-to-date, the node is put into the failed over
@@ -32,11 +32,15 @@
               <row>
                 <entry>POST</entry>
                 <entry>/controller/startGracefulFailover</entry>
-                <entry>Sets graceful failover.</entry>
+                <entry>Sets graceful failover for a specific server node. The server node is
+                specified with the <codeph>otpNode=[node_name]</codeph> parameter.</entry>
               </row>
             </tbody>
           </tgroup>
         </table>
+    </section>
+    
+    <section><title>Syntax</title>
           
           <codeblock>
 POST /controller/startGracefulFailover

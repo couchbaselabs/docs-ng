@@ -290,8 +290,7 @@
 				the design document has been successfully removed, the JSON returned indicates
 				successful completion, and confirmation of the design document
 				removed:</p><codeblock><codeph>{"ok":true,"id":"_design/dev_byfield"}
-</codeph></codeblock><p>Error
-				conditions will be returned if the authorization is incorrect, or the specified
-				design document cannot be found.</p></section>
+</codeph></codeblock><p>Error conditions are returned if the authorization is incorrect, or the specified design document
+				cannot be found.</p></section>
 	</body>
 </topic>
