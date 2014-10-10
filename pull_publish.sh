@@ -25,6 +25,9 @@ bundle exec nanoc
 #BIG UGLY HACK courtesy AMY 20140722 & updated 20140724
 cp -r output/prebuilt/couchbase-manual-3.0/assets-dita output/
 
+# Hack for S3 redirects related to new Docs
+mv -f output/index.html output/index_old.html
+
 # if on master branch, publish output files to S3
 if [ "${branch}" == "master" ]
 then
