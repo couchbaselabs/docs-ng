@@ -635,8 +635,7 @@ form to describe when time was spent doing various things:
 | bg_load               | bg fetches waiting for disk                    
 | bg_tap_wait           | tap bg fetches waiting in the dispatcher queue 
 | bg_tap_load           | tap bg fetches waiting for disk                
-| pending_ops           | client connections blocked for operations      
-|                       | in pending vbuckets                            
+| pending_ops           | client connections blocked for operations in pending vbuckets                            
 | storage_age           | Analogous to ep_storage_age in main stats      
 | data_age              | Analogous to ep_data_age in main stats         
 | get_cmd               | servicing get requests                         
