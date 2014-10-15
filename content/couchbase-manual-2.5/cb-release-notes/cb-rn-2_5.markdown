@@ -198,6 +198,8 @@ Port | Description
 
 [MB-9209](http://www.couchbase.com/issues/browse/MB-9209): With XDCR, beam memory usage over time increases for the source cluster.
 
+[MB-9147](http://www.couchbase.com/issues/browse/MB-9147): lseek can return 0, so only assert if lseek < 0.
+
 [MB-8724](http://www.couchbase.com/issues/browse/MB-8724): Moxi 1.8.1 leaks memory and crashes via the Linux OOM killer.
 
 

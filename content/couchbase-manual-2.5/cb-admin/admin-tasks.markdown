@@ -437,12 +437,12 @@ to filter for the information:
 
 
 ```
-> cbstats localhost:11210 -b beer_sample -p bucket_password all | grep 'warmup'
+> cbstats localhost:11210 -b beer-sample -p bucket_password all | grep 'warmup'
 > cbstats hostname:11210 -b my_bucket -p bucket_password raw warmup
 ```
 
 Here the `localhost:11210` is the host name and default memcached port for a
-given node and `beer_sample` is a named bucket for the node. If you do not
+given node and `beer-sample` is a named bucket for the node. If you do not
 specify a bucket name, the command will apply to any existing default bucket for the node.
 
 * **ep\_warmup\_thread** - Indicates whether the warmup completed or is still running. Returns "running" or "complete". 
@@ -513,7 +513,7 @@ the access scanner process runs to every 20 minutes:
 
 
 ```
-> ./cbepctl localhost:11210 -b beer_sample set flush_param alog_sleep_time 20
+> ./cbepctl localhost:11210 -b beer-sample set flush_param alog_sleep_time 20
 ```
 
 This updates the parameter for the named bucket, beer-sample on the given node
@@ -522,7 +522,7 @@ from the default of 2:00 AM UTC:
 
 
 ```
-> ./cbepctl hostname:11210 -b beer_sample -p beer_password set flush_param alog_task_time 13
+> ./cbepctl hostname:11210 -b beer-sample -p beer_password set flush_param alog_task_time 13
 ```
 
 In this example we set the initial time to 1:00 PM UTC.
