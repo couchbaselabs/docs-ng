@@ -4,6 +4,21 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-5a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.5 GA (16 October 2014)
+
+This is the fifth bug fix release for the 1.4 series and brings stability improvements for configuration management and optional diagnostics.
+
+**Enhancements in 1.4.5**
+
+* [JCBC-531](http://www.couchbase.com/issues/browse/JCBC-531): Optional support for Diagnostics has been added. When DEBUG logging is enabled, very verbose diagnostics information about the runtime will be logged on startup. In addition, a manual call to `Diagnostics.collectAndFormat()` can be used to print runtime information in failure cases or during error handling scenarios (for better analysis afterwards). Information also includes GC pauses, heap statistics and version information. Every single property is utilized through MXBeans internally.
+
+**Fixes in 1.4.5**
+
+* [JCBC-566](http://www.couchbase.com/issues/browse/JCBC-566): Under certain conditions, a scheduled configuration update was not performed, leaving the client with an outdated configuration - this has been fixed.
+* [JCBC-567](http://www.couchbase.com/issues/browse/JCBC-567): On a complete fresh config reload, the new code makes sure that carrier publication always is tried first, regardless if the HTTP fallback was used first.
+
 <a id="couchbase-sdk-java-rn_1-4-4a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.4 GA (5 August 2014)
