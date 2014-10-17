@@ -59,7 +59,7 @@ easier, you can use a dependency manager such as [Maven](http://maven.apache.org
 all Couchbase-related dependencies are published in the [Maven Central Repository](http://search.maven.org/).
 
 To include the libraries directly in your project,
-[download the archive](http://www.couchbase.com/communities/java/getting-started) and add
+[download the zip file](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.5.zip) and add
 all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
@@ -77,6 +77,13 @@ dependencies in your `CLASSPATH` :
  * httpcore-nio-4.3.jar
 
  * jettison-1.1.jar
+
+Previous releases are also available as a zip archive :
+ * [Couchbase Java Client 1.4.4](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.4.zip)
+ * [Couchbase Java Client 1.4.3](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.3.zip)
+ * [Couchbase Java Client 1.4.2](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.2.zip)
+ * [Couchbase Java Client 1.4.1](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.1.zip)
+ * [Couchbase Java Client 1.4.0](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.0.zip)
 
 
 If you use a dependency manager, the syntax varies for each tool. The following examples show how to set up the dependencies when using Maven, sbt (for Scala programs), and Gradle.
