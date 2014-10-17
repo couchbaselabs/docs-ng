@@ -5,5 +5,6 @@ output
 temp
 tmp
 *.pdf
+!talend-datasheet.pdf
 !couchbase-3.0-2014-10-16.pdf
 *.swp
