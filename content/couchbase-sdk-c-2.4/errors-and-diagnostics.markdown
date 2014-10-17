@@ -112,13 +112,8 @@ constraints do not easily allow the immediate returning of an error code).
 
 ## Logging
 
-You can use the library's logging API to forward messages to your logging
-framework of choice. Additionally, you can enable logging to the console's
+You can enable logging to the console's
 standard error by setting the `LCB_LOGLEVEL` environment variable.
-
-Setting the logging level via the environment variable allows applications linked against
-the library that do not offer native support for logging to still employ the
-use of the diagnostics provided by the library. You do something like this to display logging information:
 
 ```
 $ LCB_LOGLEVEL=5 ./my_app
@@ -127,64 +122,3 @@ $ LCB_LOGLEVEL=5 ./my_app
 The value of the `LCB_LOGLEVEL` environment variable is an integer from 1 to 5. The higher
 the value, the more verbose the details. The value of 0 disables the
 console logging.
-
-To set up your own logger, you must define a logging callback to be
-invoked whenever the library emits a logging message
-
-```c
-static void logger(
-	lcb_logprocs *procs,
-    unsigned int iid,
-	const char *module,
-	int severity,
-	const char *srcfile,
-	int srcline,
-	const char *fmt,
-	va_list ap)
-{
-	char buf[4096];
-	vsprintf(buf, ap, buf);
-	dispatch_to_my_logging(buf);
-}
-
-static void apply_logging(lcb_t instance)
-{
-	lcb_logprocs procs = { 0 };
-	procs.v.v0.callback = logger;
-	lcb_cntl(instance, LCB_CNTL_SET, LCB_CNTL_LOGGER, &procs);
-}
-```
-
-The `lcb_logprocs` pointer must point to valid memory and must not be
-freed by the user after passing it to the library until the instance associated
-with it is destroyed.
-
-The arguments to the logging function are:
-
-* `procs`—The logging procedure structure passed to the `lcb_cntl()` operation
-* `iid`—An integer used to identify the `lcb_t`. This is useful if you have multiple
-  instances running in your application
-* `module`—A short string representing the subsystem that emitted the message
-* `severity`—An integer describing the severity of the message
-  (higher is more severe). Refer to the `lcb_log_severity_t` enum
-  within `<libcouchbase/types.h>` for a full listing.
-* `srcfile` and `srcline`—File and line where this message was emitted
-* `fmt`—a format string
-* `ap`—arguments to the format string
-
-Additional diagnostic information is provided by the error callback.
-The error callback is a legacy interface and should generally
-not be used. The error callback, however, does allow programmatic capture of some
-errors—something that is not easy with the logging interface.
-
-Specifically, the error callback receives error information when a bootstrap
-or configuration update has failed.
-
-```c
-static void error_callback(lcb_t instance, lcb_error_t err, const char *msg)
-{
-	/** ... */
-}
-
-lcb_set_error_callback(instance, error_callback);
-```

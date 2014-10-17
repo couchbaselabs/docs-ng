@@ -59,12 +59,12 @@ easier, you can use a dependency manager such as [Maven](http://maven.apache.org
 all Couchbase-related dependencies are published in the [Maven Central Repository](http://search.maven.org/).
 
 To include the libraries directly in your project,
-[download the archive](http://www.couchbase.com/communities/java/getting-started) and add
+[download the zip file](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.5.zip) and add
 all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.4.4.jar, or latest version available
+ * couchbase-client-1.4.5.jar, or latest version available
 
  * spymemcached-2.11.4.jar
 
@@ -78,6 +78,13 @@ dependencies in your `CLASSPATH` :
 
  * jettison-1.1.jar
 
+Previous releases are also available as a zip archive :
+ * [Couchbase Java Client 1.4.4](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.4.zip)
+ * [Couchbase Java Client 1.4.3](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.3.zip)
+ * [Couchbase Java Client 1.4.2](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.2.zip)
+ * [Couchbase Java Client 1.4.1](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.1.zip)
+ * [Couchbase Java Client 1.4.0](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.0.zip)
+
 
 If you use a dependency manager, the syntax varies for each tool. The following examples show how to set up the dependencies when using Maven, sbt (for Scala programs), and Gradle.
 
@@ -87,7 +94,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.4.4</version>
+    <version>1.4.5</version>
 </dependency>
 ```
 
@@ -97,7 +104,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.4.4"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.4.5"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -108,7 +115,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.4.4"
+  compile "com.couchbase.client:couchbase-client:1.4.5"
 }
 ```
 
@@ -149,7 +156,7 @@ NetBeans IDE and open it:
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.4.4
+     * **Version**: 1.4.5
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
@@ -392,5 +399,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.5/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.4.4/index.html).
+Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.4.5/index.html).
 

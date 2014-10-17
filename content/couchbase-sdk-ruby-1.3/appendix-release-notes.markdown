@@ -5,6 +5,13 @@ Couchbase Client Library Ruby. To browse or submit new issues, see [Couchbase
 Client Library Ruby Issues
 Tracker](http://www.couchbase.com/issues/browse/RCBC).
 
+## 1.3.9 (26 August 2014)
+
+**Fixes in 1.3.9**
+
+* Updates for compatibility with libcouchbase 2.4.0.
+* Deprecations cleaned up.
+
 ## 1.3.8 (11 June 2014)
 
 **Fixes in 1.3.8**
