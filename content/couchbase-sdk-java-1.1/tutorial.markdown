@@ -1,7 +1,7 @@
 # Tutorial
 
 In this chapter we will build on the foundations introduced in the [Getting
-Started](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/getting-started.html)
+Started](http://docs.couchbase.com/couchbase-sdk-java-1.1/#getting-started)
 guide and build a full-blown web application on top of it. Make sure to have the
 `beer-sample` bucket around, because the application will allow you to display
 and manage beers and breweries.
@@ -21,10 +21,10 @@ assumes you're running MacOS or Linux. If you're running windows, you need to
 modify the paths accordingly. Also, make sure to have at least
 [maven](http://maven.apache.org/) installed.
 
- * [Download](http://www.couchbase.com/download) Couchbase Server 2.0 and
-   [install](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-getting-started-install.html)
+ * [Download](http://www.couchbase.com/downloads) Couchbase Server 2.0 (or later) and
+   [install](http://docs.couchbase.com/couchbase-manual-2.0/#installing-and-upgrading)
    it. Make sure to install the
-   [beer-sample](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-sampledata-beer.html)
+   [beer-sample](http://docs.couchbase.com/couchbase-manual-2.0/#appendix-couchbase-sample-buckets)
    dataset when you run the wizard, because the tutorial application will work with
    it.
 
@@ -161,7 +161,7 @@ the repository mentioned at the beginning of the tutorial):
         <dependency>
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.1.7</version>
+            <version>1.1.9</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -274,15 +274,15 @@ For more information about using views for indexing and querying from Couchbase
 Server, here are some useful resources:
 
  * General Information: [Couchbase Server Manual: Views and
-   Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+   Indexes](http://docs.couchbase.com/couchbase-manual-2.0/#views-and-indexes).
 
  * Sample Patterns: to see examples and patterns you can use for views, see
    [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.0/#view-and-query-pattern-samples).
 
  * Timestamp Pattern: many developers frequently ask about extracting information
    based on date or time. To find out more, see [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns-timestamp.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.0/#date-and-time-selection).
 
 <a id="preps-webxml"></a>
 

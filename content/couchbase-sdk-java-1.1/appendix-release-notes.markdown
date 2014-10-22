@@ -467,9 +467,9 @@ list includes the major features and bugfixes compared to the 1.0.\* releases.
 For more detailed release notes, see the developer preview and beta releases.
 
 Also, the [Getting Started
-Guide](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/getting-started.html)
+Guide](http://docs.couchbase.com/couchbase-sdk-java-1.1/#getting-started)
 and the
-[Tutorial](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/tutorial.html)
+[Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.1/#tutorial)
 have been updated and can be used together with the 1.1.0 release.
 
 **New Features and Behavior Changes in 1.1.0**

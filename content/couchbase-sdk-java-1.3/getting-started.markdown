@@ -6,16 +6,15 @@ in this section:
 
  1. Create a project in your favorite IDE and set up the dependencies.
 
- 1. Write a simple program that demonstrates how to connect to Couchbase Server and save some documents.
+ 2. Write a simple program that demonstrates how to connect to Couchbase Server and save some documents.
 
- 1. Write a program that demonstrates how to use create, read, update, and delete (CRUD)
+ 3. Write a program that demonstrates how to use create, read, update, and delete (CRUD)
     operations on documents in combination with JSON serialization and
     deserialization.
 
- 1. Explore some of the API methods that provide more specialized functions.
+ 4. Explore some of the API methods that provide more specialized functions.
 
-At this point we assume that you have a Couchbase Server 2.2 release running and
-you have the **beer-sample** bucket configured. If you need help setting up
+At this point we assume that you have a Couchbase Server 2.2 (or later) release running and you have the **beer-sample** bucket configured. If you need help setting up
 everything, see the following documents:
 
  * [Using the Couchbase Web
@@ -40,7 +39,7 @@ To get ready to build your first app, you need to install Couchbase Server, down
 **Installing Couchbase Server**
 
 Get the [latest
-Couchbase Server 2.2](http://couchbase.com/download) release and install it.
+Couchbase Server 2.2](http://couchbase.com/downloads) release (or later) and install it.
 
 As you follow the download instructions and setup wizard, make sure you install the
 **beer-sample** default bucket. It contains beer and brewery sample data,
@@ -78,10 +77,9 @@ dependencies in your `CLASSPATH` :
 
  * jettison-1.1.jar
 
-+Previous releases are also available as zip archives :
-+ * [Couchbase Java Client 1.4.4](http://packages.couchbase.com/clients/java/1.3.1/Couchbase-Java-Client-1.3.1.zip)
-+ * [Couchbase Java Client 1.4.3](http://packages.couchbase.com/clients/java/1.3.0/Couchbase-Java-Client-1.3.0.zip)
-
+Previous releases are also available as zip archives as well as through [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.couchbase.client%22%20AND%20a%3A%22couchbase-client%22) :
+ * [Couchbase Java Client 1.3.1](http://packages.couchbase.com/clients/java/1.3.1/Couchbase-Java-Client-1.3.1.zip)
+ * [Couchbase Java Client 1.3.0](http://packages.couchbase.com/clients/java/1.3.0/Couchbase-Java-Client-1.3.0.zip)
 
 If you use a dependency manager, the syntax varies for each tool. The following examples show how to set up the dependencies when using Maven, sbt (for Scala programs), and Gradle.
 
@@ -128,26 +126,26 @@ NetBeans IDE and open it:
 
     ![](images/maven_setup2.png)
 
- 1. Enter a name for your new project and change the location to the
+ 2. Enter a name for your new project and change the location to the
     directory you want.
 
 	We named the project "examples."
 
     ![](images/maven_setup1.png)
 
- 1. Enter a namespace for the project in the **Group Id** field. 
+ 3. Enter a namespace for the project in the **Group Id** field. 
 
 	We used the `com.couchbase` namespace for this example, but you can use your own if you like. If you do so, just make sure you change the namespace later in the source files when you copy them from our examples.
 
     Now that your project, you can add the Couchbase Maven repository to use the
     Java SDK.
 
-1. Click **Finish**.
+ 4. Click **Finish**.
 
- 1. In the **Projects** window,  right-click  **Dependencies > Add
+ 5. In the **Projects** window,  right-click  **Dependencies > Add
     Dependency**. 
 
-1.  Enter the following settings to add the Couchbase Java SDK from the Maven repository:
+ 6.  Enter the following settings to add the Couchbase Java SDK from the Maven repository:
 
      * **Group ID**: com.couchbase.client
 
@@ -158,7 +156,7 @@ NetBeans IDE and open it:
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
 
-1. Click **Add**.
+ 7. Click **Add**.
 
 Now all the dependencies are in place and you can move forward to your first
 application with Couchbase.
@@ -267,7 +265,7 @@ Couchbase community forums or through Couchbase Customer Support.
 
 ## Reading Documents
 
-With Couchbase Server 2.0, you have two ways of fetching your documents: either
+With Couchbase Server 2.0 and later, you have two ways of fetching your documents: either
 by the unique key through the `get` method, or through Views. Because Views are
 more complex we will discuss them later in this guide. In the meantime, we show
 `get` first:
@@ -396,5 +394,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.2/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.3.0/index.html).
+Server 2.2, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.2/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.2/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.2/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.3.2/index.html).
 

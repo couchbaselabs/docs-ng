@@ -6,15 +6,15 @@ in this section:
 
  1. Create a project in your favorite IDE and set up the dependencies.
 
- 1. Write a simple program that demonstrates how to connect to Couchbase Server and save some documents.
+ 2. Write a simple program that demonstrates how to connect to Couchbase Server and save some documents.
 
- 1. Write a program that demonstrates how to use create, read, update, and delete (CRUD)
+ 3. Write a program that demonstrates how to use create, read, update, and delete (CRUD)
     operations on documents in combination with JSON serialization and
     deserialization.
 
- 1. Explore some of the API methods that provide more specialized functions.
+ 4. Explore some of the API methods that provide more specialized functions.
 
-At this point we assume that you have a Couchbase Server 2.2 release running and
+At this point we assume that you have a Couchbase Server 2.2 release (or later) running and
 you have the **beer-sample** bucket configured. If you need help setting up
 everything, see the following documents:
 
@@ -40,7 +40,7 @@ To get ready to build your first app, you need to install Couchbase Server, down
 **Installing Couchbase Server**
 
 Get the [latest
-Couchbase Server 2.2](http://couchbase.com/download) release and install it.
+Couchbase Server 2.2](http://couchbase.com/downloads) release (or later) and install it.
 
 As you follow the download instructions and setup wizard, make sure you install the
 **beer-sample** default bucket. It contains beer and brewery sample data,
@@ -59,7 +59,7 @@ easier, you can use a dependency manager such as [Maven](http://maven.apache.org
 all Couchbase-related dependencies are published in the [Maven Central Repository](http://search.maven.org/).
 
 To include the libraries directly in your project,
-[download the archive](http://www.couchbase.com/communities/java/getting-started) and add
+[download the zip file](http://packages.couchbase.com/clients/java/1.2.3/Couchbase-Java-Client-1.2.3.zip) and add
 all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
@@ -78,6 +78,10 @@ dependencies in your `CLASSPATH` :
 
  * jettison-1.1.jar
 
+Previous releases are also available as zip archives as well as through [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.couchbase.client%22%20AND%20a%3A%22couchbase-client%22):
+ * [Couchbase Java Client 1.2.2](http://packages.couchbase.com/clients/java/1.2.2/Couchbase-Java-Client-1.2.2.zip)
+ * [Couchbase Java Client 1.2.1](http://packages.couchbase.com/clients/java/1.2.1/Couchbase-Java-Client-1.2.1.zip)
+ * [Couchbase Java Client 1.2.0](http://packages.couchbase.com/clients/java/1.2.0/Couchbase-Java-Client-1.2.0.zip)
 
 If you use a dependency manager, the syntax varies for each tool. The following examples show how to set up the dependencies when using Maven, sbt (for Scala programs), and Gradle.
 
@@ -124,26 +128,26 @@ NetBeans IDE and open it:
 
     ![](images/maven_setup2.png)
 
- 1. Enter a name for your new project and change the location to the
+ 2. Enter a name for your new project and change the location to the
     directory you want.
 
 	We named the project "examples."
 
     ![](images/maven_setup1.png)
 
- 1. Enter a namespace for the project in the **Group Id** field. 
+ 3. Enter a namespace for the project in the **Group Id** field. 
 
 	We used the `com.couchbase` namespace for this example, but you can use your own if you like. If you do so, just make sure you change the namespace later in the source files when you copy them from our examples.
 
     Now that your project, you can add the Couchbase Maven repository to use the
     Java SDK.
 
-1. Click **Finish**.
+ 4. Click **Finish**.
 
- 1. In the **Projects** window,  right-click  **Dependencies > Add
+ 5. In the **Projects** window,  right-click  **Dependencies > Add
     Dependency**. 
 
-1.  Enter the following settings to add the Couchbase Java SDK from the Maven repository:
+ 6.  Enter the following settings to add the Couchbase Java SDK from the Maven repository:
 
      * **Group ID**: com.couchbase.client
 
@@ -154,7 +158,7 @@ NetBeans IDE and open it:
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
 
-1. Click **Add**.
+ 7. Click **Add**.
 
 Now all the dependencies are in place and you can move forward to your first
 application with Couchbase.
