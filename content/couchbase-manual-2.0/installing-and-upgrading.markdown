@@ -393,6 +393,20 @@ successfully, shut down all other running applications during installation.
     unavailable, the installer will prompt for a different port to be used for
     administration of the Couchbase server.
 
+
+<div class="notebox warning">
+<p>Important</p>
+<p>
+If the Windows installer hangs on the <uicontrol>Computing Space Requirements</uicontrol> screen, there is an issue with your setup or installation environment, for example, other running applications. 
+      <p>Workaround: <ol>
+        <li>Stop any other running browers and applications when you started installing Couchbase.</li>
+        <li>Kill the installation process and uninstall the failed setup.</li>
+        <li>Delete or rename the temp location under <codeph>C:\Users\[logonuser]\AppData\Temp</codeph></li>
+        <li>Reboot and try again.</li>
+      </ol></p>
+</p>
+</div>
+
 After installation you should follow the server setup instructions. See [Initial
 Server Setup](#couchbase-getting-started-setup).
 
