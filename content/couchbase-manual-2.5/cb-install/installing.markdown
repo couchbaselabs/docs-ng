@@ -697,11 +697,11 @@ KB-196271](http://support.microsoft.com/kb/196271).
 <div class="notebox warning">
 <p>Important</p>
 <p>
-If the Windows installer hangs on the <uicontrol>Computing Space Requirements</uicontrol> screen, there is an issue with your setup or installation environment, for example, other running applications. 
+If the Windows installer hangs on the Computing Space Requirements screen, there is an issue with your setup or installation environment, for example, other running applications. 
       <p>Workaround: <ol>
         <li>Stop any other running browers and applications when you started installing Couchbase.</li>
         <li>Kill the installation process and uninstall the failed setup.</li>
-        <li>Delete or rename the temp location under <codeph>C:\Users\[logonuser]\AppData\Temp</codeph></li>
+        <li>Delete or rename the temp location under C:\Users\[logonuser]\AppData\Temp</li>
         <li>Reboot and try again.</li>
       </ol></p>
 </p>
