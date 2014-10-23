@@ -1,6 +1,6 @@
 # Tutorial
 
-This tutorial builds on the foundation introduced in the [Getting Started](http://docs.couchbase.com/couchbase-sdk-java-1.2/#getting-started) section and uses a complete web application. Make sure you have the `beer-sample` bucket installed because the application allows you to display and manage beers and breweries. If you still need to get the sample database, see [Preparation](#getting-started-preparations).
+This tutorial builds on the foundation introduced in the [Getting Started](http://docs.couchbase.com/couchbase-sdk-java-1.3/#getting-started) section and uses a complete web application. Make sure you have the `beer-sample` bucket installed because the application allows you to display and manage beers and breweries. If you still need to get the sample database, see [Preparation](#getting-started-preparations).
 
 The full source code for the example is available at [couchbaselabs on GitHub](http://github.com/couchbaselabs/beersample-java). The sample application that you can download actually provides more content than we describe in this tutorial; but it should be easy for you to look around and understand how it functions if you first start reading this tutorial here.
 
@@ -140,7 +140,7 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full **pom.xml*
         <dependency>
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.2.1</version>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

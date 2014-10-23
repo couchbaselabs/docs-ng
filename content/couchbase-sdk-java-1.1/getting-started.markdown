@@ -8,8 +8,8 @@ Awesome that you want to learn more about Couchbase! This is the right place to
 start your journey. This chapter will teach you the basics of Couchbase and how
 to interact with it through the Java Client SDK.
 
-If you haven't already, [download](http://couchbase.com/download) the latest
-Couchbase Server 2.0 release and install it. While following the download
+If you haven't already, [download](http://couchbase.com/downloads) the latest
+Couchbase Server 2.0 release (or later) and install it. While following the download
 instructions and setup wizard, make sure install the `beer-sample` default
 bucket. It contains sample data of beers and breweries, which we'll be using in
 our examples here. If you've already installed Couchbase Server 2.0 and didn't
@@ -37,15 +37,15 @@ and the "beer-sample" bucket configured. If you need any help on setting up
 everything, there is plenty of documentation available:
 
  * [Using the Couchbase Web
-   Console](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-introduction.html),
+   Console](http://docs.couchbase.com/couchbase-manual-2.0/#introduction-to-couchbase-server),
    for information on using the Couchbase Administrative Console,
 
  * [Couchbase
-   CLI](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-web-console.html),
+   CLI](http://docs.couchbase.com/couchbase-manual-2.0/#command-line-interface-for-administration),
    for the command line interface,
 
  * [Couchbase REST
-   API](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-admin-restapi.html),
+   API](http://docs.couchbase.com/couchbase-manual-2.0/#using-the-rest-api),
    for creating and managing Couchbase resources.
 
 The TCP/IP port allocation on Windows by default includes a restricted number of
@@ -68,14 +68,14 @@ your project. You can either manually include all dependencies in your
 [Maven](http://maven.apache.org/).
 
 To include the libraries ( `jar` files) directly in your project,
-[download](http://www.couchbase.com/develop/java/current) the archive and add
+[download the archive](http://packages.couchbase.com/clients/java/1.2.3/Couchbase-Java-Client-1.2.3.zip) and add
 all `jar` files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you add specific `jar` files to your project. Make sure to have the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.1.7.jar
+ * couchbase-client-1.1.9.jar
 
- * spymemcached-2.9.0.jar
+ * spymemcached-2.9.1.jar
 
  * commons-codec-1.5.jar
 
@@ -86,6 +86,17 @@ dependencies in your `CLASSPATH` :
  * httpcore-nio-4.1.1.jar
 
  * jettison-1.1.jar
+
+Previous releases are also available as zip archives as well:
+ * [Couchbase Java Client 1.1.8](http://packages.couchbase.com/clients/java/1.1.8/Couchbase-Java-Client-1.1.8.zip)
+ * [Couchbase Java Client 1.1.7](http://packages.couchbase.com/clients/java/1.1.7/Couchbase-Java-Client-1.1.7.zip)
+ * [Couchbase Java Client 1.1.6](http://packages.couchbase.com/clients/java/1.1.6/Couchbase-Java-Client-1.1.6.zip)
+ * [Couchbase Java Client 1.1.5](http://packages.couchbase.com/clients/java/1.1.5/Couchbase-Java-Client-1.1.5.zip)
+ * [Couchbase Java Client 1.1.4](http://packages.couchbase.com/clients/java/1.1.4/Couchbase-Java-Client-1.1.4.zip)
+ * [Couchbase Java Client 1.1.3](http://packages.couchbase.com/clients/java/1.1.3/Couchbase-Java-Client-1.1.3.zip)
+ * [Couchbase Java Client 1.1.2](http://packages.couchbase.com/clients/java/1.1.2/Couchbase-Java-Client-1.1.2.zip)
+ * [Couchbase Java Client 1.1.1](http://packages.couchbase.com/clients/java/1.1.1/Couchbase-Java-Client-1.1.1.zip)
+ * [Couchbase Java Client 1.1.0](http://packages.couchbase.com/clients/java/1.1.0/Couchbase-Java-Client-1.1.0.zip)
 
 If you don't like to handle dependencies on your own, you can use a build
 manager to handle them for you. Couchbase provides a
@@ -109,7 +120,7 @@ vary. Here is an example on how to do it in Maven by updating your `pom.xml`.
 <dependency>
     <groupId>couchbase</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.1.7</version>
+    <version>1.1.9</version>
 </dependency>
 ```
 
@@ -121,7 +132,7 @@ If you are coming from Scala and want to manage your dependencies through
 ```
 resolvers += "Couchbase Maven Repository" at "http://files.couchbase.com/maven2"
 
-libraryDependencies += "couchbase" % "couchbase-client" % "1.1.7"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.1.9"
 ```
 
 <a id="ide-setup"></a>
@@ -155,7 +166,7 @@ settings:
 
  * Artifact ID: couchbase-client
 
- * Version: 1.1.7
+ * Version: 1.1.9
 
 Now all dependencies are in place and we can move forward to our first
 application with Couchbase!
@@ -233,7 +244,7 @@ little more discussion:
     is fine. Note that the `beer-sample` bucket also doesn't have a password, so
     just change the bucket name and you're set.
 
- 1. `Set` and `get` : these two operations are one of the most fundamental ones. You
+ 2. `Set` and `get` : these two operations are one of the most fundamental ones. You
     can use `set` to create or override a document inside your bucket and `get` to
     read it back afterwards. There are lots of arguments and variations, but if you
     just use them as shown in the previous example will get you pretty far. Note
@@ -241,7 +252,7 @@ little more discussion:
     need to cast it into the format you want (in our case we did store a string, so
     it makes sense to convert it back later).
 
- 1. Disconnecting: at the end of the program (or when you shutdown your server
+ 3. Disconnecting: at the end of the program (or when you shutdown your server
     instance), you should use the `shutdown` method to prevent the loss of data. If
     used without arguments, it will wait until all outstanding operations have been
     finished (but no new ones will be accepted). You can also call it with a maximum
@@ -701,15 +712,15 @@ For more information about using views for indexing and querying from Couchbase
 Server, here are some useful resources:
 
  * General Information: [Couchbase Server Manual: Views and
-   Indexes](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views.html).
+   Indexes](http://docs.couchbase.com/couchbase-manual-2.0/#views-and-indexes).
 
  * Sample Patterns: to see examples and patterns you can use for views, see
    [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.0/#views-in-a-schema-less-database).
 
  * Timestamp Pattern: many developers frequently ask about extracting information
    based on date or time. To find out more, see [Couchbase Views, Sample
-   Patterns](http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-sample-patterns-timestamp.html).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.0/#date-and-time-selection).
 
 <a id="next-steps"></a>
 
@@ -718,15 +729,15 @@ Server, here are some useful resources:
 You should now be well equipped to start exploring Couchbase Server on your own.
 If you want to dig deeper and see a full-fledged application on top of Couchbase
 Server 2.0, head over to the [Web Application
-Tutorial](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/tutorial.html).
+Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.1/#tutorial).
 Also, the [server
-documentation](http://www.couchbase.com/docs/couchbase-manual-2.0/) and the
+documentation](http://docs.couchbase.com/couchbase-manual-2.0/) and the
 [developer
-documentation](http://www.couchbase.com/docs/couchbase-devguide-2.0/index.html)
+documentation](http://docs.couchbase.com/couchbase-devguide-2.0/)
 provide useful information for your day-to-day work with Couchbase. Finally, the
 API docs of the Java SDK can be found
-[here](http://www.couchbase.com/docs/couchbase-sdk-java-1.1/api-reference-summary.html).
+[here](http://docs.couchbase.com/couchbase-sdk-java-1.1/#java-method-summary).
 And JavaDoc is also
-[available](http://www.couchbase.com/autodocs/couchbase-java-client-1.1.7/index.html).
+[available](http://www.couchbase.com/autodocs/couchbase-java-client-1.1.9/index.html).
 
 <a id="tutorial"></a>

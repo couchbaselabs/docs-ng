@@ -1,8 +1,8 @@
 # Tutorial
 
-This tutorial builds on the foundation introduced in the [Getting Started](http://docs.couchbase.com/couchbase-sdk-java-1.4/#getting-started) section and uses a complete web application. Make sure you have the `beer-sample` bucket installed because the application allows you to display and manage beers and breweries. If you still need to get the sample database, see [Preparation](#getting-started-preparations).
+This tutorial builds on the foundation introduced in the [Getting Started](http://docs.couchbase.com/couchbase-sdk-java-1.4/#getting-started) section and evolves the introduced concepts further by implementing a complete web application. Make sure you have the `beer-sample` bucket installed because the application allows you to display and manage beers and breweries. If you need to get the sample database, see [Preparation](#getting-started-preparations).
 
-The full source code for the example is available at [couchbaselabs on GitHub](http://github.com/couchbaselabs/beersample-java). The sample application that you can download actually provides more content than we describe in this tutorial; but it should be easy for you to look around and understand how it functions if you first start reading this tutorial here.
+The full source code for the example is available at [couchbaselabs on GitHub](http://github.com/couchbaselabs/beersample-java). The sample application that you can download provides more content than we describe in this tutorial; but it should be easy for you to look around and understand how it functions if you first start reading this tutorial here.
 
 <a id="quickstart"></a>
 
@@ -10,12 +10,12 @@ The full source code for the example is available at [couchbaselabs on GitHub](h
 
 If you want to get up and running really quickly, here is how to do it with [Jetty](http://jetty.codehaus.org/jetty/). This guide assumes you are using  OS X or Linux. If you are using Windows, you need to modify the paths accordingly. Also, make sure you have [Maven](http://maven.apache.org/) installed on your machine.
 
- 1. [Download](http://www.couchbase.com/download) Couchbase Server 2.5 and [install](http://docs.couchbase.com/couchbase-manual-2.5/#installing-and-upgrading) it. Make sure you install the     [beer-sample](http://docs.couchbase.com/couchbase-manual-2.5/#beer-sample-bucket) data set when you run the wizard because this tutorial uses it.
+ 1. [Download](http://www.couchbase.com/downloads) Couchbase Server 2.5 or later and [install](http://docs.couchbase.com/couchbase-manual-2.5/cb-install/) it. Make sure you install the [beer-sample](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#sample-buckets) data set when you run the wizard because this tutorial uses it.
 
  1. Add the following views and design documents to the `beer-sample` bucket. 
 
 	Views and design documents enable you to index and query data from the database. Later we will publish the views as production views. For more information about using views from an SDK, see [Couchbase Developer Guide, Finding Data with
-    Views](http://docs.couchbase.com/couchbase-manual-2.5/#querying-views).
+    Views](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#querying-views).
 
     The first design document name is `beer` and view name is `by_name`:
 
@@ -187,9 +187,9 @@ application function correctly we need some more views. This is also a very good
 chance for you to see how you can manage views inside Couchbase Web Console. For
 more information on the topics, see [Couchbase Developer Guide, Finding Data
 with
-Views](http://docs.couchbase.com/couchbase-manual-2.5/#querying-views)
+Views](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#querying-views
 and [Couchbase Manual, Using the Views
-Editor](http://docs.couchbase.com/couchbase-manual-2.5/#using-the-views-editor).
+Editor](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#using-the-views-editor).
 
 Because we want to list beers and breweries by their name, we need to define one
 view function for each type of result that we want.
@@ -255,7 +255,7 @@ Now we need to provide a similar map function for the breweries. Because you alr
     ```
 
 The final step is to push the design documents to production
-mode for Couchbase Server. While the design documents are in development mode, the index is applied only on the local node. See, [Couchbase Manual, Development and Production Views](http://docs.couchbase.com/couchbase-manual-2.5/#view-basics). To have the index on the whole data set:
+mode for Couchbase Server. While the design documents are in development mode, the index is applied only on the local node. See, [Couchbase Manual, Development and Production Views](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#development-and-production-views). To have the index on the whole data set:
 
  1. In Couchbase Web Console, click **Views**.
 
@@ -267,15 +267,15 @@ For more information about using views for indexing and querying from Couchbase
 Server, see the following useful resources:
 
  * General Information: [Couchbase Server Manual: Views and
-   Indexes](http://docs.couchbase.com/couchbase-manual-2.5/#view-basics).
+   Indexes](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#view-basics).
 
  * Sample Patterns: to see examples and patterns you can use for views, see
    [Couchbase Views, Sample
-   Patterns](http://docs.couchbase.com/couchbase-manual-2.5/#view-and-query-pattern-samples).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#view-and-query-pattern-samples).
 
  * Time-stamp Pattern: many developers frequently ask about extracting information
    based on date or time. To find out more, see [Couchbase Views, Sample
-   Patterns](http://docs.couchbase.com/couchbase-manual-2.5/#date-and-time-selection).
+   Patterns](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#date-and-time-selection).
 
 <a id="preps-webxml"></a>
 

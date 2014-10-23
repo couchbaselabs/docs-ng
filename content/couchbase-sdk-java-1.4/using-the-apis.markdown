@@ -495,7 +495,7 @@ Here's the output from the previous example:
 3_fonteinen_brouwerij_ambachtelijke_geuzestekerij-oude_geuze
 ```
 
-The keys are sorted by UTF-8 collation. For more information about the collation scheme, see <http://blog.couchbase.com/understanding-letter-ordering-view-queries>.
+The keys are sorted by UTF-8 collation. For more information about the collation scheme, see [this blog post](http://blog.couchbase.com/understanding-letter-ordering-view-queries).
 
 The following example uses a range to list only the 21st Amendment Brewery Cafe and all its beers: 
 
@@ -834,7 +834,7 @@ while (true) {
 }
 ```
 
-One approach is to use a [ExecutorService](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorService.html) and parallelize the query execution. With the addition of listeners after the 1.2 series, things got much easier, even on a single thread. To simulate a higher load, fire off 50 requests in parallel and wait until they come back. You can use the same approach if you need to query different views in parallel or process other operations at the same time:
+One approach is to use a [ExecutorService](http://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ExecutorService.html) and parallelize the query execution. With the addition of listeners after the 1.2 series, things got much easier, even on a single thread. To simulate a higher load, fire off 50 requests in parallel and wait until they come back. You can use the same approach if you need to query different views in parallel or process other operations at the same time:
 
 ```java
 View view = client.getView("beer", "brewery_beers");
@@ -981,5 +981,5 @@ sa_brain_co_ltd: [-3.179,51.4736,-3.179,51.4736]
 traquair_house_brewery: [-3.0636,55.619,-3.0636,55.619]
 ```
 
-For more information about working with spatial views, see [Writing geospatial views](http://docs.couchbase.com/couchbase-manual-2.2/#writing-geospatial-views).
+For more information about working with spatial views, see [Writing geospatial views](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#writing-geospatial-views).
 

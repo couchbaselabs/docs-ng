@@ -3,8 +3,8 @@
 This Couchbase SDK Java provides a complete interface to Couchbase Server
 through the Java programming language. For more on Couchbase Server and Java
 read our [Java SDK Getting Started
-Guide](http://www.couchbase.com/develop/java/current) followed by our in-depth
-Couchbase and Java tutorial. We recommended Java SE 6 (or higher) for running
+Guide](http://docs.couchbase.com/couchbase-sdk-java-1.1/#getting-started) followed by our in-depth
+Couchbase and Java tutorial. We require Java SE 6 (or higher) for running
 the Couchbase Client Library.
 
 This section covers the following topics:
