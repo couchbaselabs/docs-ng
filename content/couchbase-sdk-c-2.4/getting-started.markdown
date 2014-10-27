@@ -21,9 +21,9 @@ Here's a quick outline of what you'll learn in this chapter:
 
 ## Downloading the Couchbase Client Library
 
-Download the latest client library from the [Coucbase download
-site](http://www.couchbase.com/develop/c/current/). It is available as a source
-archive in both `.zip` and `.tar.gz`
+Download the latest client library from the [Couchbase download
+site](http://www.couchbase.com/downloads). It is available as a source
+archive in both `.zip` and `.tar.gz` formats.
 
 <a id="c-install-linux"></a>
 
