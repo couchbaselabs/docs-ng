@@ -81,9 +81,15 @@ your operating systems standard package manager.
 
 Connect to the server:
 
+<div class="notebox">
+<p>Note</p>
+<p>The following example connects to the legacy memcached protocol using moxi.
+</p></div>
+
+
 
 ```
-> telnet localhost1
+> telnet localhost1 11211
 Trying 127.0.0.1...
 Connected to localhost.localdomain (127.0.0.1).
 Escape character is '^]'.
