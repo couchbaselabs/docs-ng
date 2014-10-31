@@ -4,9 +4,55 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.10 GA (4 November 2014)
+
+<a id="couchbase-sdk-net-rn_1-3-10"></a>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-691">NCBC-691: Maximum and Default Locking times are misleading</a>
+
+    The maximum lock in 2.5.1 and 3.0.0 is 30 secs, the default is 15 seconds.
+    Any attempt to set a lock higher than the maximum results in the default
+    being used. This patch sets the default locktime to 15 seconds, which was
+    previously TimeSpan.Zero. The code already throws a AOOR exception if the
+    locktime is longer than 30 seconds.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-691">NCBC-666: the setting up project section should refer to using Enyim.Caching.dll not Enyim,Memecached.dll</a>
+
+    Changes documentation to reflect correct name of dll.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-647">NCBC-647: Markdown Links not Rendered</a>
+
+    Changes documentation so that links that were not being displayed, are now displayed.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-643">NCBC-643: TimeSpan expiration under 1 sec results in an infinite timeout</a>
+
+    Fixes a bug in the client in which an expiration of less than one second would round to zero.
+    The server would interpret this as infinity and the key would never be evicated. This is the
+    opposite of what the user intended.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-621">NCBC-621: IRI Parsing error when bootstrapping on mono</a>
+
+    IRI parsing is required for versions of the server >= 3.0. Mono does not currectly support IRI parsing,
+    so on Mono the code would fail when it attempted to enable it. This patch effectivly ignores IRI parsiong on mono.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-616">NCBC-616: Fixed PagedView with only one page</a>
+
+    When using a PageView with a page size larger than the number of items
+    in the result set, the MoveNext() operation indicates there are no items
+    in the current page and returns false. This fix ensures that if the number
+    of items is less than the page size, the enumeration will still happen.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-614">NCBC-614: Review and reduce verbosity of logging in INFO mode</a>
+
+    This fix replaces some of the INFO logging with DEBUG level logging to minimize log files sizes.
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-585">NCBC-585: Refactor finalization logic so that Exceptions are not thrown on finalizer thread</a>
+
+    This fixes some finalizer and dispose logic that was incorrect and could cause the finalization thread to crash.
+
 ## Release Notes for Couchbase Client Library .NET 1.3.9 GA (2 September 2014)
 
-<a id="couchbase-sdk-net-rn_1-3-8"></a>
+<a id="couchbase-sdk-net-rn_1-3-9"></a>
 
 * <a href="https://www.couchbase.com/issues/browse/NCBC-583">NCBC-583: Ensure Dispose is called on every MD5CryptoServiceProvider class usage</a>
 
