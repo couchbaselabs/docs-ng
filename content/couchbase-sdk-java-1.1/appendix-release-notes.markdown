@@ -1012,9 +1012,9 @@ have been updated and can be used together with the 1.1.0 release.
    respectively.
 
    The client library will poll the server until the persistence requirements are
-   met. The method will return FALSE if the requirments are impossible to meet
+   met. The method will return FALSE if the requirements are impossible to meet
    based on the configuration (inadequate number of replicas) or even after a set
-   amount of retries the persistence requirments could not be met.
+   amount of retries the persistence requirements could not be met.
 
    The program snippet below illustrates how to specify a requirement that the data
    should be persisted on 4 nodes (master and three replicas).
@@ -1050,7 +1050,7 @@ have been updated and can be used together with the 1.1.0 release.
    In the case above, it's required that the key and value is persisted on all the
    4 nodes (including replicas).
 
-   The same persistence requirment can be specified in a slightly different form as
+   The same persistence requirement can be specified in a slightly different form as
    below.
 
     ```
@@ -1060,7 +1060,7 @@ have been updated and can be used together with the 1.1.0 release.
     System.out.printf("Result was %b", setOp.get());
     ```
 
-   The same persistence requirment can be specified in a slightly different form as
+   The same persistence requirement can be specified in a slightly different form as
    below.
 
     ```

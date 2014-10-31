@@ -175,9 +175,9 @@ persisted on the master and the replicas using `PeristTo` and how the data
 should be propagated to the replicas using `ReplicateTo` respectively.
 
 The client library will poll the server until the persistence requirements are
-met. The method will return FALSE if the requirments are impossible to meet
+met. The method will return FALSE if the requirements are impossible to meet
 based on the configuration (inadequate number of replicas) or even after a set
-amount of retries the persistence requirments could not be met.
+amount of retries the persistence requirements could not be met.
 
 The program snippet below illustrates how to specify a requirement that the data
 should be persisted on 4 nodes (master and three replicas).
@@ -195,7 +195,7 @@ In the case above, it's required that the key and value is persisted on all the
 4 nodes (including replicas).
 
 In the following, the requirement is specified as requiring persistence to the
-master and propagation of the data to the three replicas. This requirment is
+master and propagation of the data to the three replicas. This requirement is
 weaker than requring the data to be persisted on all four nodes including the
 three replicas.
 
