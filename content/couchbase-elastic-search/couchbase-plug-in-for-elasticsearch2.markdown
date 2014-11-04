@@ -1,5 +1,10 @@
 # Couchbase Plug-in for Elasticsearch
 
+<div class="notebox warning">
+<p>Older Documentation</p>
+<p>You are reading the documentation for an older version of this software. To find the documentation for the current version, please go to the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
+
 The Couchbase Plug-in for Elasticsearch enables you to provide full-text search
 in your application using the open source search engine,
 [Elasticsearch](http://www.elasticsearch.org/). This means that your users can
