@@ -185,8 +185,7 @@ foreach(var key in dict.Keys)
 }
 ```
 
-`GetWithLock()` prevents a key from being updated for either 30 seconds
-(default) or the value specified as an optional lock expiration.
+`GetWithLock()` prevents a key from being updated for 15 seconds by default or by setting it to a value with a maximum of 30 seconds, which defined by the server.
 
 
 ```
