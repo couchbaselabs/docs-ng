@@ -1,8 +1,8 @@
-# Couchbase Plug-in for Elasticsearch
+# Couchbase Plug-in for Elasticsearch 1.3
 
 <div class="notebox warning">
-<p>Older Documentation</p>
-<p>You are reading the documentation for an older version of this software. To find the documentation for the current version, please go to the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
 </div>
 
 The Couchbase Plug-in for Elasticsearch enables you to provide full-text search
