@@ -46,10 +46,6 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
     This fix replaces some of the INFO logging with DEBUG level logging to minimize log files sizes.
 
-* <a href="https://www.couchbase.com/issues/browse/NCBC-585">NCBC-585: Refactor finalization logic so that Exceptions are not thrown on finalizer thread</a>
-
-    This fixes some finalizer and dispose logic that was incorrect and could cause the finalization thread to crash.
-
 ## Release Notes for Couchbase Client Library .NET 1.3.9 GA (2 September 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-9"></a>
