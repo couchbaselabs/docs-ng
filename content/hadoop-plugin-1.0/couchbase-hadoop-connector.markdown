@@ -1,8 +1,11 @@
 <a id="hadoop-plugin"></a>
 
-# Couchbase Hadoop Connector
+# Couchbase Hadoop Connector 1.0
 
-<a id="hadoop-plugin-preface"></a>
+<div class="notebox warning">
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
 
 ## Introduction
 
