@@ -8,6 +8,11 @@ Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC)
 
 <a id="couchbase-sdk-net-rn_1-3-10"></a>
 
+* <a href="https://www.couchbase.com/issues/browse/NCBC-655">NCBC-655: Minimize time in lock to reduce contention</a>
+
+    This patch minimizes the amount of time held on a lock during a rebalance scenario which reduces pausing that
+    may be observed at that time.
+
 * <a href="https://www.couchbase.com/issues/browse/NCBC-691">NCBC-691: Maximum and Default Locking times are misleading</a>
 
     The maximum lock in 2.5.1 and 3.0.0 is 30 secs, the default is 15 seconds.
