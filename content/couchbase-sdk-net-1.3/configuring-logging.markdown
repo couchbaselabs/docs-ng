@@ -15,7 +15,7 @@ To install via NuGet, look for either the CouchbaseLog4NetAdapter or
 CouchbaseNLogAdapter package.
 
 You could also get the projects from
-[](https://github.com/couchbase/couchbase-net-client). If you use these Visual
+[Github](https://github.com/couchbase/couchbase-net-client). If you use these Visual
 Studio projects, you'll need NuGet installed, as dependencies to NLog and
 log4Net are managed using NuGet.
 
@@ -24,7 +24,7 @@ which log factory to use along with standard log4net configuration.
 
 The log4net configuration will vary by the type of appender you are using. For
 more information on log4net configuration, see
-[](http://logging.apache.org/log4net/release/manual/configuration.html).
+[http://logging.apache.org/log4net/release/manual/configuration.html](http://logging.apache.org/log4net/release/manual/configuration.html).
 
 
 ```
@@ -94,7 +94,7 @@ the appropriate NLog configuration section.
 </configuration>
 ```
 
-See [](http://nlog-project.org/wiki/Configuration_file) for more NLog
+See [http://nlog-project.org/wiki/Configuration_file](http://nlog-project.org/wiki/Configuration_file) for more NLog
 configuration details.
 
 <a id="couchbase-sdk-net-cluster-management"></a>

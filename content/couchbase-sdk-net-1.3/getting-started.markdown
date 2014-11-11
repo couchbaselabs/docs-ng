@@ -17,15 +17,16 @@ To get the software:
 
 2. Get the client library by using one of the following methods:
 
-	* Download the zip file from the [Couchbase .NET community Getting Started](http://www.couchbase.com/communities/net/getting-started) page.
+	* Download the zip file from [here](http://packages.couchbase.com.s3.amazonaws.com/clients/net/1.3/Couchbase-Net-Client-1.3.10.zip).
 
 	* Run the following command in the [NuGet](http://www.nuget.org) package manger console:
 	
 			PM> Install-Package CouchbaseNetClient
 	
+
 ## Setting up a project
 
-Create a new console project in Visual Studio. Add references to the **Couchbase.dll**, **Enyim.Memcached.dll**, and **Newtonsoft.Json.dll** assemblies that are in the release zip file.
+Create a new console project in Visual Studio. Add references to the **Couchbase.dll**, **Enyim.Caching.dll**, and **Newtonsoft.Json.dll** assemblies that are in the release zip file.
 
 Visual Studio console applications target the .NET Framework Client Profile by
 default, so you need to change the project properties to target the
