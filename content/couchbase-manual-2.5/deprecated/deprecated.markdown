@@ -6,6 +6,7 @@
 The following are items that are deprecated, will be deprecated, or are unsupported.
 
 * The <code>_all_docs</code> view is not supported.
+* The undocumented facility for enabling legacy memcached detailed stats through "stats detail on" and "stats detail dump" is deprecated. 
 
 
 
