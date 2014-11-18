@@ -584,7 +584,7 @@ the cluster. Data replication enables high availability of data in a cluster.
 Should any node in cluster fail, the data will still be available at a replica.
 
 On any give node, both active and replica data must wait in a disk write queue
-before being written to disk. If you node experiences a heavy load of writes,
+before being written to disk. If your node experiences a heavy load of writes,
 the replication queue can become overloaded with replica and active data waiting
 to be persisted.
 
