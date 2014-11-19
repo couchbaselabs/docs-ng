@@ -198,7 +198,6 @@ it will automatically begin between the clusters. As a REST call:
 
 ```
 curl -v -X POST -u admin:password1 http://10.4.2.4:8091/controller/createReplication
-    -d uuid=9eee38236f3bf28406920213d93981a3
     -d fromBucket=beer-sample
     -d toCluster=remote1
     -d toBucket=remote_beer
@@ -207,8 +206,7 @@ curl -v -X POST -u admin:password1 http://10.4.2.4:8091/controller/createReplica
 ```
     
 
-Replace the *admin*, *password1*, *10.4.2.4*, 
-*9eee38236f3bf28406920213d93981a3*, *beer-sample*, *remote1*, *remote_beer*, and *capi* values in the above example with your actual values. The `replicationType` must be *continuous*. The `type` values are capi or xmem where capi and xmem are represented by version1 and version 2 in the web console. Default: `xmem`.
+Replace the *admin*, *password1*, *10.4.2.4*, *beer-sample*, *remote1*, *remote_beer*, and *capi* values in the above example with your actual values. The `replicationType` must be *continuous*. The `type` values are capi or xmem where capi and xmem are represented by version1 and version 2 in the web console. Default: `xmem`.
     
 This will send a request similar to the following example:
 
