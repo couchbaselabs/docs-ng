@@ -41,8 +41,8 @@ content using the following command:
 
 
 ```
-> curl -X PUT -H 'Content-Type: application/json' \
-   http://user:password@localhost:8092/sales/_design/dev_byfield' \
+curl -X PUT -H 'Content-Type: application/json' \
+   http://user:password@localhost:8092/sales/_design/dev_byfield \
    -d @byfield.ddoc
 ```
 
@@ -161,7 +161,7 @@ design document `byfield` :
 
 
 ```
-> curl -X GET \
+curl -X GET \
     -H 'Content-Type: application/json' \
     http://user:password@192.168.0.77:8092/sales/_design/dev_byfield
 ```
@@ -189,7 +189,7 @@ For example:
 
 
 ```
-&gt; curl -v -X GET \
+curl -v -X GET \
    -H 'Content-Type: application/json' \
    http://user:password@192.168.0.77:8092/sales/_design/
 * About to connect() to 192.168.0.77 port 8092 (#0)
@@ -251,7 +251,7 @@ For example, to delete the previously created design document using `curl` :
 
 
 ```
-> curl -v -X DELETE -H 'Content-Type: application/json' \
+curl -v -X DELETE -H 'Content-Type: application/json' \
     http://Administrator:Password@192.168.0.77:8092/default/_design/dev_byfield
 ```
 
