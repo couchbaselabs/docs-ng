@@ -10,10 +10,10 @@ of this:
     // Connect to our cluster
     $cb = new Couchbase("192.168.1.200:8091");
     
-    // Adjust our timeout to 100ms rather than the default of 2500ms
-    $cb->setTimeout(100);
+    // Adjust our timeout to 100000usec rather than the default of 2500000usec
+    $cb->setTimeout(100000);
     
-    // The following operation will timeout if not completed within 100ms
+    // The following operation will timeout if not completed within 100000usec
     $cb->add('test_key', 'test_value');
 
 ## Configuration Cache
