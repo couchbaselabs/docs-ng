@@ -215,6 +215,12 @@ Port 11211
 All other Ports
 : Used for other Couchbase Server communictions.
 
+
+<div class="notebox"><p>Note</p>
+<p>Port 11213 is an internal ports used on the local host for memcached and compaction. The node is not used for communication between nodes in a cluster. For firewall purposes, you do not need to take port 11213 into consideration. However, if a service is listening on this port, Couchbase Server does not start correctly.</p>
+</div>
+
+
 <a id="couchbase-getting-started-install"></a>
 
 ## Installing Couchbase Server
