@@ -5,6 +5,24 @@ Couchbase Client Library Python. To browse or submit new issues, see [Couchbase
 Client Library Python Issues
 Tracker](http://www.couchbase.com/issues/browse/PYCBC).
 
+<a id="couchbase-sdk-python-rn_1-2-4"></a>
+## Release Notes for Couchbase Python SDK 1.2.4 (10 October 2014)
+
+This release provides some minor bug fixes for the 1.2 series
+
+**Fixes in 1.2.4**
+ * The `design_publish` method will no longer delete the old 'development mode'
+   view when it is published into a 'production mode' view. This is to ensure
+   consistent behavior between the web UI and the SDK
+
+   **Issues**: [PYCBC-259](http://couchbase.com/issues/browse/PYCBC-259)
+
+ * Allow building on (Apple's) OS X Python
+   This adds the `/usr/local/` to the linker and preprocessor search paths,
+   if the setup.py script detects that it is being invoked as `/usr/bin/python`.
+   Newer versions of OS X no longer automatically add `/usr/local` as a default
+   search path
+
 <a id="couchbase-sdk-python-rn_1-2-3g"></a>
 ## Release Notes for Couchbase Python SDK 1.2.3 GA (2 September 2014)
 
