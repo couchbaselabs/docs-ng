@@ -8,15 +8,15 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.4.6 GA (1 December 2014)
 
-This is the sixth bug fix release for the 1.4 series and brings one critical reconnect bugfix, as well as a regression fix for non Oracle JVMs introduced in 1.4.5.
+This is the sixth bug fix release for the 1.4 series and brings one critical reconnect bug fix and a regression fix for non-Oracle JVMs introduced in 1.4.5.
 
 **Fixes in 1.4.6**
 
-* [SPY-179](http://www.couchbase.com/issues/browse/SPY-179): A wrong reconnect delay ceiling was applied, leading to very long reconnect delays when the node in question was down for a longer time. The fix applied now correctly translates the "max reconect time" and applies the proper ceiling. This allows the client to recover much quicker when a node has been down for a longer time.
+* [SPY-179](http://www.couchbase.com/issues/browse/SPY-179): A wrong reconnect delay ceiling was applied, leading to very long reconnect delays when the node in question was down for a longer time. The fix applied now correctly translates the "max reconnect time" and applies the proper ceiling. This allows the client to recover much quicker when a node has been down for a longer time.
 
-* [JCBC-620](http://www.couchbase.com/issues/browse/JCBC-620): The newly introduced Diagnostics feature optionally uses some private packages that may not be available in all environments. This prevented startup in unsuported environments, because the classloader would complain immediately. Proper guards are now in place to conditionally use the feature when available, and gracefully degrade if not.
+* [JCBC-620](http://www.couchbase.com/issues/browse/JCBC-620): The newly introduced diagnostics feature optionally uses some private packages that might not be available in all environments. This prevented startup in unsupported environments because the class loader would complain immediately. Proper guards are now in place to conditionally use the feature when available and gracefully degrade if not.
 
-* [SPY-178](http://www.couchbase.com/issues/browse/SPY-178): When memcached buckets are used and the KetamaNodeLocator is accessed directly, the `getReadonlyCopy` method was subject to iterator failures when used in combination with the -XX:+AggressiveOpts JVM flag.
+* [SPY-178](http://www.couchbase.com/issues/browse/SPY-178): When memcached buckets are used and the `KetamaNodeLocator` method is accessed directly, the `getReadonlyCopy` method was subject to iterator failures when used in combination with the `-XX:+AggressiveOpts` JVM flag.
 
 <a id="couchbase-sdk-java-rn_1-4-5a"></a>
 
@@ -26,7 +26,7 @@ This is the fifth bug fix release for the 1.4 series and brings stability improv
 
 **Enhancements in 1.4.5**
 
-* [JCBC-531](http://www.couchbase.com/issues/browse/JCBC-531): Optional support for Diagnostics has been added. When DEBUG logging is enabled, very verbose diagnostics information about the runtime will be logged on startup. In addition, a manual call to `Diagnostics.collectAndFormat()` can be used to print runtime information in failure cases or during error handling scenarios (for better analysis afterwards). Information also includes GC pauses, heap statistics and version information. Every single property is utilized through MXBeans internally.
+* [JCBC-531](http://www.couchbase.com/issues/browse/JCBC-531): Optional support for diagnostics has been added. When DEBUG logging is enabled, very verbose diagnostics information about the runtime will be logged on startup. In addition, a manual call to `Diagnostics.collectAndFormat()` can be used to print run time information in failure cases or during error handling scenarios (for better analysis afterwards). Information also includes GC pauses, heap statistics and version information. Every single property is utilized through MXBeans internally.
 
 **Fixes in 1.4.5**
 
