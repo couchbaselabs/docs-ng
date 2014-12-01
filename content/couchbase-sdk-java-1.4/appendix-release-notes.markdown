@@ -4,6 +4,20 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-6a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.6 GA (1 December 2014)
+
+This is the sixth bug fix release for the 1.4 series and brings one critical reconnect bugfix, as well as a regression fix for non Oracle JVMs introduced in 1.4.5.
+
+**Fixes in 1.4.6**
+
+* [SPY-179](http://www.couchbase.com/issues/browse/SPY-179): A wrong reconnect delay ceiling was applied, leading to very long reconnect delays when the node in question was down for a longer time. The fix applied now correctly translates the "max reconect time" and applies the proper ceiling. This allows the client to recover much quicker when a node has been down for a longer time.
+
+* [JCBC-620](http://www.couchbase.com/issues/browse/JCBC-620): The newly introduced Diagnostics feature optionally uses some private packages that may not be available in all environments. This prevented startup in unsuported environments, because the classloader would complain immediately. Proper guards are now in place to conditionally use the feature when available, and gracefully degrade if not.
+
+* [SPY-178](http://www.couchbase.com/issues/browse/SPY-178): When memcached buckets are used and the KetamaNodeLocator is accessed directly, the `getReadonlyCopy` method was subject to iterator failures when used in combination with the -XX:+AggressiveOpts JVM flag.
+
 <a id="couchbase-sdk-java-rn_1-4-5a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.5 GA (16 October 2014)
