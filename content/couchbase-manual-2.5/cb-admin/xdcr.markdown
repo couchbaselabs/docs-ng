@@ -301,7 +301,7 @@ With the XDCR data encryption feature, the XDCR traffic from the source cluster 
 enabling the XDCR encryption option, providing the destination cluster's certificate, and then replicating. 
 
 <div class="notebox"><p>Note</p>
-<p>The certificate is an internal self-signed certificate used by SSL to initiate secure sessions.
+<p>The certificate is an internal self-signed certificate used by SSL to initiate secure sessions. XDCR data encryption is supported only with Couchbase self-signed certificates. It does not support importing your own certificate files nor does it support signed certificates from a Certificate Authority (CA).
 </p></div>
 
 
@@ -318,6 +318,13 @@ without XDCR data encryption enabled.
 destination cluster. For example, if Cluster A (source) has data encryption enabled to Cluster B (destination), 
 then Cluster A (source) cannot also have non-encryption (data encryption is *not* enabled) to Cluster B (destination).
 </p></div>
+
+For encrypted XDCR, the supported SSL/TLS-versions are SSL-3.0 and TLS-1.0.
+By default, XDCR uses the rc4-128 cipher suite, however, aes128 is used if rc4-128 isn't available.
+XDCR can be forced to only use rc4-128 by setting the COUCHBASE_WANT_ARCFOUR environmental variable.
+OpenSSL is not used for the TLS/SSL handshake logic. Instead, the TLS/SSL logic is implemented in Erlang (see [Heartbeat Bug and Couchbase Server blog](http://blog.couchbase.com/heartbleed-bug-and-couchbase-server).
+If specific ciphers/protocol/certificates are required, an alternative option is to connect to the clusters over an encrypted VPN connection.
+
 
 For more information about enabling XDCR data encryption, see 
 [Managing XDCR data encryption](#cb-admin-tasks-xdcr-encrypt).
