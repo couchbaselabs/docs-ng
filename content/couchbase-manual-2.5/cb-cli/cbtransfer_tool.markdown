@@ -26,8 +26,9 @@ The tool is at the following locations:
 
 <a id="table-couchbase-admin-cmdline-cbtransfer-locs"></a>
 
-**Linux**    | `/opt/couchbase/bin/`                                                      
+ **Operating system**  | **Location**                                                
 -------------|----------------------------------------------------------------------------
+**Linux**    | `/opt/couchbase/bin/`     
 **Windows**  | `C:\Program Files\Couchbase\Server\bin\`                                   
 **Mac OS X** | `/Applications/Couchbase Server.app/Contents/Resources/couchbase-core/bin/`
 
@@ -52,9 +53,9 @@ The following are the standard command options which you can also view with
 
 <a id="table-couchbase-admin-cbtranfer-options"></a>
 
--h, --help                                                       | Command help                                                                                                                                                                                                                 
+Parameter                                                     | Description                                                                                                                                                                                                               
 -----------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
---add                                                            | Use --add instead of --set in order to not overwrite existing items in the destination
+-h, --help                                                       | Command help     
 -b BUCKET\_SOURCE                                                | Single named bucket from source cluster to transfer                                                                                                                                                                          
 -B BUCKET\_DESTINATION, --bucket-destination=BUCKET\_DESTINATION | Single named bucket on destination cluster which receives transfer. This allows you to transfer to a bucket with a different name as your source bucket. If you do not provide defaults to the same name as the bucket-source
 -i ID, --id=ID                                                   | Transfer only items that match a vbucketID                                                                                                                                                                                   
