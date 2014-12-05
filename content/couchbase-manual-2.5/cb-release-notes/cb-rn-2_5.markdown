@@ -1,3 +1,35 @@
+# Couchbase Server Release Notes for 2.5.2 GA
+
+Couchbase Server 2.5.2 (December 2014) is a maintenance release for Couchbase Server 2.5 that includes bug fixes.
+
+## Fixed or resolved issues in 2.5.2
+
+**Server operations**
+
+* [MB-12451](http://www.couchbase.com/issues/browse/MB-12451): If the socket connection closes during large data reads, the document data leaks.
+* [MB-11137](http://www.couchbase.com/issues/browse/MB-11137): When a write commit failure occurs and an alert email is sent, a crash occurs.
+
+
+**Cluster operations**
+
+* [MB-12241](http://www.couchbase.com/issues/browse/MB-12241): A memory leak can occur when a vBucket is deleted and there are items to fetch in the background queue.
+* [MB-12156](http://www.couchbase.com/issues/browse/MB-12156): Race condition with time check when changing data path may lead to deletion of all  vBuckets after adding node to cluster.
+* [MB-10406](http://www.couchbase.com/issues/browse/MB-10406): If an item on a replica vBucket is locked, replication or rebalance fails.
+
+
+
+**XDCR**
+
+* [MB-12706](http://www.couchbase.com/issues/browse/MB-12706): In an XDCR environment, when an add-delete-add operation is performed, the second add operation fails when performed on temporary items.
+* [MB-12238](http://www.couchbase.com/issues/browse/MB-12238): An infinite timeout on outgoing xmem request might lead to XDCR hanging when there are network or NAT issues.
+* [MB-11411](http://www.couchbase.com/issues/browse/MB-11411): With XDCR, warmup with an access log always sets the loaded document's rev-id to 1.
+* [MB-10437](http://www.couchbase.com/issues/browse/MB-10437): XDCR replication rate drops with a light write workload on the source cluster.
+
+## Known issues in 2.5.2
+N/A
+
+
+
 
 # Couchbase Server Release Notes for 2.5.1 GA
 
