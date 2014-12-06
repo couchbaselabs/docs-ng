@@ -224,7 +224,7 @@ navbar:
         href: /couchbase-sdk-java-1.4/
 
       - label: Java API Reference
-        href: http://www.couchbase.com/autodocs/couchbase-java-client-latest/index.html
+        href: http://docs.couchbase.com/sdk-api/couchbase-java-client-1.4.6/
 
       - label: .NET Developer Guide
         href: /couchbase-sdk-net-1.3/
@@ -251,7 +251,7 @@ navbar:
         href: /couchbase-sdk-ruby-1.3/
 
       - label: Ruby API Reference
-        href: http://www.couchbase.com/autodocs/couchbase-ruby-client-latest/index.html
+        href: http://docs.couchbase.com/sdk-api/couchbase-ruby-client-1.3.9/
 
   - label: Archive
     href: /archive-index/
