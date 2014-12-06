@@ -342,7 +342,7 @@ demonstrated above.
 
 
 ```
-var savedBeer = client.GetJson<beer><Beer>(key);
+var savedBeer = client.GetJson<Beer>(key);
 ```
 
 At this point, your simple Program.cs file should look something like the

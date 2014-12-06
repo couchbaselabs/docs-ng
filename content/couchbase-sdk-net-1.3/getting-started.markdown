@@ -275,7 +275,7 @@ var result = client.StoreJson(StoreMode.Set, key, newBeer);
 Retrieving the Beer instance is also similar to retrieving a document:
 
 ```csharp
-var savedBeer = client.GetJson<beer><Beer>(key);
+var savedBeer = client.GetJson<Beer>(key);
 ```
 
 At this point, your **Program.cs** file should look something like the
