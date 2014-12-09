@@ -14,6 +14,8 @@ this manual provides the following topics:
 
 * [REST API](cb-rest-api/)
 
+* [Release Notes](cb-release-notes)
+
 
 
 ## Enhancements in 2.5
