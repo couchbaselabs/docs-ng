@@ -522,44 +522,6 @@ get_hits:
 using the standard monitoring tools.</p>
 </div>
 
-<a id="couchbase-bestpractice-ongoing-ui"></a>
-
-### Important UI Stats to Watch
-
-You can add the following graphs to watch on the Couchbase console. These graphs
-can be de/selected by clicking on the `Configure View` link at the top of the
-`Bucket Details` on the Couchbase Web Console.
-
- * `Disk write queues`
-
-   The value should not keep growing; the actual numbers will depend on your
-   application and deployment.
-
- * `Ram ejections`
-
-   There should be no sudden spikes.
-
- * `Vbucket errors`
-
-   An increasing value for vBucket errors is bad.
-
- * `OOM errors per sec`
-
-   This should be 0.
-
- * `Temp OOM errors per sec`
-
-   This should be 0.
-
- * `Connections count`
-
-   This should remain flat in a long running deployment.
-
- * `Get hits per second`
-
- * `Get misses per second`
-
-   This should be much lower than Get hits per second.
 
 <a id="couchbase-bestpractice-secondfirewall"></a>
 

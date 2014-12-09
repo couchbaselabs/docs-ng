@@ -464,12 +464,12 @@ following:
  * Memory Used ( `mem_used` )
 
    This is the current size of memory used. If `mem_used` hits the RAM quota then
-   you will get `OOM_ERROR`. The `mem_used` must be less than `ep_mem_high_wat`,
+   you will get `OOM_ERROR`. The `OOM errors per sec` should be zero. The `mem_used` must be less than `ep_mem_high_wat`,
    which is the mark at which data is ejected from the disk.
 
  * Disk Write Queue Size ( `ep_queue_size` )
 
-   This is the amount of data waiting to be written to disk.
+   This is the amount of data waiting to be written to disk. The value should not keep growing; the actual numbers will depend on your application and deployment.
 
  * Cache Hits ( `get_hits` )
 
@@ -525,44 +525,6 @@ get_hits:
 using the standard monitoring tools.</p>
 </div>
 
-<a id="couchbase-bestpractice-ongoing-ui"></a>
-
-### Important UI stats to watch
-
-You can add the following graphs to watch on the Couchbase console. These graphs
-can be de/selected by clicking on the `Configure View` link at the top of the
-`Bucket Details` on the Couchbase Web Console.
-
- * `Disk write queues`
-
-   The value should not keep growing; the actual numbers will depend on your
-   application and deployment.
-
- * `Ram ejections`
-
-   There should be no sudden spikes.
-
- * `Vbucket errors`
-
-   An increasing value for vBucket errors is bad.
-
- * `OOM errors per sec`
-
-   This should be 0.
-
- * `Temp OOM errors per sec`
-
-   This should be 0.
-
- * `Connections count`
-
-   This should remain flat in a long running deployment.
-
- * `Get hits per second`
-
- * `Get misses per second`
-
-   This should be much lower than Get hits per second.
 
 <a id="couchbase-bestpractice-secondfirewall"></a>
 
