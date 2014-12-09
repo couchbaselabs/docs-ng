@@ -206,12 +206,15 @@ Rebalancing | Rebalancing enables load distribution across resources and dynamic
 
 Capability      | memcached Buckets                               | Couchbase Buckets        
 ----------------|-------------------------------------------------|--------------------------
-Item Size Limit | 1 MByte                                         | 20 MByte                 
-Persistence     | No                                              | Yes                      
-Replication     | No                                              | Yes                      
-Rebalance       | No                                              | Yes                      
-Statistics      | Limited set for in-memory stats                 | Full suite               
-Client Support  | Memcached, should use Ketama consistent hashing | Full Smart Client Support
+Item Size Limit | 1 MByte | 20 MByte
+Persistence | No | Yes
+Replication | No | Yes
+Rebalance | No | Yes
+Statistics | Limited set for in-memory stats | Full suite
+Client Support | Memcached, should use Ketama consistent hashing | Full Smart Client Support
+XDCR | No | Yes
+Backup | No | Yes
+Tap/DCP | No | Yes
 
 There are three bucket interface types that can be be configured:
 
