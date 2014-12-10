@@ -662,7 +662,7 @@ RightScale account to try it out. The templates handle almost all of the special
 configuration needed to make your experience within EC2 successful. Direct
 integration with RightScale also allows us to do some pretty cool things around
 auto-scaling and pre-packaged deployment. Check out the templates here
-[Couchbase on RightScale](http://support.rightscale.com/27-Partners/Membase)
+[Couchbase on RightScale](http://support.rightscale.com/27-Partners/Couchbase)
 
 We've also authored a number of AMIs for use within EC2 independent of
 RightScale. You can find these AMI by searching for 'couchbase' in Amazon's AWS

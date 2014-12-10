@@ -580,7 +580,7 @@ it out. The templates handle almost all of the special configuration needed to
 make your experience within EC2 successful. Direct integration with RightScale
 also allows us to do some pretty cool things with auto-scaling and pre-packaged
 deployment. Check out the templates here [Couchbase on
-RightScale](http://support.rightscale.com/27-Partners/Membase)
+RightScale](http://support.rightscale.com/27-Partners/Couchbase)
 
 We've also authored an AMI for use within EC2 independent of RightScale. When
 using these, you will have to handle the specific complexities yourself. You can
