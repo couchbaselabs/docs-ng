@@ -55,15 +55,12 @@ additional systems within the web console, including:
 
 The `Cluster Overview` page is the home page for the Couchbase Web Console. The
 page is designed to give you a quick overview of your cluster health, including
-RAM and disk usage and activity.
+RAM and disk usage and activity. The page is divided into several sections: Cluster, Buckets, and Servers.
 
 
 ![](images/web-console-cluster-overview.png)
 
-[[[The page is divided into
-`Cluster`](#couchbase-admin-web-console-cluster-overview-cluster),
-`Buckets`](#couchbase-admin-web-console-cluster-overview-buckets), and
-`Servers`](#couchbase-admin-web-console-cluster-overview-servers) sections.
+
 
 <a id="couchbase-admin-web-console-cluster-overview-cluster"></a>
 
