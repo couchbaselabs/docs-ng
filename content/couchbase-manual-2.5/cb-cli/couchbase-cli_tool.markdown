@@ -166,7 +166,7 @@ node-init options                  | Description
 --------------------------------------------|-------------------------------------------------------------------------
 `--node-init-data-path=PATH`               | Per node path to store data                                             
 `--node-init-index-path=PATH`              | Per node path to store index    
-`--note-init-hostname=NAME`                   | Host name for the node. Default: 127.0.0.1               
+`--node-init-hostname=NAME`                   | Host name for the node. Default: 127.0.0.1               
 
 ### bucket-* options
 
