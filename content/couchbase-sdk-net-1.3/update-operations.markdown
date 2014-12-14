@@ -100,11 +100,11 @@ client.ExecuteStore(StoreMode.Set, "beers", "Abbey Ale");
 Func<string, byte[]> stringToBytes = (s) => Encoding.Default.GetBytes(s);
 var result = client.ExecuteAppend("beers", new ArraySegment<byte>(stringToBytes(",Three Philosophers")));
 
-if (! result.Sucecss)
+if (! result.)
 {
     Console.WriteLine("Append failed with message {0} and status code {1}", result.Message, result.StatusCode);
 
-    if (result.Exception == null)
+    if (result.Exception != null)
     {
         throw result.Exception;
     }
@@ -132,11 +132,11 @@ var storeResult = client.ExecuteStore(StoreMode.Set, "beers", "Abbey Ale");
 Func<string, byte[]> stringToBytes = (s) => Encoding.Default.GetBytes(s);
 var appendResult = client.ExecuteAppend("beers", storeResult.Cas, new ArraySegment<byte>(stringToBytes(",Three Philosophers")));
 
-if (! appendResult.Sucecss)
+if (! appendResult.)
 {
     Console.WriteLine("Append failed with message {0} and status code {1}", appendResult.Message, appendResult.StatusCode);
 
-    if (appendResult.Exception == null)
+    if (appendResult.Exception != null)
     {
         throw appendResult.Exception;
     }
@@ -951,11 +951,11 @@ client.ExecuteStore(StoreMode.Set, "beers", "Abbey Ale");
 Func<string, byte[]> stringToBytes = (s) => Encoding.Default.GetBytes(s);
 var result = client.ExecutePrepend("beers", new ArraySegment<byte>(stringToBytes(",Three Philosophers")));
 
-if (! result.Sucecss)
+if (! result.)
 {
     Console.WriteLine("Prepend failed with message {0} and status code {1}", result.Message, result.StatusCode);
 
-    if (result.Exception == null)
+    if (result.Exception != null)
     {
         throw result.Exception;
     }
@@ -983,11 +983,11 @@ var storeResult = client.ExecuteStore(StoreMode.Set, "beers", "Abbey Ale");
 Func<string, byte[]> stringToBytes = (s) => Encoding.Default.GetBytes(s);
 var prependResult = client.ExecutePrepend("beers", storeResult.Cas, new ArraySegment<byte>(stringToBytes(",Three Philosophers")));
 
-if (! prependResult.Sucecss)
+if (! prependResult.)
 {
     Console.WriteLine("Prepend failed with message {0} and status code {1}", prependResult.Message, prependResult.StatusCode);
 
-    if (prependResult.Exception == null)
+    if (prependResult.Exception != null)
     {
         throw prependResult.Exception;
     }
