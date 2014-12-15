@@ -1554,9 +1554,7 @@ The reduce function is supplied three arguments:
     * `values` will be an array of values as returned by a previous `reduce()`
       function.
 
-The function should return the reduced version of the information by calling the
-`return()` function. The format of the return value should match the format
-required for the specified key.
+The function returns the reduced version of the information. The format of the return value should match the format required for the specified key.
 
 <a id="couchbase-views-writing-reduce-custom-builtin"></a>
 
