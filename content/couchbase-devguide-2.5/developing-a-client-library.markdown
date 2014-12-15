@@ -1111,4 +1111,3 @@ existing memchaced protocol:
 
  * `CMD_EVICT_KEY`
 
-<a id="licenses"></a>

@@ -1424,4 +1424,3 @@ Client Library C Issues Tracker](http://www.couchbase.com/issues/browse/CCBC).
 
  * Check for newer libvbucket
 
-<a id="licenses"></a>

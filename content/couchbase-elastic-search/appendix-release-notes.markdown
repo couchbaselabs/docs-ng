@@ -58,4 +58,3 @@ enhancements and bug fixes:
 
 This is the beta release of the plug-in.
 
-<a id="licenses"></a>
