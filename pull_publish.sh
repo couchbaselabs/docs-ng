@@ -22,8 +22,8 @@ git pull
 echo "Building site..."
 bundle exec nanoc
 
-#BIG UGLY HACK courtesy AMY 20140722 & updated 20140724
-cp -r output/prebuilt/couchbase-manual-3.0/assets-dita output/
+# don't need to copy this file over anymore
+# cp -r output/prebuilt/couchbase-manual-3.0/assets-dita output/
 
 # Hack for S3 redirects related to new Docs
 mv -f output/index.html output/index_old.html
