@@ -2,6 +2,11 @@
 
 # Command-line interface overview
 
+<div class="notebox warning">
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
+
 Couchbase Server includes a number of command-line tools that can be used to
 manage and monitor a Couchbase Server cluster or server. All operations are
 mapped to their appropriate [REST API](../cb-rest-api/#couchbase-admin-restapi) call

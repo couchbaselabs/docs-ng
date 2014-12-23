@@ -1,5 +1,10 @@
 # Introduction to Couchbase
 
+<div class="notebox warning">
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
+
 Couchbase Server is a distributed, highly–scalable, non-relational database.
 Couchbase Server provides a managed in-memory caching tier, so that you can
 create very fast, responsive web applications. There are three core benefits you

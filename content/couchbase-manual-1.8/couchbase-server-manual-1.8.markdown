@@ -2,6 +2,12 @@
 
 # Couchbase Server Manual 1.8
 
+
+
+<div class="notebox warning">
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
 <a id="couchbase-server-preface"></a>
 
 ## Preface

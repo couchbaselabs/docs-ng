@@ -1,5 +1,10 @@
 # Introduction to Couchbase Server
 
+<div class="notebox warning">
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
+
 Couchbase Server is a distributed, document ("NoSQL") database management
 system, designed to store the information for web applications. Couchbase Server
 provides a managed in-memory caching tier, so that it supports very fast create,
