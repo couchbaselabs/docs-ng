@@ -94,7 +94,6 @@ the appropriate NLog configuration section.
 </configuration>
 ```
 
-See [](http://nlog-project.org/wiki/Configuration_file) for more NLog
-configuration details.
+See <https://github.com/nlog/nlog/wiki> for more NLog configuration details.
 
 <a id="couchbase-sdk-net-cluster-management"></a>
