@@ -7,13 +7,17 @@ Couchbase Server 2.5.2 (December 2014) is a maintenance release for Couchbase Se
 **Server operations**
 
 * [MB-12451](http://www.couchbase.com/issues/browse/MB-12451): If the socket connection closes during large data reads, the document data leaks.
+* [MB-12178](http://www.couchbase.com/issues/browse/MB-12178): Race condition can occur when notifying memcached of checkpoint persistence and memcached worker thread tries to add a new checkpoint.
+* [MB-11611](http://www.couchbase.com/issues/browse/MB-11611): memcached.logs can grow large after the node failure and bucket flush.
 * [MB-11137](http://www.couchbase.com/issues/browse/MB-11137): When a write commit failure occurs and an alert email is sent, a crash occurs.
-
+* [MB-10921](http://www.couchbase.com/issues/browse/MB-10921): Fixed file descriptor leak in views with reduce function
 
 **Cluster operations**
 
 * [MB-12241](http://www.couchbase.com/issues/browse/MB-12241): A memory leak can occur when a vBucket is deleted and there are items to fetch in the background queue.
 * [MB-12156](http://www.couchbase.com/issues/browse/MB-12156): Race condition with time check when changing data path may lead to deletion of all  vBuckets after adding node to cluster.
+* [MB-11825](http://www.couchbase.com/issues/browse/MB-11825): Rebalance could fail if node compatibility check times out.
+* [MB-11037](http://www.couchbase.com/issues/browse/MB-11037): High cluster replication latency due to pausing and resuming the TAP connection for new mutations and high SET workload.
 * [MB-10406](http://www.couchbase.com/issues/browse/MB-10406): If an item on a replica vBucket is locked, replication or rebalance fails.
 
 
