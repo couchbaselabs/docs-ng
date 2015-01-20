@@ -8,16 +8,15 @@ Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
 ## Release Notes for Couchbase Client Library Java 1.4.7 GA (19 January 2015)
 
-This is the seventh bug fix release for the 1.4 series and most importanty brings stability improvements when the carrier config node dies silently.
+This is the seventh bug fix release for the 1.4 series and most importantly brings stability improvements when the carrier configuration node dies silently.
 
-* [JCBC-681](http://www.couchbase.com/issues/browse/JCBC-681): When the node where the carrier config is fetched from silently dies (that is, without closing the socket proactively), the SDK now provides better heuristics to detect it is not responding anymore. In this new approach the regular NOOP poll interval is piggybacked and open requests are tracked. If more than 3 responses are not coming back with a successful response, a config rebootstrap in the background is initiated. Since the poll cycles are 5 second intervals, this will most likely happen 15 seconds after the first missing heartbeat. Note that the rebootstrap cycle is transparent to the application, so no changes need to be made.
+* [JCBC-681](http://www.couchbase.com/issues/browse/JCBC-681): When the node where the carrier configuration is fetched from silently dies (that is, without closing the socket proactively), the SDK now provides better heuristics to detect it is not responding anymore. In this new approach, the regular NOOP poll interval is piggybacked and open requests are tracked. If more than 3 responses are not coming back with a successful response, a configuration rebootstrap in the background is initiated. Because the poll cycles are 5 second intervals, this will most likely happen 15 seconds after the first missing heartbeat. The rebootstrap cycle is transparent to the application, so no changes need to be made.
 
-* [SPY-181](http://www.couchbase.com/issues/browse/SPY-181): GetAndLock operations are now properly cloned, which fixes the issue of those ops occasionally timing out during bootstrap or rebalance/failover.
+* [SPY-181](http://www.couchbase.com/issues/browse/SPY-181): GetAndLock operations are now properly cloned, which fixes the issue of those operations occasionally timing out during bootstrap,  rebalance, or failover.
 
-* [JCBC-647](http://www.couchbase.com/issues/browse/JCBC-647), [SPY-182](http://www.couchbase.com/issues/browse/SPY-182): Two messages previously (misleadingly) reported at WARN level have been removed since they do not actually
-report unstable condition. One of them is the "handling node not set" when an operatio needs to be cloned, the other onse is related
-to PersistTo/ReplicateTo which is now more clever on selecting the proper nodes to fan out which in result does not trigger a warning
-message.
+* [JCBC-647](http://www.couchbase.com/issues/browse/JCBC-647), [SPY-182](http://www.couchbase.com/issues/browse/SPY-182): Two messages that misleadingly reported at WARN level have been removed because they do not actually
+report an unstable condition. One of them is the `handling node not set` message reported when an operation needs to be cloned, and the other one is related
+to `PersistTo` and `ReplicateTo`, which are now more clever about selecting the proper nodes to fan out and do not trigger a warning message.
 
 <a id="couchbase-sdk-java-rn_1-4-6a"></a>
 
