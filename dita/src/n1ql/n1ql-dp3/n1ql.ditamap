@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
- <title>N1QL Language Reference</title>
+ <title>N1QL DP3 Language Reference</title>
  
  <topicref href="intro.dita">
     <topicref href="concepts.dita"></topicref>
