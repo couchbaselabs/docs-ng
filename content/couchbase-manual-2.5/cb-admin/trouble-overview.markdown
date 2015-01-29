@@ -103,7 +103,8 @@ Mac OS X | `/Users/couchbase/Library/Application Support/Couchbase/var/lib/couch
 
 Individual log files are automatically numbered, with the number suffix
 incremented for each new log, with a maximum of 20 files per log. Individual log
-file sizes are limited to 10MB by default.
+file sizes are limited to 10MB by default. See [below](#couchbase-troubleshooting-logs-rotation)
+for instructions on changing these values.
 
 [](#couchbase-troubleshooting-logs-files) contains a list of the different log
 files are create in the logging directory and their contents.
@@ -197,6 +198,27 @@ curl -X POST -u Administrator:password
   -d 'ale:set_loglevel(ns_server,error).
 ```
 
+
+<a id="couchbase-troubleshooting-logs-rotation"></a>
+
+### Changing the log rotation settings
+
+As mentioned above, each log group is rotated automatically, by default storing 20 files of 10MB each.  This can be changed by modifying the logging configuration in `/opt/couchbase/etc/couchbase/static_config`
+
+<div class="notebox"><p>Note</p>
+<p>To change the log rotation settings, you must be log in as either root or sudo and the Couchbase service must be restarted.</p>
+</div>
+
+To change the log file configuration:
+
+1. Log in as root or sudo and navigate to the directory where you installed Couchbase. For example:
+`/opt/couchbase/etc/couchbase/static_config`
+1. Edit the *static_config* file and change the `error_logger_mf_maxfiles` and `error_logger_mf_maxbytes` variables to the desired values. For example: ```{error_logger_mf_maxbytes, 20971520}.``` and ```{error_logger_mf_maxfiles, 40}.``` would give 40 files of 20MB each.
+1. Stop the Couchbase service.
+1. Either delete or move __all__ the files from the log directory (default location is `/opt/couchbase/var/lib/couchbase/logs`)
+1. Start the Couchbase service.
+
+After starting the Couchbase service, all subsequent logs will rotate using the new values.
 
 
 
