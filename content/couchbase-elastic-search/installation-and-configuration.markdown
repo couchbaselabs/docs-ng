@@ -73,7 +73,7 @@ DONE Installed transport-couchbase
  1. Set the username and password for the plug-in:
 
      ```
-     echo "couchbase.password: password" >> config/elasticsearch.yml
+     echo "couchbase.password: password" >> config/elasticsearch.yml ;
      echo "couchbase.username: Administrator" >> config/elasticsearch.yml
 ```
 
