@@ -55,12 +55,12 @@ To include the Client SDK in your project, you can either
 manually include all dependencies in your `CLASSPATH`, or if you want make your life easier, you can use a dependency manager such as [Maven](http://maven.apache.org/). All stable Couchbase-related dependencies are published to the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.couchbase.client%22).
 
 To include the libraries directly in your project,
-[download the zip file](http://packages.couchbase.com/clients/java/1.4.7/Couchbase-Java-Client-1.4.7.zip) and add
+[download the zip file](http://packages.couchbase.com/clients/java/1.4.8/Couchbase-Java-Client-1.4.8.zip) and add
 all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.4.7.jar, or latest version available
+ * couchbase-client-1.4.8.jar, or latest version available
 
  * spymemcached-2.11.6.jar
 
@@ -91,7 +91,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.4.7</version>
+    <version>1.4.8</version>
 </dependency>
 ```
 
@@ -101,7 +101,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.4.7"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.4.8"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -112,7 +112,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.4.7"
+  compile "com.couchbase.client:couchbase-client:1.4.8"
 }
 ```
 
@@ -153,7 +153,7 @@ NetBeans IDE and open it:
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.4.7
+     * **Version**: 1.4.8
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
@@ -396,5 +396,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.5/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://docs.couchbase.com/sdk-api/couchbase-java-client-1.4.7/index.html).
+Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://docs.couchbase.com/sdk-api/couchbase-java-client-1.4.8/index.html).
 

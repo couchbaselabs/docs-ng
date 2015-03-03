@@ -4,6 +4,16 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-8a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.8 GA (2 March 2015)
+
+This is the eighth bug fix release for the 1.4 series and brings one for PersistTo/ReplicateTo future status flags.
+
+* [JCBC-700](http://www.couchbase.com/issues/browse/JCBC-700): The "done" variable was not properly set when a  `observe` future was
+already correctly completed. This impacts the user when a callback on the `PersistTo/ReplicateTo` overloaded methods is used and/or
+the `isDone()` method is called. Other futures are not affected.
+
 <a id="couchbase-sdk-java-rn_1-4-7a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.7 GA (19 January 2015)
