@@ -107,7 +107,6 @@ versions:
   couchbase-sdk-c:
     name: "C SDK"
     versions:
-      - 2.4
       - 2.3
       - 2.2
       - 2.1
@@ -215,7 +214,7 @@ navbar:
   - label: SDKs
     subnav:
       - label: C Developer Guide
-        href: /couchbase-sdk-c-2.4/
+        href: /couchbase-sdk-c-2.3/
 
       - label: C API Reference
         href: http://docs.couchbase.com/sdk-api/couchbase-c-client-2.4.0/
