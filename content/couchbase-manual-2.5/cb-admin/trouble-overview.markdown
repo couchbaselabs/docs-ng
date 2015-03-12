@@ -116,13 +116,16 @@ File               | Log Contents
 `couchdb`          | Errors relating to the couchdb subsystem that supports views, indexes and related REST API issues                                                          
 `debug`            | Debug level error messages related to the core server management subsystem, excluding information included in the `couchdb`, `xdcr` and `stats` logs.      
 `info`             | Information level error messages related to the core server management subsystem, excluding information included in the `couchdb`, `xdcr` and `stats` logs.
+`http_access.log`  | The admin access log records server requests (including admin logins) coming through the REST or Couchbase web console. It is output in common log format and contains several important fields such as remote client IP, timestamp, GET/POST request and resource requested, HTTP status code, and so on. 
 `error`            | Error level messages for all subsystems excluding `xdcr`.                                                                                                  
 `xcdr_error`       | XDCR error messages.                                                                                                                                       
-`xdcr`             | XDCR information messages.                                                                                                                                 
+`xdcr`             | XDCR information messages.  
+`tmpfail`          | For XDCR, the destination cluster is not able to eject items fast enough to make room for new mutations. XDCR retries several times, without throwing errors, but after a fixed number of attempts the errors are shown to the user. Nevertheless, if a user waits long enough, XDCR eventually retries and is able to replicate the remaining data.                                                                                                                               
 `mapreduce_errors` | JavaScript and other view-processing errors are reported in this file.                                                                                     
 `views`            | Errors relating to the integration between the view system and the core server subsystem.                                                                  
 `stats`            | Contains periodic reports of the core statistics.                                                                                                          
-`memcached.log`    | Contains information relating to the core memcache component, including vBucket and replica and rebalance data streams requests.                           
+`memcached.log`    | Contains information relating to the core memcache component, including vBucket and replica and rebalance data streams requests.  
+`reports.log`      | Contains only progress report and crash reports for the Erlang process.                          
 
 <div class="notebox">
 <p>Note</p>
