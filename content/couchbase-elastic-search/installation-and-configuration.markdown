@@ -120,7 +120,7 @@ and performance will work with Elasticsearch clusters.
     Couchbase Plug-in for Elasticsearch:
 
      ```
-     shell>    curl -XPUT http://localhost:9200/_template/couchbase \
+     shell>    curl -X PUT http://localhost:9200/_template/couchbase \
      -d @plugins/transport-couchbase/couchbase_template.json
      ```
 
@@ -136,7 +136,7 @@ and performance will work with Elasticsearch clusters.
     in Elasticsearch:
 
      ```
-     shell>    curl -XPUT http://localhost:9200/beer-sample
+     shell>    curl -X PUT http://localhost:9200/beer-sample
      ```
 
     In this case we name our index `beer-sample`. Upon success Elasticsearch returns
