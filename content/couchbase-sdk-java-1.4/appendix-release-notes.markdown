@@ -4,6 +4,19 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-9a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.9 GA (3 April 2015)
+
+This is the ninth bug fix release for the 1.4 series and brings correctness and stability improvements.
+
+* [JCBC-738](http://www.couchbase.com/issues/browse/JCBC-738): The possibility of a `ClassCastException` has been eliminated when a `HttpFuture` is used and a timeout is happening. This type of future is also returned when a view request is made.
+
+* [JCBC-741](http://www.couchbase.com/issues/browse/JCBC-741): The active node is now always included in an `observe` call (internally used with durability requirements like `ReplicateTo` and `PersistTo`), to reliably discover concurrent modifications. Previously, when only `ReplicateTo` was used and the same document was modified concurrently the operation would just time out. Now it fails quickly and reports the failure case in the operation status. This behaviour is now consistent with the one when `PersistTo` is also included in the durability requirement.
+
+* [SPY-183](http://www.couchbase.com/issues/browse/SPY-183): The touch operation is now properly cloned, which previously led to false timeouts during rebalance and unavailable node scenarios (only on the touch operation).
+
+
 <a id="couchbase-sdk-java-rn_1-4-8a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.8 GA (2 March 2015)
