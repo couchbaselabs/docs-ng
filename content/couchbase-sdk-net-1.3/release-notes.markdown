@@ -4,6 +4,14 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library .NET. To browse or submit new issues, see [Couchbase
 Client Library .NET Issues Tracker](http://www.couchbase.com/issues/browse/NCBC).
 
+## Release Notes for Couchbase Client Library .NET 1.3.11 GA (10 March 2015)
+
+<a id="couchbase-sdk-net-rn_1-3-11"></a>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-585">NCBC-585: Refactor finalization logic so that Exceptions are not thrown on finalizer thread</a>
+
+* <a href="https://www.couchbase.com/issues/browse/NCBC-805">NCBC-805: .NET SDK 1.3.10 can cause long delays on GC Finalizer thread processing</a>
+
 ## Release Notes for Couchbase Client Library .NET 1.3.10 GA (4 November 2014)
 
 <a id="couchbase-sdk-net-rn_1-3-10"></a>

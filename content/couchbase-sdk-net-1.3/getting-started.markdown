@@ -17,12 +17,12 @@ To get the software:
 
 2. Get the client library by using one of the following methods:
 
-	* Download the zip file from [here](http://packages.couchbase.com.s3.amazonaws.com/clients/net/1.3/Couchbase-Net-Client-1.3.10.zip).
+	* Download the zip file from [here](http://packages.couchbase.com.s3.amazonaws.com/clients/net/1.3/Couchbase-Net-Client-1.3.11.zip).
 
 	* Run the following command in the [NuGet](http://www.nuget.org) package manger console:
-	
+
 			PM> Install-Package CouchbaseNetClient
-	
+
 
 ## Setting up a project
 
