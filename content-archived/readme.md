@@ -1,0 +1,1 @@
+The **content-archived** folder contains old documents that are not published on the website any more.
