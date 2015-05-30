@@ -12,6 +12,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	   <title><%= @item[:pagetitle] ? @item[:pagetitle] : @item[:title] %></title>	  	 
       <meta name="description" content="<%= @item[:metadescr] %>">
+		<meta name="robots" content="noindex, nofollow">
       <meta name="viewport" content="width=device-width">
       <%= css_link("/assets/css/main") %>
       <link rel="stylesheet" type="text/css" media="print" href="print.css" />
