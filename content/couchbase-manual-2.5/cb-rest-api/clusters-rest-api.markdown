@@ -560,8 +560,7 @@ The following parameters and settings appear:
 
  * `timeout` : seconds that must elapse before auto-failover executes on a cluster.
 
- * `count` : can be 0 or 1. Number of times any node in a cluster can be
-   automatically failed-over. After one auto-failover occurs, count is set to 1 and
+ * `count` : can be 0 or 1. Number of times any node in a cluster has been automatically failed-over. After one auto-failover occurs, count is set to 1 and
    Couchbase server will not perform auto-failure for the cluster again unless you
    reset the count to 0. If you want to failover more than one node at a time in a
    cluster, you will need to do so manually.
