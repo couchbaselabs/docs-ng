@@ -225,6 +225,7 @@ You store your map function as a string in a design document as follows:
               } else {
                 // do something with binary value
               }
+      }"
     }
   }
 }
@@ -680,9 +681,10 @@ appear in JSON as follows:
          } else {
         // do something with binary value
          }
+      }",
+      "reduce" : "_count"
     }
   }
-  "reduce" : "_count"
 }
 ```
 
@@ -890,7 +892,7 @@ it:
 ```
 import import com.couchbase.client.protocol.views.*;
 
-System.setProperty("viewmode", "development"); // before the connection to Couchbase
+System.setProperty("viewmode", "production"); // before the connection to Couchbase
 
 // Create connection if needed
 
@@ -906,7 +908,7 @@ for(ViewRow row : result) {
 ```
 
 Before we create a Couchbase client instance and connect to the server, we set a
-system property 'viewmode' to 'development' to put the view into production
+system property 'viewmode' to 'production' to put the view into production
 mode. Then we query our view and limit the number of documents returned to 20
 items. Finally when we query our view we set the `stale` parameter to FALSE to
 indicate we want to reindex and include any new or updated beers in Couchbase.
