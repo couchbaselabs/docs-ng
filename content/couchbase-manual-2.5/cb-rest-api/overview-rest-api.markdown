@@ -5,6 +5,11 @@
 <a id="couchbase-admin-restapi"></a>
 # REST API overview
 
+<div class="notebox warning">
+<p>A newer version of this software is available</p>
+<p>You are viewing the documentation for an older version of this software. To find the documentation for the current version, visit the <a href="http://docs.couchbase.com">Couchbase documentation home page</a>.</p>
+</div>
+
 The Couchbase REST API enables you to manage a Couchbase Server deployment as well as perform operations such as storing design documents and querying for results. The REST API conforms to Representational State Transfer (REST) constraints, in other words, the REST API follows a **RESTful** architecture.
 
 Use the REST API to manage clusters, server nodes, and buckets, and to

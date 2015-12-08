@@ -6,26 +6,24 @@ in this section:
 
  1. Create a project in your favorite IDE and set up the dependencies.
 
- 1. Write a simple program that demonstrates how to connect to Couchbase Server and save some documents.
+ 2. Write a simple program that demonstrates how to connect to Couchbase Server and save some documents.
 
- 1. Write a program that demonstrates how to use create, read, update, and delete (CRUD)
-    operations on documents in combination with JSON serialization and
-    deserialization.
+ 3. Write a program that demonstrates how to use create, read, update, and delete (CRUD) operations on documents in combination with JSON serialization and deserialization.
 
- 1. Explore some of the API methods that provide more specialized functions.
+ 4. Explore some of the API methods that provide more specialized functions.
 
-At this point we assume that you have a Couchbase Server 2.5 release running and
+At this point we assume that you have a Couchbase Server 2.5 release (or later) running and
 you have the **beer-sample** bucket configured. If you need help setting up
 everything, see the following documents:
 
  * [Using the Couchbase Web
-   Console](http://docs.couchbase.com/couchbase-manual-2.5/#using-the-web-console) for information about using the Couchbase Administrative Console
+   Console](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#couchbase-web-console) for information about using the Couchbase Administrative Console
 
  * [Couchbase
-   CLI](http://docs.couchbase.com/couchbase-manual-2.5/#command-line-interface-for-administration) for information about the command line interface
+   CLI](http://docs.couchbase.com/couchbase-manual-2.5/cb-cli/#command-line-interface-overview) for information about the command line interface
 
  * [Couchbase REST
-   API](http://docs.couchbase.com/couchbase-manual-2.5/#using-the-rest-api) for information about creating and managing Couchbase resources
+   API](http://docs.couchbase.com/couchbase-manual-2.5/cb-rest-api/) for information about creating and managing Couchbase resources
 
 The TCP/IP port allocation on Microsoft Windows by default includes a restricted number of
 ports available for client communication. For more information about this issue,
@@ -40,13 +38,13 @@ To get ready to build your first app, you need to install Couchbase Server, down
 **Installing Couchbase Server**
 
 Get the [latest
-Couchbase Server 2.5](http://couchbase.com/download) release and install it.
+Couchbase Server](http://couchbase.com/downloads) release and install it.
 
 As you follow the download instructions and setup wizard, make sure you install the
 **beer-sample** default bucket. It contains beer and brewery sample data,
 which you use with the examples.
 
-If you already have Couchbase Server 2.5 but do not have the **beer-sample**
+If you already have Couchbase Server 2.5 (or later) but do not have the **beer-sample**
 bucket installed, open the Couchbase Web Console and select
 **Settings > Sample Buckets**. Select the **beer-sample** checkbox, and then click
 **Create**. A notification box in the upper-right corner disappears when the bucket is ready to use.
@@ -54,19 +52,17 @@ bucket installed, open the Couchbase Web Console and select
 **Downloading the Couchbase Client Libraries**
 
 To include the Client SDK in your project, you can either
-manually include all dependencies in your `CLASSPATH`, or if you want it to be
-easier, you can use a dependency manager such as [Maven](http://maven.apache.org/). Since the Java SDK 1.2.0 release,
-all Couchbase-related dependencies are published in the [Maven Central Repository](http://search.maven.org/).
+manually include all dependencies in your `CLASSPATH`, or if you want make your life easier, you can use a dependency manager such as [Maven](http://maven.apache.org/). All stable Couchbase-related dependencies are published to the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.couchbase.client%22).
 
 To include the libraries directly in your project,
-[download the archive](http://www.couchbase.com/communities/java/getting-started) and add
+[download the zip file](http://packages.couchbase.com/clients/java/1.4.11/Couchbase-Java-Client-1.4.11.zip) and add
 all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.4.4.jar, or latest version available
+ * couchbase-client-1.4.11.jar, or latest version available
 
- * spymemcached-2.11.4.jar
+ * spymemcached-2.11.7.jar
 
  * commons-codec-1.5.jar
 
@@ -78,6 +74,18 @@ dependencies in your `CLASSPATH` :
 
  * jettison-1.1.jar
 
+Previous releases of the 1.4 branch are also available through [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.couchbase.client%22%20AND%20a%3A%22couchbase-client%22) or as a zip archive:
+ * [Couchbase Java Client 1.4.10](http://packages.couchbase.com/clients/java/1.4.10/Couchbase-Java-Client-1.4.10.zip)
+ * [Couchbase Java Client 1.4.9](http://packages.couchbase.com/clients/java/1.4.9/Couchbase-Java-Client-1.4.9.zip)
+ * [Couchbase Java Client 1.4.8](http://packages.couchbase.com/clients/java/1.4.8/Couchbase-Java-Client-1.4.8.zip)
+ * [Couchbase Java Client 1.4.7](http://packages.couchbase.com/clients/java/1.4.7/Couchbase-Java-Client-1.4.7.zip)
+ * [Couchbase Java Client 1.4.6](http://packages.couchbase.com/clients/java/1.4.6/Couchbase-Java-Client-1.4.6.zip)
+ * [Couchbase Java Client 1.4.5](http://packages.couchbase.com/clients/java/1.4.5/Couchbase-Java-Client-1.4.5.zip)
+ * [Couchbase Java Client 1.4.4](http://packages.couchbase.com/clients/java/1.4.4/Couchbase-Java-Client-1.4.4.zip)
+ * [Couchbase Java Client 1.4.3](http://packages.couchbase.com/clients/java/1.4.3/Couchbase-Java-Client-1.4.3.zip)
+ * [Couchbase Java Client 1.4.2](http://packages.couchbase.com/clients/java/1.4.2/Couchbase-Java-Client-1.4.2.zip)
+ * [Couchbase Java Client 1.4.1](http://packages.couchbase.com/clients/java/1.4.1/Couchbase-Java-Client-1.4.1.zip)
+ * [Couchbase Java Client 1.4.0](http://packages.couchbase.com/clients/java/1.4.0/Couchbase-Java-Client-1.4.0.zip)
 
 If you use a dependency manager, the syntax varies for each tool. The following examples show how to set up the dependencies when using Maven, sbt (for Scala programs), and Gradle.
 
@@ -87,7 +95,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.4.4</version>
+    <version>1.4.11</version>
 </dependency>
 ```
 
@@ -97,7 +105,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.4.4"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.4.11"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -108,7 +116,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.4.4"
+  compile "com.couchbase.client:couchbase-client:1.4.11"
 }
 ```
 
@@ -124,37 +132,37 @@ NetBeans IDE and open it:
 
     ![](images/maven_setup2.png)
 
- 1. Enter a name for your new project and change the location to the
+ 2. Enter a name for your new project and change the location to the
     directory you want.
 
 	We named the project "examples."
 
     ![](images/maven_setup1.png)
 
- 1. Enter a namespace for the project in the **Group Id** field. 
+ 3. Enter a namespace for the project in the **Group Id** field. 
 
 	We used the `com.couchbase` namespace for this example, but you can use your own if you like. If you do so, just make sure you change the namespace later in the source files when you copy them from our examples.
 
     Now that your project, you can add the Couchbase Maven repository to use the
     Java SDK.
 
-1. Click **Finish**.
+ 4. Click **Finish**.
 
- 1. In the **Projects** window,  right-click  **Dependencies > Add
+ 5. In the **Projects** window,  right-click  **Dependencies > Add
     Dependency**. 
 
-1.  Enter the following settings to add the Couchbase Java SDK from the Maven repository:
+ 6.  Enter the following settings to add the Couchbase Java SDK from the Maven repository:
 
      * **Group ID**: com.couchbase.client
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.4.4
+     * **Version**: 1.4.11
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
 
-1. Click **Add**.
+ 7. Click **Add**.
 
 Now all the dependencies are in place and you can move forward to your first
 application with Couchbase.
@@ -207,8 +215,7 @@ public class App {
 }
 ```
 
-The code in Listing 1 is very straightforward, but there is a lot going on that is worth a
-little more discussion:
+The code in Listing 1 is straightforward, but there is a lot going on that is worth a little more discussion:
 
  * **Connect**. The `CouchbaseClient` class accepts a list of URIs that point to nodes in the cluster. If your cluster has more than one node, Couchbase strongly recommends that you add at least two or three URIs to the list. The list does not have to contain all nodes in the cluster, but you do need to provide a few nodes so that during the initial connection phase your client can connect to the cluster even if one or more nodes fail.
 
@@ -244,14 +251,15 @@ log looks like this:
 
 
 ```
-2012-12-03 18:57:45.777 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
-2012-12-03 18:57:45.788 INFO com.couchbase.client.CouchbaseConnection:  Connection state changed for sun.nio.ch.SelectionKeyImpl@76f8968f
-2012-12-03 18:57:45.807 INFO com.couchbase.client.ViewConnection:  Added localhost to connect queue
-2012-12-03 18:57:45.808 INFO com.couchbase.client.CouchbaseClient:  viewmode property isn't defined. Setting viewmode to production mode
+2014-10-22 09:11:39.498 INFO net.spy.memcached.auth.AuthThread:  Authenticated to /127.0.0.1:11210
+2014-10-22 09:11:39.512 INFO com.couchbase.client.vbucket.provider.BucketConfigurationProvider:  Could bootstrap through carrier publication.
+2014-10-22 09:11:39.516 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=localhost/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
+2014-10-22 09:11:39.518 INFO com.couchbase.client.CouchbaseClient:  CouchbaseConnectionFactory{bucket='beer-sample', nodes=[http://127.0.0.1:8091/pools], order=RANDOM, opTimeout=2500, opQueue=16384, opQueueBlockTime=10000, obsPollInt=10, obsPollMax=500, obsTimeout=5000, viewConns=10, viewTimeout=75000, viewWorkers=1, configCheck=10, reconnectInt=1100, failureMode=Redistribute, hashAlgo=NATIVE_HASH, authWaitTime=2500}
+2014-10-22 09:11:39.560 INFO com.couchbase.client.CouchbaseClient:  viewmode property isn't defined. Setting viewmode to production mode
+2014-10-22 09:11:39.626 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+2014-10-22 09:11:39.663 INFO com.couchbase.client.CouchbaseConnection:  Shut down Couchbase client
+2014-10-22 09:11:39.664 INFO com.couchbase.client.ViewConnection:  I/O reactor terminated
 couchbase!
-2012-12-03 18:57:45.925 INFO com.couchbase.client.CouchbaseConnection:  Shut down Couchbase client
-2012-12-03 18:57:45.929 INFO com.couchbase.client.ViewConnection:  Node localhost has no ops in the queue
-2012-12-03 18:57:45.929 INFO com.couchbase.client.ViewNode:  I/O reactor terminated for localhost
 ```
 
 From the log, you can determine which nodes the client is connected to, see whether views on
@@ -287,12 +295,12 @@ important that you check for `null` in your code, to prevent
 
 With Couchbase Server 2.0 and later, you can also query for documents with secondary
 indexes, which we collectively call
-[Views](http://docs.couchbase.com/couchbase-manual-2.2/#views-and-indexes).
+[Views](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#views-and-indexes).
 This feature enables you to provide *map functions* to extract information and
 you can optionally provide *reduce functions* to perform calculations on
 information. This guide gets you started on how to use views through the Java
 SDK. If you want to learn more, including how to set up views with Couchbase Web
-Console, see [Using the Views Editor](http://docs.couchbase.com/couchbase-manual-2.2/#using-the-views-editor) in the *Couchbase Server Manual*.
+Console, see [Using the Views Editor](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#using-the-views-editor) in the *Couchbase Server Manual*.
 
 This next example assumes you already have a view function set up with
 Couchbase Web Console. After you create your View in the Couchbase Web Console, you can
@@ -392,5 +400,5 @@ Expiration](http://docs.couchbase.com/couchbase-devguide-2.5/#about-document-exp
 
 You are now ready to start exploring Couchbase Server and the Java SDK on your own.
 If you want to learn more and see a full-fledged application on top of Couchbase
-Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://www.couchbase.com/autodocs/couchbase-java-client-1.4.4/index.html).
+Server 2.5, read the [Web Application Tutorial](http://docs.couchbase.com/couchbase-sdk-java-1.4/#tutorial). The [Couchbase Server Manual](http://docs.couchbase.com/couchbase-manual-2.5/) and the [Couchbase Developer Guide](http://docs.couchbase.com/couchbase-devguide-2.5/) provide useful information for your day-to-day work with Couchbase Server. You can also look at the [Couchbase Java SDK API Reference](http://docs.couchbase.com/sdk-api/couchbase-java-client-1.4.9/index.html).
 

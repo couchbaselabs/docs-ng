@@ -41,24 +41,24 @@ content using the following command:
 
 
 ```
-> curl -X PUT -H 'Content-Type: application/json' \
-   http://user:password@localhost:8092/sales/_design/dev_byfield' \
+curl -X PUT -H 'Content-Type: application/json' \
+   http://user:password@localhost:8092/sales/_design/dev_byfield \
    -d @byfield.ddoc
 ```
 
 In the above example:
 
- * `-X PUT`
+ * -X PUT
 
    Indicates that an HTTP PUT operation is requested.
 
- * `-H 'Content-Type: application/json'`
+ * -H 'Content-Type: application/json'
 
    Specifies the HTTP header information. Couchbase Server requires the information
    to be sent and identified as the `application/json` datatype. Information not
    supplied with the content-type set in this manner will be rejected.
 
- * `http://user:password@localhost:8092/sales/_design/dev_byfield'`
+ * http://user:password@localhost:8092/sales/_design/dev_byfield
 
    The URL, including authentication information, of the bucket where you want the
    design document uploaded. The `user` and `password` should either be the
@@ -161,9 +161,9 @@ design document `byfield` :
 
 
 ```
-> curl -X GET \
+curl -X GET \
     -H 'Content-Type: application/json' \
-    'http://user:password@192.168.0.77:8092/sales/_design/dev_byfield
+    http://user:password@192.168.0.77:8092/sales/_design/dev_byfield
 ```
 
 Through `curl` this will download the design document to the file `dev_byfield`
@@ -189,9 +189,9 @@ For example:
 
 
 ```
-&gt; curl -v -X GET \
+curl -v -X GET \
    -H 'Content-Type: application/json' \
-   'http://user:password@192.168.0.77:8092/sales/_design/
+   http://user:password@192.168.0.77:8092/sales/_design/
 * About to connect() to 192.168.0.77 port 8092 (#0)
 *   Trying 192.168.0.77...
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -251,8 +251,8 @@ For example, to delete the previously created design document using `curl` :
 
 
 ```
-> curl -v -X DELETE -H 'Content-Type: application/json' \
-    'http://Administrator:Password@192.168.0.77:8092/default/_design/dev_byfield'
+curl -v -X DELETE -H 'Content-Type: application/json' \
+    http://Administrator:Password@192.168.0.77:8092/default/_design/dev_byfield
 ```
 
 When the design document has been successfully removed, the JSON returned
