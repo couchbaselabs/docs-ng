@@ -564,10 +564,19 @@ The following parameters and settings appear:
    Couchbase server will not perform auto-failure for the cluster again unless you
    reset the count to 0. If you want to failover more than one node at a time in a
    
+
+ * `count` : can be 0 or 1. After one auto-failover occurs, count is set to 1 and
+   Couchbase server will not perform auto-failure for the cluster again unless you
+   reset the count to 0. If you want to failover more than one node at a time in a
+   cluster, you will need to do so manually.
+
  * `count` : Value is 0 or 1. After one auto-failover occurs, count is set to 1 and
    Couchbase Server will not perform another auto-failover for the cluster unless the count 
 is reset to 0. If you want to failover more than one node at a time in a
    cluster, you have to do it manually.
+
+ * `count` : Value is 0 or 1. It shows whether any node in a cluster can be automatically failed-over. After one auto-failover occurs, the count is set to 1 and Couchbase Server does not perform another auto-failover for the cluster unless the count is reset to 0. To failover more than one node at a time in a cluster, perform a manual failover.
+
 
  * `count` : Value is 0 or 1. It shows whether any node in a cluster can be automatically failed-over. After one auto-failover occurs, the count is set to 1 and Couchbase Server does not perform another auto-failover for the cluster unless the count is reset to 0. To failover more than one node at a time in a cluster, perform a manual failover.
 Possible errors include:
