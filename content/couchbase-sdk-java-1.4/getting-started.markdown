@@ -55,12 +55,12 @@ To include the Client SDK in your project, you can either
 manually include all dependencies in your `CLASSPATH`, or if you want make your life easier, you can use a dependency manager such as [Maven](http://maven.apache.org/). All stable Couchbase-related dependencies are published to the [Maven Central Repository](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.couchbase.client%22).
 
 To include the libraries directly in your project,
-[download the zip file](http://packages.couchbase.com/clients/java/1.4.10/Couchbase-Java-Client-1.4.10.zip) and add
+[download the zip file](http://packages.couchbase.com/clients/java/1.4.11/Couchbase-Java-Client-1.4.11.zip) and add
 all the JAR files to your `CLASSPATH` of the system/project. Most IDEs also allow
 you to add specific JAR files to your project. Make sure you add the following
 dependencies in your `CLASSPATH` :
 
- * couchbase-client-1.4.10.jar, or latest version available
+ * couchbase-client-1.4.11.jar, or latest version available
 
  * spymemcached-2.11.7.jar
 
@@ -75,6 +75,8 @@ dependencies in your `CLASSPATH` :
  * jettison-1.1.jar
 
 Previous releases of the 1.4 branch are also available through [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.couchbase.client%22%20AND%20a%3A%22couchbase-client%22) or as a zip archive:
+ * [Couchbase Java Client 1.4.10](http://packages.couchbase.com/clients/java/1.4.10/Couchbase-Java-Client-1.4.10.zip)
+ * [Couchbase Java Client 1.4.9](http://packages.couchbase.com/clients/java/1.4.9/Couchbase-Java-Client-1.4.9.zip)
  * [Couchbase Java Client 1.4.8](http://packages.couchbase.com/clients/java/1.4.8/Couchbase-Java-Client-1.4.8.zip)
  * [Couchbase Java Client 1.4.7](http://packages.couchbase.com/clients/java/1.4.7/Couchbase-Java-Client-1.4.7.zip)
  * [Couchbase Java Client 1.4.6](http://packages.couchbase.com/clients/java/1.4.6/Couchbase-Java-Client-1.4.6.zip)
@@ -93,7 +95,7 @@ To use Maven to include the SDK, add the following dependency to your **pom.xml*
 <dependency>
     <groupId>com.couchbase.client</groupId>
     <artifactId>couchbase-client</artifactId>
-    <version>1.4.10</version>
+    <version>1.4.11</version>
 </dependency>
 ```
 
@@ -103,7 +105,7 @@ your **build.sbt** file:
 
 
 ```
-libraryDependencies += "couchbase" % "couchbase-client" % "1.4.10"
+libraryDependencies += "couchbase" % "couchbase-client" % "1.4.11"
 ```
 
 For [Gradle](http://www.gradle.org/) you can use the following snippet:
@@ -114,7 +116,7 @@ repositories {
 }
 
 dependencies {
-  compile "com.couchbase.client:couchbase-client:1.4.10"
+  compile "com.couchbase.client:couchbase-client:1.4.11"
 }
 ```
 
@@ -155,7 +157,7 @@ NetBeans IDE and open it:
 
      * **Artifact ID**: couchbase-client
 
-     * **Version**: 1.4.10
+     * **Version**: 1.4.11
 
 	For now, you need to add only the Couchbase Java SDK itself because the
     transitive dependencies are fetched automatically.
