@@ -4,6 +4,14 @@ The following sections provide release notes for individual release versions of
 Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
 
+<a id="couchbase-sdk-java-rn_1-4-11a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.11 GA (7 December 2015)
+
+This is the 11th release for the 1.4 series and brings additional APIs which have been left out before.
+
+* [JCBC-881](http://www.couchbase.com/issues/browse/JCBC-881): When durability requirements are specified on mutation methods, it is now possible to also pass in a custom transcoder.
+
 <a id="couchbase-sdk-java-rn_1-4-10a"></a>
 
 ## Release Notes for Couchbase Client Library Java 1.4.10 GA (7 August 2015)
