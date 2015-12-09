@@ -18,7 +18,7 @@ This is the 11th release for the 1.4 series and brings additional APIs which hav
 
 This is the tenth bug fix release for the 1.4 series and brings correctness and stability improvements during failure scenarios for both couchbase and memcached buckets.
 
-* [JCBC-816](http://www.couchbase.com/issues/browse/JCBC-816): The reconfiguration (which includes grabbing a new config and applying it to the system) has been made more resilient during edge-cases. Those edge-cases include close to no load, as well as full cluster (all nodes) restarts. In the first case the heuristics have been improved to practively pick up a new configuration more quickly, and in the second case the code has been made more resilient to consecutive failed attempts for grabbing a new configuration.
+* [JCBC-816](http://www.couchbase.com/issues/browse/JCBC-816): The reconfiguration (which includes grabbing a new config and applying it to the system) has been made more resilient during edge-cases. Those edge-cases include close to no load, as well as full cluster (all nodes) restarts. In the first case the heuristics have been improved to proactively pick up a new configuration more quickly, and in the second case the code has been made more resilient to consecutive failed attempts for grabbing a new configuration.
 
 * [JCBC-770](http://www.couchbase.com/issues/browse/JCBC-770): A bug has been fixed where memcached buckets did fail to pick up a new configuration when the original streaming connection was teared down.
 
