@@ -1,8 +1,23 @@
 # Release Notes
 
 The following sections provide release notes for individual release versions of
-Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase 
+Couchbase Client Library Java. To browse or submit new issues, see the [Couchbase
 Java Issues Tracker](http://www.couchbase.com/issues/browse/JCBC).
+
+<a id="couchbase-sdk-java-rn_1-4-13a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.13 GA (2 May 2017)
+
+* [SPY-194](http://www.couchbase.com/issues/browse/SPY-195): It is now possible to bound the retry queue in size with the net.spy.retryQueueSize system property.
+
+* [SPY-195](http://www.couchbase.com/issues/browse/SPY-195): The wakeupDelay property is now properly respected and used when customized.
+
+<a id="couchbase-sdk-java-rn_1-4-12a"></a>
+
+## Release Notes for Couchbase Client Library Java 1.4.12 GA (14 April 2016)
+
+* [JCBC-912](http://www.couchbase.com/issues/browse/JCBC-912): If the server returns on a "Not My Vbucket" without a response body, The code checks if the buffer which potentially contains the new
+config is not null and if it is just returns. This is a compatibility fix for Couchbase Server 4.5.
 
 <a id="couchbase-sdk-java-rn_1-4-11a"></a>
 
@@ -120,7 +135,7 @@ This is the third bug fix release for the 1.4 series and provides important bug 
 
 * [JCBC-480](http://www.couchbase.com/issues/browse/JCBC-480), [JCBC-482](http://www.couchbase.com/issues/browse/JCBC-482): Replica reads (`getFromReplica`, `getsFromReplica` and their async variants) are now reacting properly during certain failure conditions (when the document on the replica does not exist). In addition, an important bug with `getsFromReplica` has been fixed to make sure it gets scheduled appropriately to target the replica nodes.
 
-* [JCBC-477](http://www.couchbase.com/issues/browse/JCBC-477): Before this change, the bulk get, which is used internally when `setIncludeDocs` is set 
+* [JCBC-477](http://www.couchbase.com/issues/browse/JCBC-477): Before this change, the bulk get, which is used internally when `setIncludeDocs` is set
 to true, was not supplied with the timeout used for the view request
 itself. This is normally not an issue because key-value operations are much
 quicker than the default view timeout. In certain scenarios it can come
@@ -143,37 +158,37 @@ The 1.4.2 release is the second bug fix release for the 1.4 series. It fixes ver
 
 **Fixes in 1.4.2**
 
- * [JCBC-460](http://www.couchbase.com/issues/browse/JCBC-460): A bug has been fixed where 
-pushed configurations with replica-vbucket changes only did not count as significant 
-and got discarded. This can be an issue if persistence or replication constraints are used 
+ * [JCBC-460](http://www.couchbase.com/issues/browse/JCBC-460): A bug has been fixed where
+pushed configurations with replica-vbucket changes only did not count as significant
+and got discarded. This can be an issue if persistence or replication constraints are used
 since config changes might not be picked up correctly.
 
-* [SPY-170](http://www.couchbase.com/issues/browse/SPY-170): A concurrency issue has been 
-fixed in `StringUtils.isJSONObject()`, which could lead to false negatives when validating 
+* [SPY-170](http://www.couchbase.com/issues/browse/SPY-170): A concurrency issue has been
+fixed in `StringUtils.isJSONObject()`, which could lead to false negatives when validating
 in a concurrent environment.
 
-* [JCBC-463, SPY-171](http://www.couchbase.com/issues/browse/JCBC-463): There have been 
-some changes made which help with hardening the shutdown procedure in general and making 
-it more fault tolerant. The code now makes sure to also shut down the JCBC-opened resources 
-even if shutting down the spy I/O thread fails. Also, the spy I/O thread now always sets 
-running to false, which makes it terminate even if something goes wrong during the shutdown 
+* [JCBC-463, SPY-171](http://www.couchbase.com/issues/browse/JCBC-463): There have been
+some changes made which help with hardening the shutdown procedure in general and making
+it more fault tolerant. The code now makes sure to also shut down the JCBC-opened resources
+even if shutting down the spy I/O thread fails. Also, the spy I/O thread now always sets
+running to false, which makes it terminate even if something goes wrong during the shutdown
 phase (preventing it from being active).
 
-* [JCBC-424, SPY-172](http://www.couchbase.com/issues/browse/JCBC-424): The NIO selector 
-is now woken up manually if no load is going through, giving the Java client a chance 
-to perform tasks. One of the currently implemented tasks is sending a NOOP broadcast if the 
-last write is longer behind than 5 seconds. This helps to discover broken channels if no 
-load is going through and also prevents restrictive firewalls from timing out the connections 
+* [JCBC-424, SPY-172](http://www.couchbase.com/issues/browse/JCBC-424): The NIO selector
+is now woken up manually if no load is going through, giving the Java client a chance
+to perform tasks. One of the currently implemented tasks is sending a NOOP broadcast if the
+last write is longer behind than 5 seconds. This helps to discover broken channels if no
+load is going through and also prevents restrictive firewalls from timing out the connections
 prematurely.
 
-* [JCBC-413](http://www.couchbase.com/issues/browse/JCBC-413): A race condition has been 
-fixed in the ClusterManager, now making sure that the consumer is notified once the result 
+* [JCBC-413](http://www.couchbase.com/issues/browse/JCBC-413): A race condition has been
+fixed in the ClusterManager, now making sure that the consumer is notified once the result
 is set properly.
 
 * [JCBC-359, JCBC-408, JCBC-409](http://www.couchbase.com/issues/browse/JCBC-359): The API documentation (Javadoc) has been enhanced in various places, most notably in the `CouchbaseConnectionFactoryBuilder` class.
- 
-* [JCBC-461](http://www.couchbase.com/issues/browse/JCBC-461): Since only one streaming 
-connection can be open, the number of Netty worker threads has been limited to 1, reducing the 
+
+* [JCBC-461](http://www.couchbase.com/issues/browse/JCBC-461): Since only one streaming
+connection can be open, the number of Netty worker threads has been limited to 1, reducing the
 risk of opening more threads than needed in failure cases.
 
 **Known Issues in 1.4.2**

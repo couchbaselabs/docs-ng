@@ -399,7 +399,7 @@ Couchbase Client allows tuning of the time-out time to drop as low as you want,
 we do not recommend dropping it much below 1 second unless you are planning to
 tune other parts of the system beyond the JVM.
 
-For example, most people run applications on networks that do not offer 
+For example, most people run applications on networks that do not offer
 guaranteed response time. If the network is oversubscribed or minor blips
 occur on the network, there can be TCP retransmissions. While many TCP
 implementations ignore it, RFC 2988 specifies rounding up to 1 second when

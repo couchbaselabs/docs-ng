@@ -12,7 +12,7 @@ If you want to get up and running really quickly, here is how to do it with [Jet
 
  1. [Download](http://www.couchbase.com/downloads) Couchbase Server 2.5 or later and [install](http://docs.couchbase.com/couchbase-manual-2.5/cb-install/) it. Make sure you install the [beer-sample](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#sample-buckets) data set when you run the wizard because this tutorial uses it.
 
- 1. Add the following views and design documents to the `beer-sample` bucket. 
+ 1. Add the following views and design documents to the `beer-sample` bucket.
 
 	Views and design documents enable you to index and query data from the database. Later we will publish the views as production views. For more information about using views from an SDK, see [Couchbase Developer Guide, Finding Data with
     Views](http://docs.couchbase.com/couchbase-manual-2.5/cb-admin/#querying-views).
@@ -139,7 +139,7 @@ GitHub](http://github.com/couchbaselabs/beersample-java) for the full **pom.xml*
         <dependency>
             <groupId>com.couchbase.client</groupId>
             <artifactId>couchbase-client</artifactId>
-            <version>1.4.11</version>
+            <version>1.4.13</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -795,7 +795,7 @@ If the `handleEdit` method gets a beer document back from Couchbase Server and p
 
 This template is a little bit longer, but that is mainly because we have lots of fields on our beer documents. Note how we use the beer attributes inside the value attributes of the HTML input fields. We also use the unique ID in the form method to dispatch it to the correct URL on submit.
 
-The last thing we need to do for form submission to work is the actual form parsing and storing itself. Since we do form submission through a POST request, we need to implement the `doPost()` method on our servlet: 
+The last thing we need to do for form submission to work is the actual form parsing and storing itself. Since we do form submission through a POST request, we need to implement the `doPost()` method on our servlet:
 
 ```java
 @Override
